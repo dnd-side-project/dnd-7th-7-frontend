@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "dnd-project-running-map",
+    "slug": "dnd-project-running-map",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
