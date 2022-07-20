@@ -8,14 +8,14 @@ assignees: ''
 ---
 
 ### types
-- [ ] feat : 새로운 기능
-- [ ] update : 로직 변경
-- [ ] bug : 버그 수정
-- [ ] refactor : 파일 및 폴더 리팩토링
-- [ ] style : 코드 형식 변경
-- [ ] docs : 문서 관련
-- [ ] test : 테스트 코드
-- [ ] etc : 기타 변경 사항
+- feat : 새로운 기능
+- update : 로직 변경
+- bug : 버그 수정
+- refactor : 파일 및 폴더 리팩토링
+- style : 코드 형식 변경
+- docs : 문서 관련
+- test : 테스트 코드
+- etc : 기타 변경 사항
 
 ## 설명
 issue에 대한 자세한 설명을 적어주세요.
