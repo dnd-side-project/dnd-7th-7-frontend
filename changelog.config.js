@@ -9,7 +9,7 @@ module.exports = {
   types: {
     chore: {
       description: '빌드 및 패키지 매니저 설정 등 자잘한 수정',
-      emoji: '🤖',
+      emoji: '🧹',
       value: 'chore',
     },
     ci: {
@@ -19,12 +19,12 @@ module.exports = {
     },
     docs: {
       description: 'Documentation 수정',
-      emoji: '📜',
+      emoji: '📄',
       value: 'docs',
     },
     feat: {
       description: '새로운 기능',
-      emoji: '🎸',
+      emoji: '⚙️',
       value: 'feat',
     },
     fix: {
@@ -34,27 +34,27 @@ module.exports = {
     },
     perf: {
       description: '성능 향상을 위한 수정',
-      emoji: '⚡️',
+      emoji: '🔧',
       value: 'perf',
     },
     refactor: {
       description: '리팩토링 작업',
-      emoji: '💡',
+      emoji: '📂',
       value: 'refactor',
     },
     release: {
       description: '릴리즈',
-      emoji: '🏹',
+      emoji: '🎉',
       value: 'release',
     },
     style: {
       description: '마크업, formatting, 스타일 수정 등',
-      emoji: '💄',
+      emoji: '🎨',
       value: 'style',
     },
     test: {
       description: '누락된 테스트 추가',
-      emoji: '💍',
+      emoji: '🔬',
       value: 'test',
     },
     messages: {
