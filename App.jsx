@@ -8,6 +8,7 @@ export default function App() {
   const [location, setLocation] = useState(null);
   const [errMsg, setErrMsg] = useState(null);
   const [poly, setPoly] = useState([]);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -22,6 +23,26 @@ export default function App() {
     })();
   }, []);
 
+  // 일시정지 기능
+  useEffect(() => {
+    let count = 0;
+
+    const idInterval = setInterval(() => {
+      console.log(count);
+      count += 1;
+    }, 1000);
+
+    const id = setTimeout(() => {
+      console.log('운동 그만 하시겠어요?');
+      clearInterval(idInterval);
+    }, 10000);
+
+    return () => {
+      clearTimeout(id);
+      clearInterval(idInterval);
+    };
+  }, [seconds]);
+
   const update = useCallback(() => {
     startForegroundUpdate();
   }, [poly, location]);
@@ -35,7 +56,7 @@ export default function App() {
     }
 
     // Make sure that foreground location tracking is not running
-    // foregroundSubscription?.remove();
+    foregroundSubscription?.remove();
 
     // Start watching position in real-time
     foregroundSubscription = await Location.watchPositionAsync(
@@ -47,6 +68,7 @@ export default function App() {
         timeInterval: 1000,
       },
       (location) => {
+        setSeconds((prev) => prev + 1);
         setLocation(location);
         setPoly((prev) => [
           ...prev,
@@ -101,6 +123,7 @@ export default function App() {
       )}
       <Button onPress={update} title="Start in foreground" />
       <Button onPress={stopForegroundUpdate} title="Stop in foreground" />
+      {/* <Button onPress={pause} title="Pause tracking" /> */}
     </View>
   );
 }
