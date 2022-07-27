@@ -4,12 +4,14 @@ import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 let foregroundSubscription = null;
+let positionSubscription = null;
 
 export default function App() {
   const [location, setLocation] = useState(null);
   const [errMsg, setErrMsg] = useState(null);
   const [poly, setPoly] = useState([]);
   const [initPoly, setInitPoly] = useState(null);
+  const [position, setPosition] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -22,6 +24,7 @@ export default function App() {
       const value = await AsyncStorage.getItem('@poly');
       setInitPoly(JSON.parse(value));
       const location = await Location.getCurrentPositionAsync({});
+      setPosition(location);
       setLocation(location);
     })();
   }, []);
@@ -46,13 +49,40 @@ export default function App() {
       };
     } else {
       console.log('구독하세요!');
-      console.log(foregroundSubscription);
     }
   }, [location]);
 
+  useEffect(() => {
+    (async () => {
+      // Check if foreground permission is granted
+      const { granted } = await Location.getForegroundPermissionsAsync();
+      if (!granted) {
+        console.log('location tracking denied');
+        return;
+      }
+
+      // Make sure that foreground location tracking is not running
+      positionSubscription?.remove();
+
+      // Start watching position in real-time
+      positionSubscription = await Location.watchPositionAsync(
+        {
+          // For better logs, we set the accuracy to the most sensitive option
+          distanceInterval: 10,
+          accuracy: 6,
+          // 안되면 타임인터벌 10000으로 늘리기
+          timeInterval: 1000,
+        },
+        (location) => {
+          setPosition(location);
+        },
+      );
+    })();
+  }, []);
+
   const update = useCallback(() => {
     startForegroundUpdate();
-  }, [poly, location]);
+  }, []);
 
   const startForegroundUpdate = async () => {
     // Check if foreground permission is granted
@@ -76,6 +106,8 @@ export default function App() {
       },
       (location) => {
         setLocation(location);
+        setPosition(location);
+
         setPoly((prev) => [
           ...prev,
           {
@@ -88,14 +120,19 @@ export default function App() {
   };
 
   const stopForegroundUpdate = async () => {
-    foregroundSubscription = null;
+    // foregroundSubscription = null;
     try {
       await AsyncStorage.setItem('@poly', JSON.stringify(poly));
       console.log(poly);
     } catch (e) {
       console.log(e);
     }
-    setLocation(null);
+    // setLocation(null);
+    const current = await Location.getCurrentPositionAsync({});
+
+    // 일시 정지 시 그 동안 저장했던 폴리라인 날라감.
+    setPoly([current.coords]);
+    foregroundSubscription?.remove();
   };
   return (
     <View style={styles.container}>
@@ -104,8 +141,8 @@ export default function App() {
           style={styles.map}
           minZoomLevel={18}
           initialRegion={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
@@ -133,8 +170,8 @@ export default function App() {
           ) : null}
           <Marker
             coordinate={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
             }}
           />
         </MapView>
