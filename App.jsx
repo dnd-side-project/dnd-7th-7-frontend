@@ -2,13 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import MapView, { Polyline, Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import * as Location from 'expo-location';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 let foregroundSubscription = null;
 
 export default function App() {
   const [location, setLocation] = useState(null);
   const [errMsg, setErrMsg] = useState(null);
   const [poly, setPoly] = useState([]);
-  const [seconds, setSeconds] = useState(0);
+  const [initPoly, setInitPoly] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -18,6 +19,8 @@ export default function App() {
         return;
       }
 
+      const value = await AsyncStorage.getItem('@poly');
+      setInitPoly(JSON.parse(value));
       const location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     })();
@@ -27,21 +30,25 @@ export default function App() {
   useEffect(() => {
     let count = 0;
 
-    const idInterval = setInterval(() => {
-      console.log(count);
-      count += 1;
-    }, 1000);
+    if (foregroundSubscription !== null) {
+      const idInterval = setInterval(() => {
+        console.log(count);
+        count += 1;
+      }, 1000);
 
-    const id = setTimeout(() => {
-      console.log('운동 그만 하시겠어요?');
-      clearInterval(idInterval);
-    }, 10000);
-
-    return () => {
-      clearTimeout(id);
-      clearInterval(idInterval);
-    };
-  }, [seconds]);
+      const id = setTimeout(() => {
+        console.log('운동 그만 하시겠어요?');
+        clearInterval(idInterval);
+      }, 10000);
+      return () => {
+        clearTimeout(id);
+        clearInterval(idInterval);
+      };
+    } else {
+      console.log('구독하세요!');
+      console.log(foregroundSubscription);
+    }
+  }, [location]);
 
   const update = useCallback(() => {
     startForegroundUpdate();
@@ -68,7 +75,6 @@ export default function App() {
         timeInterval: 1000,
       },
       (location) => {
-        setSeconds((prev) => prev + 1);
         setLocation(location);
         setPoly((prev) => [
           ...prev,
@@ -81,8 +87,14 @@ export default function App() {
     );
   };
 
-  const stopForegroundUpdate = () => {
-    foregroundSubscription?.remove();
+  const stopForegroundUpdate = async () => {
+    foregroundSubscription = null;
+    try {
+      await AsyncStorage.setItem('@poly', JSON.stringify(poly));
+      console.log(poly);
+    } catch (e) {
+      console.log(e);
+    }
     setLocation(null);
   };
   return (
@@ -111,6 +123,14 @@ export default function App() {
             ]}
             strokeWidth={6}
           />
+          {initPoly ? (
+            <Polyline
+              coordinates={initPoly}
+              strokeColor="#000"
+              strokeColors={['#7F0000', '#00000000', '#B24112', '#E5845C', '#238C23', '#7F0000']}
+              strokeWidth={6}
+            />
+          ) : null}
           <Marker
             coordinate={{
               latitude: location.coords.latitude,
