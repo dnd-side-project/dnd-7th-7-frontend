@@ -6,7 +6,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "infoPlist": {
-        "UIBackgroundModes": ["location", "fetch"]
+        "UIBackgroundModes": ["location", "fetch"],
+        "NSLocationWhenInUseUsageDescription": "text",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "text",
+        "NSLocationAlwaysUsageDescription": "text"
       }
     },
     "android": {
