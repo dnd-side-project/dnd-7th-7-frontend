@@ -25,5 +25,7 @@ module.exports = {
     quotes: ['off', 'single'],
     semi: ['error', 'always'],
     'no-empty-function': 'off',
+    'no-console': 'off',
+    'react-native/no-inline-styles': 'off',
   },
 };
