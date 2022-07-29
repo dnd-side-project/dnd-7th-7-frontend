@@ -8,7 +8,7 @@ function Home() {
   return (
     <S.Wrapper>
       <S.Text>Home Screen</S.Text>
-      <Button title="Go to Recording Screen" onPress={() => navi.navigate('Recording')} />
+      <Button title="Go to Recording Screen" onPress={() => navi.navigate('MyPage')} />
     </S.Wrapper>
   );
 }
