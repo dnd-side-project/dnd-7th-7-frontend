@@ -27,5 +27,7 @@ module.exports = {
     'no-empty-function': 'off',
     'no-console': 'off',
     'react-native/no-inline-styles': 'off',
+    'func-names': 'off',
+    'import/prefer-default-export': 'off',
   },
 };
