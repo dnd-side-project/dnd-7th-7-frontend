@@ -7,10 +7,16 @@
     "ios": {
       "infoPlist": {
         "UIBackgroundModes": ["location", "fetch"]
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyD958IgSFaPAPVN4JNcZ_2HH2DMxGHXJ3M"
       }
     },
     "android": {
-      "permissions": ["ACCESS_BACKGROUND_LOCATION"]
+      "permissions": ["ACCESS_BACKGROUND_LOCATION"],
+      "config": {
+        "googleMaps": { "apiKey": "AIzaSyD958IgSFaPAPVN4JNcZ_2HH2DMxGHXJ3M" }
+      }
     }
   }
 }
