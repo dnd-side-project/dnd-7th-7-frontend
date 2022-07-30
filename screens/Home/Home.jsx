@@ -5,6 +5,7 @@ import * as S from './Home.style';
 
 function Home() {
   const navi = useNavigation();
+
   return (
     <S.Wrapper>
       <S.Text>Home Screen</S.Text>
