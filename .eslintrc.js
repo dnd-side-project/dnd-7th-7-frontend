@@ -29,5 +29,6 @@ module.exports = {
     'react-native/no-inline-styles': 'off',
     'func-names': 'off',
     'import/prefer-default-export': 'off',
+    'arrow-body-style': 'always',
   },
 };
