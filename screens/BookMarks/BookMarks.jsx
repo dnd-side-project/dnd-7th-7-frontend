@@ -1,21 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as S from './Bookmarks.style';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-function BookMarks() {
+const BookMarks = () => {
   return (
-    <View style={styles.container}>
-      <Text>Bookmarks Screens</Text>
-    </View>
+    <S.Wrapper>
+      <S.Text>Bookmarks Screens</S.Text>
+    </S.Wrapper>
   );
-}
+};
 
 export default BookMarks;

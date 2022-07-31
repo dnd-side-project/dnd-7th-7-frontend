@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Wrapper = styled.View`
-  flex: 1;
-  background-color: white;
+export const Modal = styled.Modal`
+  background-color: pink;
   align-items: center;
 `;

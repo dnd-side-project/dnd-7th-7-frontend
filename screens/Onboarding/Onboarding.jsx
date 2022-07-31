@@ -1,22 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as S from './Onboarding.style.js';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#272727',
-    color: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-function Onboarding() {
+const Onboarding = () => {
   return (
-    <View style={styles.container}>
-      <Text>Onboarding...</Text>
-    </View>
+    <S.Wrapper>
+      <S.Text>Onboarding Screen</S.Text>
+    </S.Wrapper>
   );
-}
+};
 
 export default Onboarding;
