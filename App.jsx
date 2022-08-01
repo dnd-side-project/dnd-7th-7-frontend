@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './screens/Home';
-import MyPage from './screens/MyPage';
-import BookMarks from './screens/BookMarks';
-import Onboarding from './screens/Onboarding';
-import Search from './screens/Search';
+import Home from '@screens/Home';
+import MyPage from '@screens/MyPage';
+import BookMarks from '@screens/BookMarks';
+import Onboarding from '@screens/Onboarding';
+import Search from '@screens/Search';
 
 const Tab = createBottomTabNavigator();
 

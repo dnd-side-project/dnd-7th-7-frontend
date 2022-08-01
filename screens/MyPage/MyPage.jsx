@@ -1,5 +1,5 @@
 import React from 'react';
-import useLocation from '../../hooks/useLoaction';
+import useLocation from '@hooks/useLoaction';
 import * as S from './MyPage.style';
 
 const MyPage = () => {

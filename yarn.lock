@@ -3545,6 +3545,11 @@ eslint-plugin-jsx-a11y@^6.5.1:
     minimatch "^3.1.2"
     semver "^6.3.0"
 
+eslint-plugin-module-resolver@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-module-resolver/-/eslint-plugin-module-resolver-1.4.0.tgz#f491e1a51d9ea9f7267163bb5e58a333e81132ee"
+  integrity sha512-B3fZRHrB39gkADPAEAhfvSm34qpn5Tq0CGZjWfoFvU0vODa3po3Sx2CTd3XESXUgEUvIbOdn21nhoq7zGX0aPQ==
+
 eslint-plugin-prettier@^4.0.0, eslint-plugin-prettier@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.2.1.tgz#651cbb88b1dab98bfd42f017a12fa6b2d993f94b"
