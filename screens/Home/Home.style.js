@@ -5,3 +5,7 @@ export const Wrapper = styled.View`
   background-color: white;
   align-items: center;
 `;
+
+export const StartRecording = styled.TouchableOpacity`
+  background-color: aliceblue;
+`;
