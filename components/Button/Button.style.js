@@ -8,3 +8,5 @@ export const Btn = styled.TouchableOpacity`
   background-color: red;
   color: white;
 `;
+
+export const ErrorBtn = styled(Btn)``;
