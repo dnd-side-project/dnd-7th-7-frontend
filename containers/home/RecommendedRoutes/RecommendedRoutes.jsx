@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, SectionList, Text } from 'react-native';
-import RouteBox from '../../../components/RouteBox';
+import RouteBox from '@components/RouteBox';
 import * as S from './RecommendedRoutes.style';
 
 const RecommendedRoutes = () => {

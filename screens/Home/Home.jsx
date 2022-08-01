@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { FlatList, ScrollView, Text, TouchableOpacity } from 'react-native';
-import Button from '../../components/Button';
-import RecommendedRoutes from '../../containers/home/RecommendedRoutes';
-import RecommendedRoutesNearBy from '../../containers/home/RecommendedRoutesNearBy';
-import TrendingTags from '../../containers/home/TrendingTags';
+import Button from '@components/Button';
+import TrendingTags from '@containers/home/TrendingTags';
+import RecommendedRoutes from '@containers/home/RecommendedRoutes';
+import RecommendedRoutesNearBy from '@containers/home/RecommendedRoutesNearBy';
+
 import * as S from './Home.style';
 
 const Home = () => {

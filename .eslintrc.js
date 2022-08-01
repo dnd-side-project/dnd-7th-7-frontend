@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: ['react', 'react-hooks', 'module-resolver'],
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
     'linebreak-style': ['error', 'unix'],
@@ -30,5 +30,6 @@ module.exports = {
     'func-names': 'off',
     'import/prefer-default-export': 'off',
     'arrow-body-style': 'always',
+    'module-resolver/use-alias': 2,
   },
 };

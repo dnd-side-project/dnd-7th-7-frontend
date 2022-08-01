@@ -1,5 +1,5 @@
 import React from 'react';
-import TagList from '../../../components/TagList';
+import TagList from '@components/TagList';
 import * as S from './TrendingTags.style';
 
 const TrendingTags = () => {
