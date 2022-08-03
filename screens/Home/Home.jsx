@@ -8,9 +8,7 @@ import RecommendedRoutesNearBy from '@containers/home/RecommendedRoutesNearBy';
 
 import * as S from './Home.style';
 
-const Home = () => {
-  const navi = useNavigation();
-
+const Home = ({ navigation }) => {
   return (
     <S.Wrapper>
       <ScrollView>
@@ -21,9 +19,8 @@ const Home = () => {
       <Button
         title={'경로 기록하기'}
         onPress={() => {
-          navi.navigate('Bookmark');
+          navigation.navigate('Recording');
         }}
-        style={{ position: 'absoulte' }}
       />
     </S.Wrapper>
   );
