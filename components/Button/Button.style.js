@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Btn = styled.TouchableOpacity`
-  position: ${(props) => props.style.position};
+  position: absolute;
   bottom: 15px;
   width: 120px;
   height: 50px;
