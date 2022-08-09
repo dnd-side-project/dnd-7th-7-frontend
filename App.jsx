@@ -1,26 +1,25 @@
-import React, { Suspense } from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Onboarding from '@screens/Onboarding';
-import MyPage from '@screens/MyPage';
-import HomeStacks from '@screens/navigators/HomeStacks';
-import SearchStacks from '@screens/navigators/SearchStacks';
-import BookMarkStacks from '@screens/navigators/BookMarkStacks';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import OnBoarding from '@screens/OnBoarding';
+import BottomTabs from '@screens/BottomTabs';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
+  // login 데이터를 받아와 app launch가 될 때
+  // 로그인 여부에 따라 초기 스크린 경로를 설정
+  const [onBoarded, setOnBoarded] = useState(false);
   return (
-    <Suspense fallback={<Onboarding />}>
-      <NavigationContainer>
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen name="HomeStacks" component={HomeStacks} />
-          <Tab.Screen name="SearchStacks" component={SearchStacks} />
-          <Tab.Screen name="BookMarkStacks" component={BookMarkStacks} />
-          <Tab.Screen name="MyPage" component={MyPage} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </Suspense>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={onBoarded ? 'onboarding' : 'afterOnboarding'}
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="onboarding" component={OnBoarding} />
+        <Stack.Screen name="afterOnboarding" component={BottomTabs} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
