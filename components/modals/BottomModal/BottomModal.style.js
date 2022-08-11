@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 export const Wrapper = styled.View``;
 
-export const ModalWrapper = styled.View`
-  background-color: aquamarine;
+export const Modal = styled.Modal`
+  justify-content: flex-end;
+  margin: 0;
 `;
