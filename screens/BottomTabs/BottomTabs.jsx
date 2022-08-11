@@ -5,9 +5,14 @@ import Search from '@screens/Search';
 import Recording from '@screens/Recording';
 import BookMark from '@screens/BookMark';
 import MyPage from '@screens/MyPage';
+import { globals } from '@styles/globals';
 
 const Tab = createBottomTabNavigator();
-const screenCommonStyle = { backgroundColor: '#ffffff', flex: 1, alignItems: 'center' };
+const screenCommonStyle = {
+  backgroundColor: globals.colors.BACKGROUND,
+  flex: 1,
+  alignItems: 'stretch',
+};
 
 const BottomTabs = () => {
   return (
