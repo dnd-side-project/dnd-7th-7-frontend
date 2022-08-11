@@ -25,6 +25,8 @@ module.exports = function (api) {
             '@containers': './containers',
             '@screens': './screens',
             '@hooks': './hooks',
+            '@styles': './styles',
+            '@assets': './assets',
           },
         },
       ],
