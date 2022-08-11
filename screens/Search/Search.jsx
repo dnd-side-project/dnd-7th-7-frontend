@@ -1,19 +1,30 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { Button } from 'react-native';
+import React, { useState } from 'react';
+import BottomModal from '@components/modals/BottomModal';
 import * as S from './Search.style';
+import { Button, Text } from 'react-native';
 
 const Search = ({ navigation }) => {
-  const navi = useNavigation();
+  const [visible, setVisible] = useState(true);
+
+  const open = () => {
+    setVisible(true);
+  };
+
+  const close = () => {
+    setVisible(false);
+  };
   return (
     <S.Wrapper>
       <S.Text>Search Screen</S.Text>
-      <Button
-        title={'경로 기록하기'}
-        onPress={() => {
-          navigation.navigate('Recording');
-        }}
-      />
+      <Button title={'modal open'} onPress={open} />
+      <BottomModal visible={visible} close={close} bgOpacity={0.5}>
+        <Text style={{ height: 100 }}>Test Modal</Text>
+        <Text style={{ height: 100 }}>Test Modal</Text>
+        <Text style={{ height: 100 }}>Test Modal</Text>
+        <Text style={{ height: 100 }}>Test Modal</Text>
+        <Text style={{ height: 100 }}>Test Modal</Text>
+        <Text style={{ height: 100 }}>Test Modal</Text>
+      </BottomModal>
     </S.Wrapper>
   );
 };

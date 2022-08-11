@@ -9,13 +9,10 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   // login 데이터를 받아와 app launch가 될 때
   // 로그인 여부에 따라 초기 스크린 경로를 설정
-  const [onBoarded, setOnBoarded] = useState(false);
+  const [onBoarded, setOnBoarded] = useState(true);
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={onBoarded ? 'onboarding' : 'afterOnboarding'}
-        screenOptions={{ headerShown: false }}
-      >
+      <Stack.Navigator initialRouteName={onBoarded ? 'onboarding' : 'afterOnboarding'}>
         <Stack.Screen name="onboarding" component={OnBoarding} />
         <Stack.Screen name="afterOnboarding" component={BottomTabs} />
       </Stack.Navigator>
