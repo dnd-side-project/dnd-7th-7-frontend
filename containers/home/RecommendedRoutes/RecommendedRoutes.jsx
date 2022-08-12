@@ -8,7 +8,7 @@ const RecommendedRoutes = () => {
   return (
     <S.Wrapper>
       <S.Message>
-        <Text>{`${user}님, 주말엔 이런 곳에서
+        <Text style={{ fontFamily: 'Pretendard-Light' }}>{`${user}님, 주말엔 이런 곳에서
         달려보면 어때요?`}</Text>
       </S.Message>
 
