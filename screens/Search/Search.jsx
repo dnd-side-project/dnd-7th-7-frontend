@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import BottomModal from '@components/modals/BottomModal';
 import * as S from './Search.style';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
+import { BottomModal } from '@components';
 
 const Search = ({ navigation }) => {
   const [visible, setVisible] = useState(true);
