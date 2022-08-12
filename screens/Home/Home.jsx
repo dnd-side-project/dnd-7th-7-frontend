@@ -1,14 +1,13 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import TrendingTags from '@containers/home/TrendingTags';
 import RecommendedRoutes from '@containers/home/RecommendedRoutes';
 import RecommendedRoutesNearBy from '@containers/home/RecommendedRoutesNearBy';
-
-import * as S from './Home.style';
+import { globals } from '@styles/globals';
 
 const Home = ({ navigation }) => {
   return (
-    <S.Wrapper>
+    <View style={style.container}>
       {/* 
       ScrollView는 스크롤에 안 보이는 곳까지 한꺼번에 
       렌더링을 하기 때문에 데이터의 양이 적을때 사용
@@ -19,8 +18,14 @@ const Home = ({ navigation }) => {
         <TrendingTags />
         <RecommendedRoutesNearBy />
       </ScrollView>
-    </S.Wrapper>
+    </View>
   );
 };
+
+const style = StyleSheet.create({
+  container: {
+    paddingHorizontal: globals.layout.SCREEN_PADDING_HORIZ,
+  },
+});
 
 export default Home;

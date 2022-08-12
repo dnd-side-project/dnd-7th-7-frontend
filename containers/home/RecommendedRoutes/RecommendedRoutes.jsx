@@ -8,14 +8,13 @@ const RecommendedRoutes = () => {
   return (
     <S.Wrapper>
       <S.Message>
-        <Text style={{ fontFamily: 'Pretendard-Light' }}>{`${user}님, 주말엔 이런 곳에서
-        달려보면 어때요?`}</Text>
+        <Text>{`${user}님, 주말엔 이런 곳에서 달려보면 어때요?`}</Text>
       </S.Message>
 
       <S.Routes>
         {/* 
         1. SectionList를 활용하여 <RouteBox /> 컴포넌트 렌더링 
-        2. ScrollView or FlatList를 이용하여 horizon scroll 구현 
+        2. FlatList를 이용하여 horizon scroll 구현 
         */}
         <RouteBox />
         <RouteBox />
