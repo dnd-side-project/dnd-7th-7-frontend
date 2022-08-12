@@ -19,7 +19,8 @@
       }
     },
     "splash": {
-      "backgroundColor": "#FEF9B0"
+      "backgroundColor": "#ffffff",
+      "image": "./assets/images/loading.png"
     }
   }
 }
