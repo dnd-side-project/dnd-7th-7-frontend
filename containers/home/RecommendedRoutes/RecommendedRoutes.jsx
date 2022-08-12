@@ -8,15 +8,9 @@ const RecommendedRoutes = () => {
   const user = '우영우';
   return (
     <S.Wrapper>
-      <S.Message>
-        <Font size={54} weight={900} color={'black'}>
-          Font Test
-        </Font>
-        <Text
-          style={{ fontFamily: 'Pretendard-Light' }}
-        >{`${user}님, 주말엔 이런 곳에서 달려보면 어때요?`}</Text>
-      </S.Message>
-
+      <Font size={24} weight={700}>
+        밤에는 밝은 경로로 달려보는건 어떨까요?
+      </Font>
       <S.Routes>
         {/* 
         1. SectionList를 활용하여 <RouteBox /> 컴포넌트 렌더링
