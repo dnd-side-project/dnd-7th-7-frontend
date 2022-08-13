@@ -17,7 +17,7 @@ const setWeight = (weight) => {
 };
 
 const Font = ({ children, ...props }) => {
-  const style = StyleSheet.create({
+  const styles = StyleSheet.create({
     text: {
       fontSize: props.size,
       fontFamily: setWeight(props.weight),
@@ -25,7 +25,7 @@ const Font = ({ children, ...props }) => {
     },
   });
 
-  return <Text style={style.text}>{children}</Text>;
+  return <Text style={styles.text}>{children}</Text>;
 };
 
 export default Font;

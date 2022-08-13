@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Text, View, ScrollView, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
-import styles from './BottomModal.style';
+import { styles } from './BottomModal.style';
 
 const BottomModal = ({ visible, open, close, bgOpacity, children }) => {
   return (
