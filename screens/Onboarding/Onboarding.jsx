@@ -1,14 +1,14 @@
 import React from 'react';
-import { Button, Text } from 'react-native';
-import * as S from './OnBoarding.style.js';
+import { Button, View } from 'react-native';
+import { styles } from './OnBoarding.style';
+import { Font } from '@components/commons';
 
 const OnBoarding = ({ navigation }) => {
   return (
-    <S.Wrapper>
-      <S.Text>Onboarding Screen</S.Text>
-      <Text style={{ fontFamily: 'Pretendard-Bold' }}>회원가입</Text>
+    <View style={styles.container}>
+      <Font>회원가입</Font>
       <Button title="skip" onPress={() => navigation.navigate('afterOnboarding')} />
-    </S.Wrapper>
+    </View>
   );
 };
 

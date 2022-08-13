@@ -1,12 +1,22 @@
 import React from 'react';
-import { Text } from 'react-native';
-import * as S from './RouteBox.style';
+import { Image, View } from 'react-native';
+import { Font } from '../commons';
+import { styles } from './RouteBox.style';
 
 const RouteBox = () => {
   return (
-    <S.Wrapper>
-      <Text>RouteBox</Text>
-    </S.Wrapper>
+    <View style={styles.container}>
+      <View style={styles.location}>
+        <Font>성동구 송정동</Font>
+      </View>
+      <View style={styles.routeWrapper}>
+        <Image
+          style={styles.routeImage}
+          source={require('@assets/images/example.png')}
+          resizeMode="cover"
+        />
+      </View>
+    </View>
   );
 };
 
