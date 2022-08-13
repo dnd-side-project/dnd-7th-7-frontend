@@ -17,14 +17,10 @@ const RecommendedRoutes = () => {
           달려보는건 어떨까요?
         </Font>
       </View>
-
       {/* 
         1. SectionList를 활용하여 <RouteBox /> 컴포넌트 렌더링
         2. ScrollView or FlatList를 이용하여 horizon scroll 구현 
         */}
-      <RouteBox />
-      <RouteBox />
-      <RouteBox />
       <RouteBox />
       <RouteBox />
     </View>
