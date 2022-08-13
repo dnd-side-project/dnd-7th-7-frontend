@@ -1,15 +1,10 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
-export const Wrapper = styled.View``;
-
-export const Message = styled.View`
-  color: black;
-`;
-
-export const Routes = styled.View`
-  background-color: green;
-`;
-
-// export const = styled.ScrollView`
-//   background-color: green;
-// `;
+export const styles = StyleSheet.create({
+  container: {
+    marginTop: 29,
+  },
+  guide: {
+    marginBottom: 18,
+  },
+});

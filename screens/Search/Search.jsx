@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as S from './Search.style';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
-import { BottomModal } from '@components';
+import { BottomModal } from '@components/commons';
 
 const Search = ({ navigation }) => {
   const [visible, setVisible] = useState(true);
