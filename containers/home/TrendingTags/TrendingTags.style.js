@@ -1,7 +1,11 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
-export const Wrapper = styled.View``;
-
-export const Text = styled.Text`
-  color: black;
-`;
+export const styles = StyleSheet.create({
+  container: {},
+  title: {
+    marginBottom: 10,
+  },
+  tags: {
+    marginBottom: 35,
+  },
+});
