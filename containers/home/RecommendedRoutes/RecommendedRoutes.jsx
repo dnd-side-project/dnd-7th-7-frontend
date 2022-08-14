@@ -1,11 +1,12 @@
 import React from 'react';
-import { FlatList, SectionList, Text, View } from 'react-native';
+import { SectionList, Text, View } from 'react-native';
 import { styles } from './RecommendedRoutes.style';
 import RouteBox from '@components/RouteBox/RouteBox';
 import { Font } from '@components/commons';
 
 const RecommendedRoutes = () => {
   const user = '우영우';
+
   return (
     <View style={styles.container}>
       <View style={styles.guide}>
@@ -17,6 +18,7 @@ const RecommendedRoutes = () => {
           달려보는건 어떨까요?
         </Font>
       </View>
+
       {/* 
         1. SectionList를 활용하여 <RouteBox /> 컴포넌트 렌더링
         2. ScrollView or FlatList를 이용하여 horizon scroll 구현 
