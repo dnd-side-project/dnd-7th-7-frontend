@@ -12,7 +12,7 @@ const TrendingTags = () => {
     { index: 14, title: '동물이 없는 길이에요' },
     { index: 15, title: '저녁에도 사람들이 많았어요' },
     { index: 16, title: '안심 귀갓길이 있었어요' },
-  ];
+  ]; // 나중에 index => tag title 바꾸는 로직 추가
 
   const { tags, onPressTag } = useTagCount();
 
@@ -42,7 +42,6 @@ const TrendingTags = () => {
           실시간 인기 있는 안심 태그에요
         </Font>
       </View>
-
       <FlatList
         style={styles.tags}
         data={TAGS_DATA}
@@ -50,7 +49,6 @@ const TrendingTags = () => {
         renderItem={renderTag}
         horizontal={true}
       />
-      {/* 두 줄로 나누기 리스트 */}
     </View>
   );
 };
