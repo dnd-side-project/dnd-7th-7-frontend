@@ -1,3 +1,3 @@
-import OnBoarding from './Onboarding';
+import OnBoarding from './OnBoarding';
 
 export default OnBoarding;
