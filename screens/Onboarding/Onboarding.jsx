@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, View } from 'react-native';
-import { styles } from './Onboarding.style';
+import { styles } from './OnBoarding.style';
 import { Font } from '@components/commons';
 
 const OnBoarding = ({ navigation }) => {

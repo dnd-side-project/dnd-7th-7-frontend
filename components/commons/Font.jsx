@@ -20,8 +20,8 @@ const Font = ({ children, ...props }) => {
   const styles = StyleSheet.create({
     text: {
       ...props.style,
-      fontSize: props.size,
-      fontFamily: setWeight(props.weight),
+      fontSize: props.size ? props.size : 16,
+      fontFamily: props.weight ? setWeight(props.weight) : 'Pretendard-Light',
       color: props.color,
     },
   });
