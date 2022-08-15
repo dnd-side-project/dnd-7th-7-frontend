@@ -10,7 +10,7 @@ import { globals } from '@styles/globals.js';
 // style: StyleSheet
 // opPress: () => {}
 
-const Tag = ({ theme = 'rounded', textColor = globals.colors.GREY_DARKER, ...props }) => {
+const Tag = ({ theme = 'rounded', textColor = globals.colors.GREY_DARKER, onPress, ...props }) => {
   const styles = StyleSheet.create({
     button: {
       paddingHorizontal: 12,
@@ -25,7 +25,7 @@ const Tag = ({ theme = 'rounded', textColor = globals.colors.GREY_DARKER, ...pro
   });
 
   return (
-    <Pressable style={[styles.button, props.style]}>
+    <Pressable style={[styles.button, props.style]} onPress={onPress}>
       <Font color={textColor} size={props.textSize}>
         {props.children}
       </Font>

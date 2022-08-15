@@ -17,7 +17,6 @@ const RouteBox = ({
   const count_secureTags = secureTags.length;
   const count_recommendedTags = recommendedTags.length;
 
-  console.log(count_secureTags);
   return (
     <View style={styles.container}>
       <View style={styles.location}>
