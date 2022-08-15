@@ -2,10 +2,9 @@ import React from 'react';
 import * as S from './MyPage.style';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Share, StyleSheet, Text, View } from 'react-native';
-import Font from '../../components/Font/Font';
-import { WithLocalSvg } from 'react-native-svg';
-import rightChevron from '../../assets/images/Vector53.svg';
-import share from '../../assets/images/Group34.svg';
+import { Font } from '../../components/commons';
+import RightArrowBtn from '../../assets/images/Vector53.svg';
+import ShareBtn from '../../assets/images/Group34.svg';
 import { TouchableOpacity } from 'react-native';
 
 const MypageStackNavigator = createNativeStackNavigator();
@@ -51,7 +50,7 @@ const MyPage = () => {
             </Font>
           </S.RouteRecordInformation>
           <TouchableOpacity>
-            <WithLocalSvg asset={rightChevron} />
+            <RightArrowBtn />
           </TouchableOpacity>
         </S.RouteRecord>
         <S.RouteRecord style={borderStyle.border}>
@@ -64,7 +63,7 @@ const MyPage = () => {
             </Font>
           </S.RouteRecordInformation>
           <TouchableOpacity>
-            <WithLocalSvg asset={rightChevron} />
+            <RightArrowBtn />
           </TouchableOpacity>
         </S.RouteRecord>
         <S.RouteRecord
@@ -79,7 +78,7 @@ const MyPage = () => {
             </Font>
           </S.RouteRecordInformation>
           <TouchableOpacity>
-            <WithLocalSvg asset={rightChevron} />
+            <RightArrowBtn />
           </TouchableOpacity>
         </S.RouteRecord>
         <S.ShareLayout>
@@ -91,7 +90,7 @@ const MyPage = () => {
               <Font>그래픽</Font>
             </S.ShareGraphic>
             <TouchableOpacity onPress={shareMedia}>
-              <WithLocalSvg asset={share} />
+              <ShareBtn />
             </TouchableOpacity>
           </S.ShareBox>
         </S.ShareLayout>
