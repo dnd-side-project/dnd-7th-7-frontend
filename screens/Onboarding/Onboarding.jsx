@@ -1,14 +1,33 @@
 import React from 'react';
-import { Button, View } from 'react-native';
-import { styles } from './OnBoarding.style';
-import { Font } from '@components/commons';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Header from '@components/Header';
+import SelectTags from './SelectTags';
+import SignUp from './SignUp';
+import Main from './Main';
 
-const OnBoarding = ({ navigation }) => {
+const Stack = createNativeStackNavigator();
+
+const OnBoarding = () => {
   return (
-    <View style={styles.container}>
-      <Font>회원가입</Font>
-      <Button title="skip" onPress={() => navigation.navigate('afterOnboarding')} />
-    </View>
+    <Stack.Navigator initialRouteName={'main'}>
+      <Stack.Screen
+        name="main"
+        component={Main}
+        options={{
+          header: ({ navigation, route, options }) => (
+            <Header
+              navigation={navigation}
+              route={route}
+              options={options}
+              left={'logo'}
+              pressRight={() => navigation.navigate('afterOnboarding')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen name="signUp" component={SignUp} />
+      <Stack.Screen name="selectTags" component={SelectTags} />
+    </Stack.Navigator>
   );
 };
 

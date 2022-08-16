@@ -13,27 +13,9 @@ const App = () => {
   let fontsLoaded = getFonts();
   if (!fontsLoaded) return null;
 
-  const exampleOnSearch = (inputLocation) => {
-    console.log('location set to: ', inputLocation);
-  };
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={'onboarding'}
-        screenOptions={{
-          header: ({ navigation, route, options }) => (
-            <Header
-              navigation={navigation}
-              route={route}
-              options={options}
-              searchable={true}
-              onSearch={exampleOnSearch}
-              pressLeft={() => console.log('press left')}
-              pressRight={() => navigation.navigate('afterOnboarding')}
-            />
-          ),
-        }}
-      >
+      <Stack.Navigator initialRouteName={'onboarding'} screenOptions={{ headerShown: false }}>
         <Stack.Screen name="onboarding" component={OnBoarding} />
         <Stack.Screen name="afterOnboarding" component={BottomTabs} />
       </Stack.Navigator>
