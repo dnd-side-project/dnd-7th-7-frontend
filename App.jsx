@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import OnBoarding from '@screens/OnBoarding';
+import OnBoarding from '@screens/Onboarding';
 import BottomTabs from '@screens/BottomTabs';
 import Header from '@components/Header';
 import { useFonts } from 'expo-font';
 import { getFonts } from './hooks/utils';
+import MypageMain from './screens/MyPage/MypageMain';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,22 +19,7 @@ const App = () => {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={'onboarding'}
-        screenOptions={{
-          header: ({ navigation, route, options }) => (
-            <Header
-              navigation={navigation}
-              route={route}
-              options={options}
-              searchable={true}
-              onSearch={exampleOnSearch}
-              pressLeft={() => console.log('press left')}
-              pressRight={() => navigation.navigate('afterOnboarding')}
-            />
-          ),
-        }}
-      >
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'onboarding'}>
         <Stack.Screen name="onboarding" component={OnBoarding} />
         <Stack.Screen name="afterOnboarding" component={BottomTabs} />
       </Stack.Navigator>
