@@ -16,11 +16,9 @@ const MypageMain = ({ navigation: { navigate } }) => {
     });
   };
   return (
-    <View>
+    <View style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
       <S.Profile>
-        <S.Header>
-          <Text>헤더 영역</Text>
-        </S.Header>
+        <S.Header></S.Header>
         <S.AvatarBox>
           <S.Avatar />
           <Tag
@@ -28,10 +26,12 @@ const MypageMain = ({ navigation: { navigate } }) => {
             textColor="#000000"
             borderColor="#D9D9D9"
             borderWidth={1}
-            textSize={12}
             bgColor="#f9f9f9"
+            textSize={12}
           >
-            뱃지 정보
+            <Font size={12} weight={400}>
+              뱃지 정보
+            </Font>
           </Tag>
         </S.AvatarBox>
         <S.UserBox>
