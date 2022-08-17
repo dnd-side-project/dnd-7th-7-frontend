@@ -37,7 +37,7 @@ const OnBoarding = () => {
               left={'back'}
               center={'회원가입'}
               right={null}
-              pressRight={() => navigation.goBack()}
+              pressLeft={() => navigation.goBack()}
             />
           ),
         }}

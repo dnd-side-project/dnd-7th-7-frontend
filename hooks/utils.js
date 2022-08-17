@@ -11,3 +11,20 @@ export const getFonts = () => {
   });
   return fontsLoaded;
 };
+
+export const getYearList = (reverse = false) => {
+  const list = [];
+  const currentYear = new Date().getFullYear();
+  if (reverse) {
+    for (let i = currentYear; i >= 1950; i--) {
+      const obj = { label: `${i}`, value: `${i}` };
+      list.push(obj);
+    }
+  } else {
+    for (let i = 1950; i <= currentYear; i++) {
+      const obj = { label: `${i}`, value: `${i}` };
+      list.push(obj);
+    }
+  }
+  return list;
+};

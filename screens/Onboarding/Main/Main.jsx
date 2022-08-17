@@ -4,6 +4,7 @@ import { styles } from './Main.style';
 import { Input } from '@screens/MyPage/CheckPassword/CheckPassword.style';
 import { Font, Tag } from '@components/commons';
 import { globals } from '@styles/globals.js';
+import { StatusBar } from 'expo-status-bar';
 
 const Main = ({ navigation }) => {
   const handleSignUp = () => {

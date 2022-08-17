@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: 241,
-    // justifyContent: 'center',
+    backgroundColor: globals.colors.BACKGROUND,
     paddingHorizontal: 16,
   },
   inputs: { width: '100%', paddingHorizontal: 21 },
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   circle: {
     width: 48,
     height: 48,
-    borderRadius: '50%',
+    borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
   },
