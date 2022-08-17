@@ -25,7 +25,23 @@ const OnBoarding = () => {
           ),
         }}
       />
-      <Stack.Screen name="signUp" component={SignUp} />
+      <Stack.Screen
+        name="signUp"
+        component={SignUp}
+        options={{
+          header: ({ navigation, route, options }) => (
+            <Header
+              navigation={navigation}
+              route={route}
+              options={options}
+              left={'back'}
+              center={'회원가입'}
+              right={null}
+              pressRight={() => navigation.goBack()}
+            />
+          ),
+        }}
+      />
       <Stack.Screen name="selectTags" component={SelectTags} />
     </Stack.Navigator>
   );

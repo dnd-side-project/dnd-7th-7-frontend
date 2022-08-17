@@ -5,7 +5,7 @@ import { globals } from '@styles/globals.js';
 
 // theme: 'angled' || 'rounded' (default: 'rounded')
 // bgColor, textColor (default: globals.colors.GREY_DARKER), borderColor: string
-// textSize: number
+// textSize, textWeight: number
 // borderWidth: null || number (default: 0.5)
 // style: StyleSheet
 // opPress: () => {}
@@ -26,7 +26,7 @@ const Tag = ({ theme = 'rounded', textColor = globals.colors.GREY_DARKER, onPres
 
   return (
     <Pressable style={[styles.button, props.style]} onPress={onPress}>
-      <Font color={textColor} size={props.textSize}>
+      <Font color={textColor} size={props.textSize} weight={props.textWeight}>
         {props.children}
       </Font>
     </Pressable>

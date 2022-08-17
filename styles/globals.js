@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const globals = {
   colors: {
-    BACKGROUND: '#FFFFFF',
+    BACKGROUND: '#F5F5F5',
     PRIMARY_LIGHT: '#DEF2E4',
     PRIMARY_DEF: '#A6DDB5',
     PRIMARY_DARK: '#21A345',
