@@ -4,19 +4,10 @@ import { Font, Tag } from '@components/commons';
 import { globals } from '@styles/globals.js';
 import { styles } from './TrendingTags.style';
 import useTagCount from '@hooks/useTagCount';
+import { SECURE_TAGS_DATA } from '@hooks/utils';
 
 const TrendingTags = () => {
-  const TAGS_DATA = [
-    { index: 12, title: '안심 귀갓길이 있었어요' },
-    { index: 13, title: '가로등이 10개 이상이라 밝았어요' },
-    { index: 14, title: '동물이 없는 길이에요' },
-    { index: 15, title: '저녁에도 사람들이 많았어요' },
-    { index: 16, title: '안심 귀갓길이 있었어요' },
-  ]; // 나중에 index => tag title 바꾸는 로직 추가
-
-  const { tags, onPressTag } = useTagCount();
-
-  console.log(tags);
+  const [tags, onPressTag] = useTagCount();
 
   const renderTag = ({ item }) => {
     return (
@@ -44,7 +35,7 @@ const TrendingTags = () => {
       </View>
       <FlatList
         style={styles.tags}
-        data={TAGS_DATA}
+        data={SECURE_TAGS_DATA}
         keyExtractor={(tag, index) => tag + index}
         renderItem={renderTag}
         horizontal={true}

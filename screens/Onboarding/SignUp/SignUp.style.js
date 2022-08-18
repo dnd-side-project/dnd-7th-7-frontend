@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     marginTop: 35,
   },
   selects: {
-    backgroundColor: 'balck',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -26,5 +25,10 @@ export const styles = StyleSheet.create({
     borderBottomColor: globals.colors.GREY_LIGTH_DARK,
     borderBottomWidth: 1,
     borderWidth: 0,
+  },
+  button: {
+    marginBottom: 23,
+    flex: 1,
+    justifyContent: 'flex-end',
   },
 });

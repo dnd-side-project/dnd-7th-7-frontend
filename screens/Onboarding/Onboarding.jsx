@@ -42,7 +42,23 @@ const OnBoarding = () => {
           ),
         }}
       />
-      <Stack.Screen name="selectTags" component={SelectTags} />
+      <Stack.Screen
+        name="selectTags"
+        component={SelectTags}
+        options={{
+          header: ({ navigation, route, options }) => (
+            <Header
+              navigation={navigation}
+              route={route}
+              options={options}
+              left={'back'}
+              center={'회원가입'}
+              right={null}
+              pressLeft={() => navigation.goBack()}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };

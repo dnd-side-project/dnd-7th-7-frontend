@@ -4,12 +4,14 @@ import { Button, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import DropdownBtn from '@assets/images/dropdown_button.svg';
 import { globals } from '@styles/globals';
-import { Font } from '@components/commons';
+import { Font, Tag } from '@components/commons';
 import { Input } from '@screens/MyPage/CheckPassword/CheckPassword.style';
 import { getYearList } from '@hooks/utils';
 
 const SignUp = ({ navigation }) => {
-  const [sex, setSex] = useState('male');
+  const [sex, setSex] = useState('');
+  const [yearOfBirth, setYearOfBirth] = useState('');
+
   const yearList = getYearList(true);
 
   return (
@@ -43,7 +45,7 @@ const SignUp = ({ navigation }) => {
           <View style={[styles.select, { marginRight: 25 }]}>
             <RNPickerSelect
               placeholder={{ label: '출생년도' }}
-              onValueChange={(value) => setSex(value)}
+              onValueChange={(value) => setYearOfBirth(value)}
               items={yearList}
               Icon={() => <DropdownBtn />}
             />
@@ -60,6 +62,19 @@ const SignUp = ({ navigation }) => {
             />
           </View>
         </View>
+      </View>
+
+      <View style={styles.button}>
+        <Tag
+          theme={'angled'}
+          bgColor={globals.colors.PRIMARY_DARK}
+          textColor={globals.colors.WHITE}
+          textWeight={600}
+          style={{ paddingVertical: 16 }}
+          onPress={() => navigation.navigate('selectTags')}
+        >
+          다음
+        </Tag>
       </View>
     </View>
   );
