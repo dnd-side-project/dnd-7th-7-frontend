@@ -21,6 +21,8 @@ export const globals = {
     BLACK: '#000000',
     BLUE: '#397DED',
     WHITE: '#FFFFFF',
+    ORANGE_LIGHT: '#FEF1E5',
+    ORANGE_DEF: '#FCDCBE',
   },
   layout: {
     SCREEN_PADDING_HORIZ: 16,

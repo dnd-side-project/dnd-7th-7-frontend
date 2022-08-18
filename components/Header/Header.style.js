@@ -3,6 +3,7 @@ import { globals } from '@styles/globals';
 
 export const styles = StyleSheet.create({
   header: {
+    backgroundColor: globals.colors.BACKGROUND,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 17,

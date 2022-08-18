@@ -26,7 +26,7 @@ const Font = ({ children, ...props }) => {
     },
   });
 
-  return <Text style={styles.text}>{children}</Text>;
+  return <Text style={[styles.text, props.style]}>{children}</Text>;
 };
 
 export default Font;

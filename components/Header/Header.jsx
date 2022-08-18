@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, SafeAreaView, TextInput, View } from 'react-native';
+import { Pressable, SafeAreaView, StatusBar, TextInput, View } from 'react-native';
 import { styles } from './Header.style';
 import { globals } from '@styles/globals';
 import { Font } from '@components/commons';

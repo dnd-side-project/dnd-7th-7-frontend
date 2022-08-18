@@ -14,9 +14,6 @@ const App = () => {
   let fontsLoaded = getFonts();
   if (!fontsLoaded) return null;
 
-  const exampleOnSearch = (inputLocation) => {
-    console.log('location set to: ', inputLocation);
-  };
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'onboarding'}>

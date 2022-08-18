@@ -11,9 +11,6 @@ const useTagCount = () => {
     );
   };
 
-  return {
-    tags, // Array
-    onPressTag, // (tag: string) => {}
-  };
+  return [tags, onPressTag];
 };
 export default useTagCount;
