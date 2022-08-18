@@ -6,6 +6,18 @@ import Recording from '@screens/Recording';
 import BookMark from '@screens/BookMark';
 import MyPage from '@screens/MyPage';
 import { globals } from '@styles/globals';
+import {
+  BookMarkIcon,
+  BookMarkIconActive,
+  HomeIcon,
+  HomeIconActive,
+  MyPageIcon,
+  MyPageIconActive,
+  RecordingIcon,
+  RecordingIconActive,
+  SearchIcon,
+  SearchIconActive,
+} from '@assets/images/navigator';
 
 const Tab = createBottomTabNavigator();
 const screenCommonStyle = {
@@ -16,12 +28,53 @@ const screenCommonStyle = {
 
 const BottomTabs = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }} sceneContainerStyle={screenCommonStyle}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Search" component={Search} />
-      <Tab.Screen name="Recording" component={Recording} />
-      <Tab.Screen name="BookMark" component={BookMark} />
-      <Tab.Screen name="MyPage" component={MyPage} />
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        tabBarShowLabel: false,
+      }}
+      sceneContainerStyle={screenCommonStyle}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused }) =>
+            focused ? <HomeIconActive name="Home" /> : <HomeIcon name="Home" />,
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({ focused }) =>
+            focused ? <SearchIconActive name="Search" /> : <SearchIcon name="Search" />,
+        }}
+      />
+      <Tab.Screen
+        name="Recording"
+        component={Recording}
+        options={{
+          tabBarIcon: ({ focused }) =>
+            focused ? <RecordingIconActive name="Recording" /> : <RecordingIcon name="Recording" />,
+        }}
+      />
+      <Tab.Screen
+        name="BookMark"
+        component={BookMark}
+        options={{
+          tabBarIcon: ({ focused }) =>
+            focused ? <BookMarkIconActive name="BookMark" /> : <BookMarkIcon name="BookMark" />,
+        }}
+      />
+      <Tab.Screen
+        name="MyPage"
+        component={MyPage}
+        options={{
+          tabBarIcon: ({ focused }) =>
+            focused ? <MyPageIconActive name="MyPage" /> : <MyPageIcon name="MyPage" />,
+        }}
+      />
     </Tab.Navigator>
   );
 };
