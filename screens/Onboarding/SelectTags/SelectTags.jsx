@@ -109,7 +109,7 @@ const SelectTags = ({ navigation }) => {
           style={{ paddingVertical: 16 }}
           onPress={() => navigation.navigate('afterOnboarding')}
         >
-          다음
+          완료
         </Tag>
       </View>
     </View>
