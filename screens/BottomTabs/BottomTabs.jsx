@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Header from '@components/Header';
 import Home from '@screens/Home';
 import Search from '@screens/Search';
 import Recording from '@screens/Recording';
@@ -32,6 +33,7 @@ const BottomTabs = () => {
       screenOptions={{ headerShown: false }}
       screenOptions={{
         tabBarShowLabel: false,
+        headerShown: false,
       }}
       sceneContainerStyle={screenCommonStyle}
     >
@@ -41,6 +43,7 @@ const BottomTabs = () => {
         options={{
           tabBarIcon: ({ focused }) =>
             focused ? <HomeIconActive name="Home" /> : <HomeIcon name="Home" />,
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -48,7 +51,11 @@ const BottomTabs = () => {
         component={Search}
         options={{
           tabBarIcon: ({ focused }) =>
-            focused ? <SearchIconActive name="Search" /> : <SearchIcon name="Search" />,
+            focused ? (
+              <SearchIconActive name="Search" />
+            ) : (
+              <SearchIcon stroke={globals.colors.BLACK} name="Search" />
+            ),
         }}
       />
       <Tab.Screen

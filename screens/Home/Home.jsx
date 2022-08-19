@@ -1,26 +1,50 @@
 import React from 'react';
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
-import TrendingTags from '@containers/home/TrendingTags';
-import RecommendedRoutes from '@containers/home/RecommendedRoutes';
-import RecommendedRoutesNearBy from '@containers/home/RecommendedRoutesNearBy';
-import { globals } from '@styles/globals';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Header from '@components/Header';
+import Main from './Main';
+import RouteDetail from './RouteDetail';
 
-const Home = ({ navigation }) => {
+const Stack = createNativeStackNavigator();
+
+const Home = () => {
   return (
-    <View style={style.container}>
-      <ScrollView>
-        <RecommendedRoutes />
-        <TrendingTags />
-        <RecommendedRoutesNearBy />
-      </ScrollView>
-    </View>
+    <Stack.Navigator initialRouteName={'Main'}>
+      <Stack.Screen
+        name="Main"
+        component={Main}
+        options={{
+          header: ({ navigation, route, options }) => (
+            <Header
+              searchable
+              navigation={navigation}
+              route={route}
+              options={options}
+              left={'logo'}
+              right={'search'}
+              pressRight={() => navigation.navigate('Search')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="RouteDetail"
+        component={RouteDetail}
+        options={{
+          header: ({ navigation, route, options }) => (
+            <Header
+              navigation={navigation}
+              route={route}
+              options={options}
+              left={'back'}
+              center={route.params.title}
+              right={'null'}
+              pressLeft={() => navigation.goBack()}
+            />
+          ),
+        }}
+      />
+    </Stack.Navigator>
   );
 };
-
-const style = StyleSheet.create({
-  container: {
-    paddingLeft: globals.layout.SCREEN_PADDING_HORIZ,
-  },
-});
 
 export default Home;

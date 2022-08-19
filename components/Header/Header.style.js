@@ -10,9 +10,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 13,
     height: 44,
   },
-  left: { flex: 1, justifyContent: 'center' },
+  left: { justifyContent: 'center' },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  right: { flex: 1, alignItems: 'flex-end', justifyContent: 'center' },
+  right: { alignItems: 'flex-end', justifyContent: 'center' },
   searcherWrap: {
     alignItems: 'center',
     flexDirection: 'row',

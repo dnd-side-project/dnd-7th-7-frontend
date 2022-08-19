@@ -5,7 +5,13 @@ export const styles = StyleSheet.create({
   title: {
     marginBottom: 10,
   },
-  tags: {
-    marginBottom: 35,
+  tags_wrap: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  rank: {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    marginRight: 11,
   },
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import Font from '../Font';
 import { globals } from '@styles/globals.js';
@@ -10,13 +10,17 @@ import { globals } from '@styles/globals.js';
 // style: StyleSheet
 // opPress: () => {}
 
-const Tag = ({
+const ToggleTag = ({
   theme = 'rounded',
   textColor = globals.colors.GREY_DARKER,
   onPress,
-  icon,
   ...props
 }) => {
+  const [changable, setChangable] = useState(false);
+  const handlePress = () => {
+    onPress();
+    props.pressedStyle && setChangable(!changable);
+  };
   const styles = StyleSheet.create({
     button: {
       paddingHorizontal: 12,
@@ -25,20 +29,32 @@ const Tag = ({
       borderRadius: theme === 'rounded' ? 30 : 10,
       borderWidth: !props.borderWidth ? 0 : props.borderWidth ? props.borderWidth : 0.5,
       borderColor: props.borderColor && props.borderColor,
-      flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    changedButton: {
+      backgroundColor: props.pressedBgColor,
     },
   });
 
   return (
-    <Pressable style={[styles.button, props.style]} onPress={onPress}>
-      {icon && icon}
-      <Font color={textColor} size={props.textSize} weight={props.textWeight}>
+    <Pressable
+      style={
+        !changable
+          ? [styles.button, props.style]
+          : [styles.button, props.pressedStyle, styles.changedButton]
+      }
+      onPress={handlePress}
+    >
+      <Font
+        color={props.pressedBgColor && changable ? props.pressedTextColor : textColor}
+        size={props.textSize}
+        weight={props.textWeight}
+      >
         {props.children}
       </Font>
     </Pressable>
   );
 };
 
-export default Tag;
+export default ToggleTag;

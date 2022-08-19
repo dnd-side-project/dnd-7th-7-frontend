@@ -56,6 +56,7 @@ const SelectTags = ({ navigation }) => {
           선호하는 안심 태그를 선택해 주세요
         </Font>
         <TagSelectSection
+          selectable={true}
           onPressTag={onPressSecureTag}
           pressedProps={{
             textSize: 14,

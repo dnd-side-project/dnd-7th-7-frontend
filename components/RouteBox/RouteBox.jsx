@@ -3,7 +3,9 @@ import { Image, View } from 'react-native';
 import { Font, Tag } from '../commons';
 import { styles } from './RouteBox.style';
 import { globals } from '@styles/globals';
-import Marker from '../../assets/images/mini_marker.svg';
+import Marker from '@assets/images/mini_marker.svg';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import { useNavigation } from '@react-navigation/native';
 
 const RouteBox = ({
   routeName,
@@ -13,10 +15,11 @@ const RouteBox = ({
   routeImage,
   recommendedTags,
   secureTags,
+  routeKey,
 }) => {
   const count_secureTags = secureTags.length;
   const count_recommendedTags = recommendedTags.length;
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.location}>
@@ -27,8 +30,17 @@ const RouteBox = ({
       </View>
 
       <View style={styles.thumbnail}>
-        <Font style={styles.info}>{distance}km</Font>
-        <Image style={styles.img} source={{ uri: routeImage }} resizeMode="cover" />
+        <Pressable
+          onPress={() =>
+            navigation.push('RouteDetail', {
+              key: routeKey,
+              title: routeName,
+            })
+          }
+        >
+          <Font style={styles.info}>{distance}km</Font>
+          <Image style={styles.img} source={{ uri: routeImage }} resizeMode="cover" />
+        </Pressable>
       </View>
 
       <View style={styles.theme}>
