@@ -29,6 +29,8 @@ export const getYearList = (reverse = false) => {
   return list;
 };
 
+// 태그 데이터들이 string 배열이 아니라 number 배열로 되어있는데
+// 그 number 번호에 따라 맞는 태그 타이틀로 바꿔주는 함수입니다.
 export const indexToSecureTitle = (index) => {
   switch (index) {
     case '1':
@@ -46,6 +48,23 @@ export const indexToSecureTitle = (index) => {
   }
 };
 
+export const indexToRecommendedTitle = (index) => {
+  switch (index) {
+    case '1':
+      return '강을 보며 달려요';
+    case '2':
+      return '나무가 많아요';
+    case '3':
+      return '가파른 구간이 없어요';
+    case '4':
+      return '보행자 전욕 트랙이 있어요';
+    case '5':
+      return '길이 깨끗해요';
+    default:
+      break;
+  }
+};
+
 // const exampleTagCountData = {
 //   1: 12,
 //   2: 0,
@@ -53,6 +72,8 @@ export const indexToSecureTitle = (index) => {
 //   4: 0,
 //   5: 3,
 // };
+// 태그 번호별로 좋아요(북마크?)갯수가 count되어있는데 그 중에
+// value가 0인 값을 제외해주는 함수입니다.
 export const filterZeroValue = (tagCountData) => {
   const temp = Object.entries(tagCountData)
     .filter((value) => value[1] !== 0)
