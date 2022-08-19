@@ -71,7 +71,7 @@ const SignUp = ({ navigation }) => {
           textColor={globals.colors.WHITE}
           textWeight={600}
           style={{ paddingVertical: 16 }}
-          onPress={() => navigation.navigate('selectTags')}
+          onPress={() => navigation.navigate('SelectTags')}
         >
           다음
         </Tag>

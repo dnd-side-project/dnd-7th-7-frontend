@@ -8,7 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 
 const Main = ({ navigation }) => {
   const handleSignUp = () => {
-    navigation.navigate('signUp');
+    navigation.navigate('SignUp');
   };
   return (
     <View style={styles.container}>

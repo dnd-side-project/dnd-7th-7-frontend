@@ -9,9 +9,9 @@ const Stack = createNativeStackNavigator();
 
 const OnBoarding = () => {
   return (
-    <Stack.Navigator initialRouteName={'main'}>
+    <Stack.Navigator initialRouteName={'Main'}>
       <Stack.Screen
-        name="main"
+        name="Main"
         component={Main}
         options={{
           header: ({ navigation, route, options }) => (
@@ -26,7 +26,7 @@ const OnBoarding = () => {
         }}
       />
       <Stack.Screen
-        name="signUp"
+        name="SignUp"
         component={SignUp}
         options={{
           header: ({ navigation, route, options }) => (
@@ -43,7 +43,7 @@ const OnBoarding = () => {
         }}
       />
       <Stack.Screen
-        name="selectTags"
+        name="SelectTags"
         component={SelectTags}
         options={{
           header: ({ navigation, route, options }) => (

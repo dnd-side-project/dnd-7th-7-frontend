@@ -29,6 +29,40 @@ export const getYearList = (reverse = false) => {
   return list;
 };
 
+export const indexToSecureTitle = (index) => {
+  switch (index) {
+    case '1':
+      return '근처에 어린이 보호구역이 있어요';
+    case '2':
+      return '안심등이 있어요';
+    case '3':
+      return '가로등이 많아요';
+    case '4':
+      return '밤에 사람이 많아요';
+    case '5':
+      return '낮에 사람이 많아요';
+    default:
+      break;
+  }
+};
+
+// const exampleTagCountData = {
+//   1: 12,
+//   2: 0,
+//   3: 6,
+//   4: 0,
+//   5: 3,
+// };
+export const filterZeroValue = (tagCountData) => {
+  const temp = Object.entries(tagCountData)
+    .filter((value) => value[1] !== 0)
+    .map(([key, value]) => {
+      const obj = { title: `${indexToSecureTitle(key)} ${value}` };
+      return obj;
+    });
+  return temp;
+};
+
 export const cityList = [
   { label: '서울특별시', value: '서울특별시' },
   { label: '부산광역시', value: '부산광역시' },
@@ -57,16 +91,54 @@ export const districtList = [
 
 // 나중에 index => tag title 바꾸는 로직 추가
 export const SECURE_TAGS_DATA = [
-  { index: 12, title: '안심등이 있어요' },
-  { index: 13, title: '늦은 시간까지 사람이 많아요' },
-  { index: 14, title: '강 따라 달려요' },
-  { index: 15, title: '가파른 구간이 없어요' },
-  { index: 16, title: '울창한 나무숲' },
+  { index: 1, title: '근처에 어린이 보호구역이 있어요' },
+  { index: 2, title: '안심등이 있어요' },
+  { index: 3, title: '가로등이 많아요' },
+  { index: 4, title: '밤에 사람이 많아요' },
+  { index: 5, title: '낮에 사람이 많아요' },
 ];
 
 export const RECOMMENDED_TAGS_DATA = [
-  { index: 12, title: '안심등이 있어요' },
-  { index: 13, title: '늦은 시간까지 사람이 많아요' },
-  { index: 14, title: '강 따라 달려요' },
-  { index: 15, title: '가파른 구간이 없어요' },
+  { index: 12, title: '강을 보며 달라요' },
+  { index: 13, title: '나무가 많아요' },
+  { index: 14, title: '가파른 구간이 없어요' },
+  { index: 15, title: '보행자 전용 트랙이 있어요' },
+  { index: 16, title: '길이 깨끗해요' },
+];
+
+export const ROUTES_DATA = [
+  // recommendedTags => 추후 recommendedTags.length로 변경
+  {
+    routeKey: 1,
+    routeName: '한강 가로등이 지켜주는 길',
+    distance: 1.5,
+    secondLocation: '성동구',
+    thirdLocation: '송정동',
+    routeImage:
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAhFBMVEUTFhwA0/IUAABgYmQFCxMqLTENEBdFRkoA1/cJmrIA2/sHq8QTDhQQQk0ItM8TCQ8SLDQOW2oQS1cJobkKkqgPV2QTBw0JnLMTAAcA3/8NdogOZnYQP0oMfpKJioxqbG4AAAUjJisLiZ4THiUQUF0Ewd4SJi4MgZQCyOYRN0F4enxSVFc6vJBGAAADi0lEQVR4nO3dW3PaQAyGYdukFKg5lHCwIbQJDaS0////lU5vsK1F7Frglfq91xj8jDKdholXybee7b4nvdcn070lvafEdJ8gVB+E+oNQfxDqD0L9Qag/CPUHof4g1B+E+oNQfxDqD0L9Qag/CPUHof4g1B+E+oOQrsj8a7xJzlxQCPCSQGG2Gfq23v+ovcn0ZbG+dsFwk0y7EhabcuDdaFKb4jHlrkjHzcE/Rph9GaT+ldXbnS5H7CWDuQAxamEqMcXIhQJTjFwoMMXoha2nGL2w9RQVCNN2U9QgHLSaogZhuynqELaZog5hmylqEYZP8XHCUfUW8/fS7/rQKcoIRze0qN3halI6XumYYiBRRrj5ytb8KSuW5AuXm4PDGPaDKiEcbbMpW958H8crs+yZJoZNUUT4Qtx+m1zEoCmKCMfCQicxZIpxCiWnGKlQcIqxCq9MceX3RtEK3cSj36fFK3QRG/91YIpY6CAO6l+8MsUspImmhCTRlpAiGhMSRGvCJtGcMMkOA+PCVe3rDnvCfAbh9SCkglA2CLkgpIJQNgi5IKSCUDYIuSCkglA2CLkgpIJQNgi5IKSCUDYIuSCkglC2fFY+XvgxqjyClfq+gV/Fz8rHlQ/4W4yk+Hi+bCzyFJ2z/LS+/LS956eFPWFZfRTynj+jf6s9iul5NZ6S1R+E+oNQfxDqD0L9Qag/COmKDn+38D3UJfD0lsVlp/sS81nl03aexKDTW3Zl9ZSV+wo7+B3/P/ieBt+1iQYhF4RUEMoGIReEVBDKBiEXhFQQygYhF4RUEMoGIReEVBDKBiEXhFQQygYhF4RUjxVO360Ls4nx82myhfEzhrKh8XOiGhO0JiSAtoQU0JSQBFoSNv+R+Sc087cY9ATPwpmR80sdE7RzBq1zglbOEXZP0MhZ0HITjPVMdrkJip2rn/M138fxwsIF7O5c/TTdztlOjbvLxvQrt/HtRrhtv8W+dn+Fc78FvR8kdEtJhztKvLawdL2j5Jbs75nBrqBr2d/3ZH1nl/29a+Z351nff2h/h6X1PaT2d8la3wfc3U7nXche7kP1bvtH9oru9nKfide2otOr0hf1JUarObuN3fNbNUFh7QnL22r8kp9zV/QlgHhK1kAQ6g9C/UGoPwj1B6H+INQfhPqDUH8Q6g9C/UGoPwj1B6H+INQfhPqDUH8Q6g9C/Z2Fr33TvSW/Ptvu9x9O9pOKEZGocgAAAABJRU5ErkJggg==',
+    recommendedTags: [1, 5],
+    secureTags: [3, 4],
+  },
+  {
+    routeKey: 2,
+    routeName: '저녁에도 사람들이 많은 길',
+    distance: 2.5,
+    secondLocation: '사랑구',
+    thirdLocation: '행복동',
+    routeImage:
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAhFBMVEUTFhwA0/IUAABgYmQFCxMqLTENEBdFRkoA1/cJmrIA2/sHq8QTDhQQQk0ItM8TCQ8SLDQOW2oQS1cJobkKkqgPV2QTBw0JnLMTAAcA3/8NdogOZnYQP0oMfpKJioxqbG4AAAUjJisLiZ4THiUQUF0Ewd4SJi4MgZQCyOYRN0F4enxSVFc6vJBGAAADi0lEQVR4nO3dW3PaQAyGYdukFKg5lHCwIbQJDaS0////lU5vsK1F7Frglfq91xj8jDKdholXybee7b4nvdcn070lvafEdJ8gVB+E+oNQfxDqD0L9Qag/CPUHof4g1B+E+oNQfxDqD0L9Qag/CPUHof4g1B+E+oOQrsj8a7xJzlxQCPCSQGG2Gfq23v+ovcn0ZbG+dsFwk0y7EhabcuDdaFKb4jHlrkjHzcE/Rph9GaT+ldXbnS5H7CWDuQAxamEqMcXIhQJTjFwoMMXoha2nGL2w9RQVCNN2U9QgHLSaogZhuynqELaZog5hmylqEYZP8XHCUfUW8/fS7/rQKcoIRze0qN3halI6XumYYiBRRrj5ytb8KSuW5AuXm4PDGPaDKiEcbbMpW958H8crs+yZJoZNUUT4Qtx+m1zEoCmKCMfCQicxZIpxCiWnGKlQcIqxCq9MceX3RtEK3cSj36fFK3QRG/91YIpY6CAO6l+8MsUspImmhCTRlpAiGhMSRGvCJtGcMMkOA+PCVe3rDnvCfAbh9SCkglA2CLkgpIJQNgi5IKSCUDYIuSCkglA2CLkgpIJQNgi5IKSCUDYIuSCkglC2fFY+XvgxqjyClfq+gV/Fz8rHlQ/4W4yk+Hi+bCzyFJ2z/LS+/LS956eFPWFZfRTynj+jf6s9iul5NZ6S1R+E+oNQfxDqD0L9Qag/COmKDn+38D3UJfD0lsVlp/sS81nl03aexKDTW3Zl9ZSV+wo7+B3/P/ieBt+1iQYhF4RUEMoGIReEVBDKBiEXhFQQygYhF4RUEMoGIReEVBDKBiEXhFQQygYhF4RUjxVO360Ls4nx82myhfEzhrKh8XOiGhO0JiSAtoQU0JSQBFoSNv+R+Sc087cY9ATPwpmR80sdE7RzBq1zglbOEXZP0MhZ0HITjPVMdrkJip2rn/M138fxwsIF7O5c/TTdztlOjbvLxvQrt/HtRrhtv8W+dn+Fc78FvR8kdEtJhztKvLawdL2j5Jbs75nBrqBr2d/3ZH1nl/29a+Z351nff2h/h6X1PaT2d8la3wfc3U7nXche7kP1bvtH9oru9nKfide2otOr0hf1JUarObuN3fNbNUFh7QnL22r8kp9zV/QlgHhK1kAQ6g9C/UGoPwj1B6H+INQfhPqDUH8Q6g9C/UGoPwj1B6H+INQfhPqDUH8Q6g9C/Z2Fr33TvSW/Ptvu9x9O9pOKEZGocgAAAABJRU5ErkJggg==',
+    recommendedTags: [1, 2],
+    secureTags: [2, 4],
+  },
+  {
+    routeKey: 3,
+    routeName: '가파른 구간이 없는 길',
+    distance: 3.5,
+    secondLocation: '안심구',
+    thirdLocation: '안정동',
+    routeImage:
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAhFBMVEUTFhwA0/IUAABgYmQFCxMqLTENEBdFRkoA1/cJmrIA2/sHq8QTDhQQQk0ItM8TCQ8SLDQOW2oQS1cJobkKkqgPV2QTBw0JnLMTAAcA3/8NdogOZnYQP0oMfpKJioxqbG4AAAUjJisLiZ4THiUQUF0Ewd4SJi4MgZQCyOYRN0F4enxSVFc6vJBGAAADi0lEQVR4nO3dW3PaQAyGYdukFKg5lHCwIbQJDaS0////lU5vsK1F7Frglfq91xj8jDKdholXybee7b4nvdcn070lvafEdJ8gVB+E+oNQfxDqD0L9Qag/CPUHof4g1B+E+oNQfxDqD0L9Qag/CPUHof4g1B+E+oOQrsj8a7xJzlxQCPCSQGG2Gfq23v+ovcn0ZbG+dsFwk0y7EhabcuDdaFKb4jHlrkjHzcE/Rph9GaT+ldXbnS5H7CWDuQAxamEqMcXIhQJTjFwoMMXoha2nGL2w9RQVCNN2U9QgHLSaogZhuynqELaZog5hmylqEYZP8XHCUfUW8/fS7/rQKcoIRze0qN3halI6XumYYiBRRrj5ytb8KSuW5AuXm4PDGPaDKiEcbbMpW958H8crs+yZJoZNUUT4Qtx+m1zEoCmKCMfCQicxZIpxCiWnGKlQcIqxCq9MceX3RtEK3cSj36fFK3QRG/91YIpY6CAO6l+8MsUspImmhCTRlpAiGhMSRGvCJtGcMMkOA+PCVe3rDnvCfAbh9SCkglA2CLkgpIJQNgi5IKSCUDYIuSCkglA2CLkgpIJQNgi5IKSCUDYIuSCkglC2fFY+XvgxqjyClfq+gV/Fz8rHlQ/4W4yk+Hi+bCzyFJ2z/LS+/LS956eFPWFZfRTynj+jf6s9iul5NZ6S1R+E+oNQfxDqD0L9Qag/COmKDn+38D3UJfD0lsVlp/sS81nl03aexKDTW3Zl9ZSV+wo7+B3/P/ieBt+1iQYhF4RUEMoGIReEVBDKBiEXhFQQygYhF4RUEMoGIReEVBDKBiEXhFQQygYhF4RUjxVO360Ls4nx82myhfEzhrKh8XOiGhO0JiSAtoQU0JSQBFoSNv+R+Sc087cY9ATPwpmR80sdE7RzBq1zglbOEXZP0MhZ0HITjPVMdrkJip2rn/M138fxwsIF7O5c/TTdztlOjbvLxvQrt/HtRrhtv8W+dn+Fc78FvR8kdEtJhztKvLawdL2j5Jbs75nBrqBr2d/3ZH1nl/29a+Z351nff2h/h6X1PaT2d8la3wfc3U7nXche7kP1bvtH9oru9nKfide2otOr0hf1JUarObuN3fNbNUFh7QnL22r8kp9zV/QlgHhK1kAQ6g9C/UGoPwj1B6H+INQfhPqDUH8Q6g9C/UGoPwj1B6H+INQfhPqDUH8Q6g9C/Z2Fr33TvSW/Ptvu9x9O9pOKEZGocgAAAABJRU5ErkJggg==',
+    recommendedTags: [5, 3],
+    secureTags: [5, 3],
+  },
 ];

@@ -23,6 +23,7 @@ const Font = ({ children, ...props }) => {
       fontSize: props.size ? props.size : 16,
       fontFamily: props.weight ? setWeight(props.weight) : 'Pretendard-Light',
       color: props.color,
+      lineHeight: props.lineHeight,
     },
   });
 
