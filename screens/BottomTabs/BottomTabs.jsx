@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Header from '@components/Header';
 import Home from '@screens/Home';
-import Search from '@screens/Search';
+import Recommend from '@screens/Recommend';
 import Recording from '@screens/Recording';
 import BookMark from '@screens/BookMark';
 import MyPage from '@screens/MyPage';
@@ -47,8 +47,8 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Search"
-        component={Search}
+        name="Recommend"
+        component={Recommend}
         options={{
           tabBarIcon: ({ focused }) =>
             focused ? (
