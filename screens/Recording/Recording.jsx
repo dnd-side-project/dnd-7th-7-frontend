@@ -1,18 +1,25 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { Button } from 'react-native';
+import React, { useRef, useState } from 'react';
+import Search from './Search';
+import Header from '@components/Header';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RouteRunning from './RouteRunning';
+import FreeRunning from './FreeRunning';
 
-import * as S from './Recording.style';
+const Stack = createNativeStackNavigator();
 
 const Recording = () => {
-  const [count, setCount] = useState(0);
-  const navi = useNavigation();
   return (
-    <S.Wrapper>
-      <Button title="press" onPress={() => setCount(count + 1)} />
-      <S.Text>{count}</S.Text>
-      <Button title="go home" onPress={() => navi.navigate('Home')} />
-    </S.Wrapper>
+    <Stack.Navigator initialRouteName="FreeRunning" screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="FreeRunning"
+        component={FreeRunning}
+        listeners={({ navigation, route }) => ({
+          blur: (e) => {},
+        })}
+      />
+      <Stack.Screen name="RouteRunning" component={RouteRunning} />
+      <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
+    </Stack.Navigator>
   );
 };
 

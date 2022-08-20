@@ -16,10 +16,8 @@ const BottomModal = ({ visible, open, close, bgOpacity, children }) => {
       <View style={styles.wrapper}>
         <ScrollView style={styles.scroller}>
           <TouchableWithoutFeedback>
-            <View>
-              <View style={styles.handle} />
-              {children}
-            </View>
+            <View style={styles.handle} />
+            {children}
           </TouchableWithoutFeedback>
         </ScrollView>
       </View>

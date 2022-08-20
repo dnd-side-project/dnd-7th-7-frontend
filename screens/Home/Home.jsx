@@ -15,13 +15,16 @@ const Home = () => {
         options={{
           header: ({ navigation, route, options }) => (
             <Header
-              searchable
               navigation={navigation}
               route={route}
               options={options}
               left={'logo'}
               right={'search'}
-              pressRight={() => navigation.navigate('Search')}
+              pressRight={() =>
+                navigation.navigate('Recording', {
+                  screen: 'Search',
+                })
+              }
             />
           ),
         }}
