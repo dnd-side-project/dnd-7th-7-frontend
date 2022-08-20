@@ -6,10 +6,11 @@ import { Font } from '@components/commons';
 import CloseBtn from '@assets/images/close.svg';
 import BackBtn from '@assets/images/back.svg';
 import SearchBtn from '@assets/images/search.svg';
+import SettingBtn from '@assets/images/Settings.svg';
 
 // left: 'logo'(default) | 'back' | string | null
 // center: 'text' | null(default)
-// right: 'close'(default) | 'search' | null
+// right: 'close'(default) | 'search' | 'setting' | null
 // searchable: boolean
 // pressLeft, pressRight: 각각 left === 'back'인 경우와 right === 'close'인 경우,
 //                        press 할 때 실행되는 함수 props로 전달
@@ -50,6 +51,8 @@ const Header = (
               <CloseBtn />
             ) : right === 'search' ? (
               <SearchBtn fill={'black'} />
+            ) : right === 'setting' ? (
+              <SettingBtn />
             ) : null}
           </Pressable>
         </View>
