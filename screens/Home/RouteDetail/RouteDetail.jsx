@@ -11,10 +11,12 @@ import SearchIcon from '@assets/images/navigator/SearchIcon.svg';
 import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
 import ThumbnailCards from '@containers/home/ThumbnailCards';
 import { indexToSecureTitle, filterZeroValue } from '@hooks/utils';
+import { useNavigation } from '@react-navigation/native';
 
 const RouteDetail = ({ route }) => {
+  const navigation = useNavigation();
   // GET http://${baseurl}/running-route/main/${id}
-  const routeName = '한강 가로등이 지켜주는 길';
+  const routeName = '백엔드 루트 이름';
   const secondLocation = '성동구';
   const thirdLocation = '송정동';
   const distance = 5.8;
@@ -98,7 +100,19 @@ const RouteDetail = ({ route }) => {
           />
         </View>
       </View>
+
       <Tag
+        onPress={() =>
+          navigation.navigate('Recording', {
+            screen: 'RouteRunning',
+            params: {
+              screen: 'RouteRunningRecording',
+              params: {
+                title: routeName,
+              },
+            },
+          })
+        }
         style={{
           position: 'absolute',
           alignSelf: 'center',
