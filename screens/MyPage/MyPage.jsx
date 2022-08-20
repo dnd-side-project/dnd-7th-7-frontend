@@ -16,7 +16,8 @@ const MyPage = () => {
             { navigation, route, options }, // 기본 navigation props도 사용 가능합니다
           ) => (
             <Header
-              right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              left="마이페이지"
+              right="setting" // left, center, right props Header.jsx 파일에 정리해놨습니다.
               pressLeft={() => console.log('press left')}
               pressRight={() => navigation.navigate('afterOnboarding')}
             />
