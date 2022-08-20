@@ -30,7 +30,6 @@ const screenCommonStyle = {
 const BottomTabs = () => {
   return (
     <Tab.Navigator
-      screenOptions={{ headerShown: false }}
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
@@ -56,6 +55,19 @@ const BottomTabs = () => {
             ) : (
               <SearchIcon stroke={globals.colors.BLACK} name="Search" />
             ),
+          header: (
+            { navigation, route, options }, // 기본 navigation props도 사용 가능합니다
+          ) => (
+            <Header
+              navigation={navigation}
+              searchable={true} // true 설정 시 search box showing
+              // search box input submit 시 실행되는 함수
+              left={'back'}
+              right={'close'} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              pressLeft={() => console.log('press left')}
+              pressRight={() => navigation.navigate('afterOnboarding')}
+            />
+          ),
         }}
       />
       <Tab.Screen

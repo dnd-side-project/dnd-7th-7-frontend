@@ -1,5 +1,5 @@
 import * as S from './Mypage.style';
-import { Share, Text, View, StyleSheet } from 'react-native';
+import { Share, Text, View, StyleSheet, ScrollView } from 'react-native';
 
 import RightChevron from '../../../assets/images/Vector53.svg';
 import ShareBtn from '../../../assets/images/Group34.svg';
@@ -16,7 +16,12 @@ const MypageMain = ({ navigation: { navigate } }) => {
     });
   };
   return (
-    <View style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
+    <ScrollView
+      style={{ backgroundColor: '#FFFFFF', flex: 1 }}
+      contentContainerStyle={{
+        paddingBottom: 100,
+      }}
+    >
       <S.Profile>
         <S.Header></S.Header>
         <S.AvatarBox>
@@ -115,7 +120,7 @@ const MypageMain = ({ navigation: { navigate } }) => {
           </S.ShareBox>
         </S.ShareLayout>
       </S.Record>
-    </View>
+    </ScrollView>
   );
 };
 

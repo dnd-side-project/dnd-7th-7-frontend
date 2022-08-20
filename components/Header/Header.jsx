@@ -7,7 +7,7 @@ import CloseBtn from '@assets/images/close.svg';
 import BackBtn from '@assets/images/back.svg';
 import SearchBtn from '@assets/images/search.svg';
 
-// left: 'logo'(default) | 'back' | null
+// left: 'logo'(default) | 'back' | string | null
 // center: 'text' | null(default)
 // right: 'close'(default) | 'search' | null
 // pressLeft, pressRight: 각각 left === 'back'인 경우와 right === 'close'인 경우,
@@ -26,6 +26,8 @@ const Header = (
             <Pressable onPress={pressLeft}>
               <BackBtn />
             </Pressable>
+          ) : left !== null ? (
+            <Font weight={500}>{left}</Font>
           ) : null}
         </View>
 
