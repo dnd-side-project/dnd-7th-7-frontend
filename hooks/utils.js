@@ -3,6 +3,7 @@ import { useFonts } from 'expo-font';
 
 export const getFonts = () => {
   let [fontsLoaded] = useFonts({
+    'Pretendard-ExtraBold': require('../assets/fonts/Pretendard-ExtraBold.ttf'),
     'Pretendard-Bold': require('../assets/fonts/Pretendard-Bold.ttf'),
     'Pretendard-SemiBold': require('../assets/fonts/Pretendard-SemiBold.ttf'),
     'Pretendard-Regular': require('../assets/fonts/Pretendard-Regular.ttf'),

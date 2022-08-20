@@ -11,8 +11,10 @@ const setWeight = (weight) => {
     return 'Pretendard-Medium';
   } else if (weight < 700) {
     return 'Pretendard-SemiBold';
-  } else {
+  } else if (weight < 800) {
     return 'Pretendard-Bold';
+  } else {
+    return 'Pretendard-ExtraBold';
   }
 };
 
