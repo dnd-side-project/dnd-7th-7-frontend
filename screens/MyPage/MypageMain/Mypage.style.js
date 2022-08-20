@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
 import { globals } from '@styles/globals';
+import LinearGradient from 'react-native-linear-gradient';
 
 export const Wrapper = styled.View``;
 
@@ -86,16 +87,16 @@ export const RouteRecordInformation = styled.View`
   align-items: flex-start;
 `;
 
-export const ShareLayout = styled.View`
+export const ShareLayout = styled(LinearGradient)`
   width: 100%;
   height: 55px;
   padding: 0 ${globals.layout.SCREEN_PADDING_HORIZ}px;
+  border-radius: 10px;
 `;
 
 export const ShareBox = styled.View`
   width: 100%;
   height: 55px;
-  background-color: #f0f0f0;
   border-radius: 10px;
   padding: 18px 20px;
   align-items: center;
@@ -110,3 +111,13 @@ export const ShareGraphic = styled.View`
   align-items: center;
   background-color: #d9d9d9;
 `;
+
+export const LogoutBtn = styled.View`
+  width: 96px;
+  padding-left: 16px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 21px;
+`;
+export const Background = styled(LinearGradient)``;

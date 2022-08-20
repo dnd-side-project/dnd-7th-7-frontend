@@ -8,6 +8,8 @@ import MapMark from '@assets/images/MapMark.svg';
 import MapMarkGreen from '@assets/images/MapMarkGreen.svg';
 import { Entypo } from '@expo/vector-icons';
 import ReviewMark from '@assets/images/review.svg';
+import Logout from '@assets/images/IC_Logout_20.svg';
+import { LogoutBtn } from './Mypage.style';
 
 const MypageMain = ({ navigation: { navigate } }) => {
   const shareMedia = async () => {
@@ -105,6 +107,7 @@ const MypageMain = ({ navigation: { navigate } }) => {
             shadowRadius: 5,
             shadowColor: '#000',
             shadowOffset: { height: 0, width: 0 },
+            marginBottom: 20,
           }}
         >
           <View
@@ -124,14 +127,17 @@ const MypageMain = ({ navigation: { navigate } }) => {
             <Entypo name="chevron-thin-right" size={16} color="#555555" />
           </TouchableOpacity>
         </S.RouteRecord>
-        <S.ShareLayout>
+        <LogoutBtn style={{ marginBottom: 50 }}>
+          <Logout />
+          <Font size={14} color="#A5A5A5">
+            로그아웃
+          </Font>
+        </LogoutBtn>
+        <S.ShareLayout colors={['#C9EFD2', '#FCDCBE']}>
           <S.ShareBox>
             <Font weight={400} size={14}>
               친구와 경로 공유를 해보세요
             </Font>
-            <S.ShareGraphic>
-              <Font>그래픽</Font>
-            </S.ShareGraphic>
             <TouchableOpacity onPress={shareMedia}>
               <ShareBtn />
             </TouchableOpacity>
