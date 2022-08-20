@@ -20,7 +20,11 @@ const OnBoarding = () => {
               route={route}
               options={options}
               left={'logo'}
-              pressRight={() => navigation.navigate('afterOnboarding')}
+              pressRight={() =>
+                navigation.navigate('afterOnboarding', {
+                  screen: 'Home',
+                })
+              }
             />
           ),
         }}
