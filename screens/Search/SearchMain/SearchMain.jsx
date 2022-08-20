@@ -10,9 +10,16 @@ import {
   QuestionMark,
   SubTitle,
   SubTitleImage,
+  ThumbnailBody,
+  ThumbnailBodyDescription,
+  ThumbnailBodyImage,
+  ThumbnailBodyInformation,
+  ThumbnailBox,
+  ThumbnailHeader,
 } from './Search.style';
 import RightChevron from '../../../assets/images/Vector53.svg';
 import { Entypo } from '@expo/vector-icons';
+import GrayDot from '../../../assets/images/graydot.svg';
 
 const data = [
   {
@@ -32,6 +39,39 @@ const data = [
     title: '러닝길 한강 잠실',
     description: '200자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나',
     tags: ['사람 보호구역이 있어요', '+1'],
+  },
+];
+
+const recommendData = [
+  {
+    title: '몰랐지? 힙지로 카페 거리 러닝',
+    date: [12, 31, '토', '오후', '6~9시'],
+    time: 500,
+    distance: 100,
+    map: '../../../assets/images/runMap1.png',
+    description:
+      '어쩌구 저쩌구 블라블라~구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악구와아악',
+    tags: ['안심등이 있어요', '강을 보며 달려요', '+3'],
+  },
+  {
+    title: '난 퇴근하고 강남에서 러닝해',
+    date: [11, 19, '금', '오전', '3시~6시'],
+    time: 480,
+    distance: 120,
+    map: '../../../assets/images/runMap2.png',
+    description:
+      '300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 되는지 확인하',
+    tags: ['안심등이 있어요', '강을 보며 달려요', '+3'],
+  },
+  {
+    title: '언덕 올라가는거 좋아하는 사람??',
+    date: [1, 3, '월', '오전', '9시~12시'],
+    time: 900,
+    distance: 999,
+    map: '../../../assets/images/runMap3.png',
+    description:
+      '300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 되는지 확인하',
+    tags: ['안심등이 있어요', '강을 보며 달려요', '+3'],
   },
 ];
 
@@ -64,6 +104,63 @@ const SearchMain = () => {
         </Font>
         <SubTitleImage source={require('../../../assets/images/Vector113.png')} />
       </SubTitle>
+      {recommendData.map((item, index) => (
+        <ThumbnailBox key={index} style={{ borderBottomColor: '#DFDFDF', borderBottomWidth: 1 }}>
+          <ThumbnailHeader>
+            <Font size={18} weight={600} color="#3D3D3D" lineHeight={18 * 1.5}>
+              {item.title}
+            </Font>
+            <TouchableOpacity>
+              <Font size={12} weight={400} color="#8B8B8B">
+                작성글로 이동
+              </Font>
+            </TouchableOpacity>
+          </ThumbnailHeader>
+          <ThumbnailBody>
+            <ThumbnailBodyInformation>
+              <Font
+                size={12}
+                weight={400}
+                color="#8B8B8B"
+              >{`${item.date[0]}월 ${item.date[1]}일 ${item.date[2]}요일 ${item.date[3]} ${item.date[4]}`}</Font>
+              <GrayDot />
+              <Font size={12} weight={400} color="#8B8B8B">
+                {item.time}분
+              </Font>
+              <GrayDot />
+              <Font size={12} weight={400} color="#8B8B8B">
+                {item.distance}km
+              </Font>
+            </ThumbnailBodyInformation>
+            <ThumbnailBodyImage source={require('../../../assets/images/runMap1.png')} />
+            <ThumbnailBodyDescription>
+              <Font size={14} weight={400} color="#3D3D3D" lineHeight={14 * 1.5}>
+                {item.description.slice(0, 36)}
+              </Font>
+              <Font size={14} weight={400} color="#3D3D3D" lineHeight={14 * 1.5}>
+                {item.description.length - 36 < 36
+                  ? `${item.description.slice(36, item.description.length)}...`
+                  : `${item.description.slice(36, 62)}...`}
+              </Font>
+            </ThumbnailBodyDescription>
+          </ThumbnailBody>
+          <View
+            style={{
+              width: '90%',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            {item.tags.map((text, index) => (
+              <Tag theme="angled" key={index} bgColor="#C9EFD2">
+                <Font size={14} weight={400}>
+                  {text}
+                </Font>
+              </Tag>
+            ))}
+          </View>
+        </ThumbnailBox>
+      ))}
       <SubTitle>
         <Font size={24} weight={600} lineHeight={24 * 1.5}>
           사진과 함께 보는 리뷰도{'\n'}유익해요!

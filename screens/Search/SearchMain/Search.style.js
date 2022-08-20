@@ -64,3 +64,39 @@ export const Photo = styled.View`
   width: 240px;
   margin-right: 16px;
 `;
+
+export const ThumbnailBox = styled.View`
+  width: 100%;
+  height: 272px;
+  padding: 0 16px;
+  margin-bottom: 20px;
+`;
+
+export const ThumbnailHeader = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ThumbnailBody = styled.View`
+  width: 100%;
+  height: 188px;
+`;
+
+export const ThumbnailBodyInformation = styled.View`
+  width: 100%;
+  height: 28px;
+  flex-direction: row;
+  align-items: center;
+`;
+export const ThumbnailBodyImage = styled.Image`
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+`;
+export const ThumbnailBodyDescription = styled.View`
+  width: 100%;
+  height: 40px;
+  padding: 10px 0;
+`;
