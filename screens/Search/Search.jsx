@@ -14,7 +14,7 @@ const Search = () => {
         options={{
           header: (
             { navigation, route, options }, // 기본 navigation props도 사용 가능합니다
-          ) => <Header navigation={navigation} route={route} left={'logo'} right={'search'} />,
+          ) => <Header navigation={navigation} route={route} left="추천경로" right={'search'} />,
         }}
         component={SearchMain}
         name="SearchMain"
