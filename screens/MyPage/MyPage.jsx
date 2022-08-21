@@ -4,6 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CheckPassword from './CheckPassword';
 import Header from '../../components/Header';
 import Modify from './Modify';
+import Recommend from './Recommend';
+import RecordHistory from './RecordHistory';
+import Review from './Review';
 
 const MypageStack = createNativeStackNavigator();
 
@@ -57,6 +60,51 @@ const MyPage = () => {
         }}
         component={Modify}
         name="Modify"
+      />
+      <MypageStack.Screen
+        options={{
+          header: (
+            { navigation, route, options }, // 기본 navigation props도 사용 가능합니다
+          ) => (
+            <Header
+              left={'back'}
+              center="추천 경로 등록 내역 3"
+              right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+            />
+          ),
+        }}
+        component={Recommend}
+        name="Recommend"
+      />
+      <MypageStack.Screen
+        options={{
+          header: (
+            { navigation, route, options }, // 기본 navigation props도 사용 가능합니다
+          ) => (
+            <Header
+              left={'back'}
+              center="러닝 기록 내역 3"
+              right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+            />
+          ),
+        }}
+        component={RecordHistory}
+        name="RecordHistory"
+      />
+      <MypageStack.Screen
+        options={{
+          header: (
+            { navigation, route, options }, // 기본 navigation props도 사용 가능합니다
+          ) => (
+            <Header
+              left={'back'}
+              center="나의 리뷰"
+              right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+            />
+          ),
+        }}
+        component={Review}
+        name="Review"
       />
     </MypageStack.Navigator>
   );
