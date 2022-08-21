@@ -66,7 +66,15 @@ const MypageMain = ({ navigation: { navigate } }) => {
                 추천 경로 등록 내역
               </Font>
             </View>
-            <Entypo name="chevron-thin-right" size={16} color="white" />
+            <TouchableOpacity
+              onPress={() =>
+                navigate('Recommend', {
+                  data: 1,
+                })
+              }
+            >
+              <Entypo name="chevron-thin-right" size={16} color="white" />
+            </TouchableOpacity>
           </View>
           {/* N회 받아오기 */}
           {/* 뱃지 API 요청하기 */}
@@ -97,7 +105,13 @@ const MypageMain = ({ navigation: { navigate } }) => {
               러닝 기록 내역
             </Font>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigate('RecordHistory', {
+                data: 3,
+              })
+            }
+          >
             <Entypo name="chevron-thin-right" size={16} color="#555555" />
           </TouchableOpacity>
         </S.RouteRecord>
@@ -123,7 +137,7 @@ const MypageMain = ({ navigation: { navigate } }) => {
               나의 리뷰
             </Font>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate('Review')}>
             <Entypo name="chevron-thin-right" size={16} color="#555555" />
           </TouchableOpacity>
         </S.RouteRecord>
