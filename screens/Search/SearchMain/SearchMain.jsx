@@ -19,7 +19,7 @@ import {
 } from './Search.style';
 import RightChevron from '../../../assets/images/Vector53.svg';
 import { Entypo } from '@expo/vector-icons';
-import GrayDot from '../../../assets/images/graydot.svg';
+import GrayDot from '@assets/images/graydot.svg';
 
 const data = [
   {
