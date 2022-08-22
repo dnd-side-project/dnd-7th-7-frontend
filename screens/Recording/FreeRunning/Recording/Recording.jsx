@@ -31,7 +31,7 @@ const Recording = ({ navigation }) => {
         style={styles.map_view}
       >
         <Marker coordinate={{ latitude: 37.2784, longitude: 127.145 }}>
-          <CustomMarker km={1.2} id={3} />
+          <CustomMarker distance={1.2} count={3} />
         </Marker>
       </MapView>
       {isReady ? (
