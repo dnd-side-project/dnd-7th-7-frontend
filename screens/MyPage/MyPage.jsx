@@ -22,7 +22,7 @@ const MyPage = () => {
               left="마이페이지"
               right="setting" // left, center, right props Header.jsx 파일에 정리해놨습니다.
               pressLeft={() => console.log('press left')}
-              pressRight={() => navigation.navigate('afterOnboarding')}
+              pressRight={() => navigation.navigate('CheckPassword')}
             />
           ),
         }}
@@ -36,9 +36,10 @@ const MyPage = () => {
           ) => (
             <Header
               left={null}
-              right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              right="close" // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              center="회원정보 수정"
               pressLeft={() => console.log('press left')}
-              pressRight={() => navigation.navigate('afterOnboarding')}
+              pressRight={() => navigation.goBack()}
             />
           ),
         }}
@@ -52,9 +53,10 @@ const MyPage = () => {
           ) => (
             <Header
               left={null}
-              right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              right="close" // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              center="회원정보 수정"
               pressLeft={() => console.log('press left')}
-              pressRight={() => navigation.navigate('afterOnboarding')}
+              pressRight={() => navigation.navigate('MypageMain')}
             />
           ),
         }}
