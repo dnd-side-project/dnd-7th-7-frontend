@@ -1,12 +1,17 @@
 import { Dimensions, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Font from '../../../components/commons/Font';
 import Tag from '../../../components/commons/Tag/Tag';
-import { Button, ButtonBox, Input, InputBox, Title } from '../CheckPassword/CheckPassword.style';
-import { StartRunning, TagBox } from './Modify.style';
+import { Button, ButtonBox, Input, InputBox } from '../CheckPassword/CheckPassword.style';
+import { StartRunning, TagBox, TitleBox, Title } from './Modify.style';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
+import RNPickerSelect from 'react-native-picker-select';
+import { styles } from './Modify.style';
+import DropdownBtn from '@assets/images/dropdown_button.svg';
+import { getYearList } from '@hooks/utils';
 
 const Modify = () => {
+  const yearList = getYearList(true);
   const [itemOpen, setItemOpen] = useState(false);
   const [itemValue, setItemValue] = useState(null);
   const [items, setItems] = useState([
@@ -21,21 +26,18 @@ const Modify = () => {
     { label: 'Banana', value: 'banana' },
   ]);
   return (
-    <ScrollView style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
-      <Title style={{ marginBottom: 25 }}>
-        <Font lineHeight={1.5} size={24} weight={600}>
-          회원정보수정
-        </Font>
-        <Font color="#8B8B8B" size={12} weight={400}>
-          *아이디는 수정할 수 없습니다
-        </Font>
-      </Title>
-      <View style={{ width: 100, paddingLeft: 16, marginBottom: 20 }}>
-        <Tag theme="angled" textColor="#000000" borderWidth={0} bgColor="#ECECEC" textSize={14}>
-          필수 정보
-        </Tag>
-      </View>
-      <InputBox style={{ marginBottom: 35 }}>
+    <ScrollView
+      style={{ backgroundColor: '#FFFFFF', flex: 1 }}
+      contentContainerStyle={{ paddingVertical: 35 }}
+    >
+      <TitleBox>
+        <Title style={{ borderBottomColor: '#000000', borderBottomWidth: 1 }}>
+          <Font size={16} lineHeight={16 * 1.5} weight={600}>
+            필수 정보
+          </Font>
+        </Title>
+      </TitleBox>
+      <InputBox>
         <Input
           placeholder="달리는 다람쥐"
           placeholderTextColor="#C8C8C8"
@@ -47,254 +49,152 @@ const Modify = () => {
           style={{ borderBottomColor: '#C8C8C8', borderBottomWidth: 1 }}
         />
       </InputBox>
-      <InputBox style={{ marginBottom: 35 }}>
+      <InputBox>
         <Input
           placeholder="비밀번호 (영문+숫자+특수문자 10자 이상)*"
           placeholderTextColor="#C8C8C8"
           style={{ borderBottomColor: '#C8C8C8', borderBottomWidth: 1 }}
         />
-        <Input
-          placeholder="1999"
-          placeholderTextColor="#C8C8C8"
-          style={{ borderBottomColor: '#C8C8C8', borderBottomWidth: 1 }}
-        />
       </InputBox>
-      <ButtonBox style={{ marginBottom: 50 }}>
-        <TouchableOpacity>
-          <Button
-            style={{
-              backgroundColor: 'white',
-              borderColor: '#689744',
-              borderWidth: 1,
-            }}
-          >
-            <Text style={{ color: '#689744' }}>남성</Text>
-          </Button>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Button>
-            <Text>여성</Text>
-          </Button>
-        </TouchableOpacity>
-      </ButtonBox>
-      <View style={{ width: 100, paddingLeft: 16, marginBottom: 20 }}>
-        <Tag theme="angled" textColor="#000000" borderWidth={0} bgColor="#ECECEC" textSize={14}>
-          추천 정보
-        </Tag>
+      <View style={styles.selects}>
+        <View style={{ ...styles.select, marginRight: 25 }}>
+          <RNPickerSelect
+            placeholder={{ label: '출생년도' }}
+            onValueChange={(value) => console.log(value)}
+            items={yearList}
+            Icon={() => <DropdownBtn />}
+          />
+        </View>
+        <View style={styles.select}>
+          <RNPickerSelect
+            placeholder={{ label: '성별' }}
+            onValueChange={(value) => console.log(value)}
+            items={[
+              { label: '남자', value: 'man' },
+              { label: '여자', value: 'woman' },
+            ]}
+            Icon={() => <DropdownBtn />}
+          />
+        </View>
       </View>
+      <TitleBox>
+        <Title style={{ borderBottomColor: '#000000', borderBottomWidth: 1 }}>
+          <Font size={16} lineHeight={16 * 1.5} weight={600}>
+            선택 정보
+          </Font>
+        </Title>
+      </TitleBox>
       <StartRunning>
-        <Font size={14} weight={400} color="#535353">
-          러닝 시작 지점을 선택해주세요
+        <Font size={15} weight={600} style={{ paddingLeft: 16, marginBottom: 10 }}>
+          나의 러닝 시작 지점
         </Font>
-        <View
-          style={{
-            flexDirection: 'row',
-            paddingVertical: 16,
-            justifyContent: 'space-between',
-            width: Dimensions.get('window').width / 2,
-          }}
-        >
-          <DropDownPicker
-            open={itemOpen}
-            value={itemValue}
-            items={items}
-            setOpen={setItemOpen}
-            setValue={setItemValue}
-            setItems={setItems}
-            style={{ width: 167 }}
-          />
-          <DropDownPicker
-            open={nextOpen}
-            value={nextValue}
-            items={nextItems}
-            setOpen={setNextOpen}
-            setValue={setNextValue}
-            setItems={setItems}
-            style={{ width: 167 }}
-          />
+        <View style={styles.selects}>
+          <View style={{ ...styles.select, marginRight: 25 }}>
+            <RNPickerSelect
+              placeholder={{ label: '출생년도' }}
+              onValueChange={(value) => console.log(value)}
+              items={yearList}
+              Icon={() => <DropdownBtn />}
+            />
+          </View>
+          <View style={styles.select}>
+            <RNPickerSelect
+              placeholder={{ label: '성별' }}
+              onValueChange={(value) => console.log(value)}
+              items={[
+                { label: '남자', value: 'man' },
+                { label: '여자', value: 'woman' },
+              ]}
+              Icon={() => <DropdownBtn />}
+            />
+          </View>
         </View>
       </StartRunning>
       <View style={{ width: '100%', paddingLeft: 16, marginBottom: 20 }}>
-        <Font size={14} weight={400} color="#535353">
-          내가 선호하는 태그를 선택해주세요
+        <Font size={15} weight={600}>
+          내가 선호하는 안심태그
         </Font>
       </View>
       <View style={{ width: '100%', paddingHorizontal: 16, marginBottom: 40 }}>
-        <Font size={14} weight={500} color="#535353" style={{ marginBottom: 10 }}>
-          안심태그
-        </Font>
         <TagBox>
-          <View style={{ width: 115, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
+          <Tag style={{ marginRight: 10, marginBottom: 10 }} bgColor="#C9EFD2" theme="angled">
+            <Font size={14} weight={400}>
               안심등이 있어요
-            </Tag>
-          </View>
-          <View style={{ width: 182, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
-              늦은 시간까지 사람이 많아요
-            </Tag>
-          </View>
-          <View style={{ width: 102, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
-              강따라 달려요
-            </Tag>
-          </View>
-          <View style={{ width: 142, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
-              가파른 구간이 없어요
-            </Tag>
-          </View>
-          <View style={{ width: 170, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#000000"
-              borderWidth={0.5}
-              borderColor="#000000"
-              bgColor="#DEF2E4"
-              textSize={14}
-            >
-              보행자 전용 트랙이 있어요
-            </Tag>
-          </View>
-          <View style={{ width: 110, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#000000"
-              borderWidth={0.5}
-              borderColor="#000000"
-              bgColor="#DEF2E4"
-              textSize={14}
-            >
-              울창한 나무숲
-            </Tag>
-          </View>
-        </TagBox>
-      </View>
-      <View style={{ width: '100%', paddingHorizontal: 16, marginBottom: 40 }}>
-        <Font size={14} weight={500} color="#535353" style={{ marginBottom: 10 }}>
-          추천태그
-        </Font>
-        <TagBox>
-          <View style={{ width: 115, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
-              안심등이 있어요
-            </Tag>
-          </View>
-          <View style={{ width: 182, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#000000"
-              borderWidth={0.5}
-              borderColor="#000000"
-              bgColor="#DEF2E4"
-              textSize={14}
-            >
-              늦은 시간까지 사람이 많아요
-            </Tag>
-          </View>
-          <View style={{ width: 102, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
-              강따라 달려요
-            </Tag>
-          </View>
-          <View style={{ width: 142, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
-              가파른 구간이 없어요
-            </Tag>
-          </View>
-          <View style={{ width: 170, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#000000"
-              borderWidth={0.5}
-              borderColor="#000000"
-              bgColor="#DEF2E4"
-              textSize={14}
-            >
-              보행자 전용 트랙이 있어요
-            </Tag>
-          </View>
-          <View style={{ width: 110, marginBottom: 10, marginRight: 10 }}>
-            <Tag
-              theme="angled"
-              textColor="#CFCFCF"
-              borderWidth={0.5}
-              borderColor="#CFCFCF"
-              bgColor="#FFFFFF"
-              textSize={14}
-            >
-              울창한 나무숲
-            </Tag>
-          </View>
-        </TagBox>
-      </View>
-      <ButtonBox style={{ paddingBottom: 100 }}>
-        <TouchableOpacity>
-          <Button
-            style={{
-              backgroundColor: '#EEEEEE',
-            }}
-          >
-            <Text style={{ color: '#C8C8C8' }}>취소</Text>
-          </Button>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Button style={{ backgroundColor: '#6ACD86' }}>
-            <Font color="#000000" weight={600}>
-              저장
             </Font>
-          </Button>
-        </TouchableOpacity>
-      </ButtonBox>
+          </Tag>
+          <Tag bgColor="#C9EFD2" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400}>
+              근처에 어린이 보호구역이 있어요
+            </Font>
+          </Tag>
+          <Tag bgColor="#EBF5ED" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400} color="#A5A5A5">
+              가로등이 많아요
+            </Font>
+          </Tag>
+          <Tag bgColor="#EBF5ED" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400} color="#A5A5A5">
+              밤에 사람이 많아요
+            </Font>
+          </Tag>
+          <Tag bgColor="#EBF5ED" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400} color="#A5A5A5">
+              낮에 사람이 많아요
+            </Font>
+          </Tag>
+        </TagBox>
+      </View>
+      <View style={{ width: '100%', paddingLeft: 16, marginBottom: 20 }}>
+        <Font size={15} weight={600}>
+          내가 선호하는 일반태그
+        </Font>
+      </View>
+      <View style={{ width: '100%', paddingHorizontal: 16 }}>
+        <TagBox>
+          <Tag style={{ marginRight: 10, marginBottom: 10 }} bgColor="#FCDCBE" theme="angled">
+            <Font size={14} weight={400}>
+              강을 보며 달려요
+            </Font>
+          </Tag>
+          <Tag bgColor="#FCDCBE" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400}>
+              나무가 많아요
+            </Font>
+          </Tag>
+          <Tag bgColor="#FEF1E5" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400} color="#A5A5A5">
+              길이 깨끗해요
+            </Font>
+          </Tag>
+          <Tag bgColor="#FEF1E5" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400} color="#A5A5A5">
+              가파른 구간이 없어요
+            </Font>
+          </Tag>
+          <Tag bgColor="#FEF1E5" theme="angled" style={{ marginRight: 10, marginBottom: 10 }}>
+            <Font size={14} weight={400} color="#A5A5A5">
+              보행자 전용 트랙이 있어요
+            </Font>
+          </Tag>
+        </TagBox>
+      </View>
+
+      <TouchableOpacity>
+        <View
+          style={{
+            backgroundColor: '#21A345',
+            height: 56,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginHorizontal: 16,
+            borderRadius: 10,
+          }}
+        >
+          <Font color="#FFFFFF" size={16} weight={400}>
+            저장
+          </Font>
+        </View>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

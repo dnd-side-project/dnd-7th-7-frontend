@@ -7,15 +7,12 @@ const CheckPassword = ({ navigation: { navigate } }) => {
   return (
     <View style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
       <Title>
-        <Font style={{ marginBottom: 5 }} lineHeight={1.5} size={24} weight={600}>
+        <Font style={{ marginBottom: 5 }} lineHeight={24 * 1.5} size={24} weight={600}>
           비밀번호 확인
         </Font>
 
-        <Font lineHeight={1.5} style={{ marginBottom: 5 }} size={18} weight={400}>
-          러너님의 소중한 정보 보호를 위해
-        </Font>
-        <Font lineHeight={1.5} size={18} weight={400}>
-          비밀번호를 한번 더 입력해주세요
+        <Font lineHeight={18 * 1.5} style={{ marginBottom: 5 }} size={18} weight={400}>
+          러너님의 소중한 정보 보호를 위해{'\n'}비밀번호를 한번 더 입력해주세요
         </Font>
       </Title>
       <InputBox>
