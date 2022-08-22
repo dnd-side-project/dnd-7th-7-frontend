@@ -10,13 +10,30 @@ import Stop from '@assets/images/recording/stop.svg';
 
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import RecorderBox from '@containers/Recording/RecorderBox';
+import MapView, { Marker } from 'react-native-maps';
+import CustomMarker from '../../../../components/commons/CustomMarker';
 
 const Recording = ({ navigation }) => {
   const [isReady, setIsReady] = useState(false);
 
   return (
     <View style={styles.container}>
-      <View style={styles.map_view}></View>
+      <MapView
+        scrollEnabled
+        zoomEnabled
+        initialRegion={{
+          latitude: 37.2784,
+          longitude: 127.145,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+        minZoomLevel={15}
+        style={styles.map_view}
+      >
+        <Marker coordinate={{ latitude: 37.2784, longitude: 127.145 }}>
+          <CustomMarker km={1.2} id={3} />
+        </Marker>
+      </MapView>
       {isReady ? (
         <>
           <View style={styles.guide}>
