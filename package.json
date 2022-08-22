@@ -50,7 +50,8 @@
     "eslint-plugin-module-resolver": "^1.4.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "react-native-linear-gradient": "^2.6.2"
   },
   "private": true,
   "config": {

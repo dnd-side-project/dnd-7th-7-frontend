@@ -1,11 +1,15 @@
 import * as S from './Mypage.style';
 import { Share, Text, View, StyleSheet, ScrollView } from 'react-native';
-
 import RightChevron from '../../../assets/images/Vector53.svg';
 import ShareBtn from '../../../assets/images/Group34.svg';
 import { TouchableOpacity } from 'react-native';
-import Tag from '../../../components/commons/Tag/Tag';
 import Font from '../../../components/commons/Font';
+import MapMark from '@assets/images/MapMark.svg';
+import MapMarkGreen from '@assets/images/MapMarkGreen.svg';
+import { Entypo } from '@expo/vector-icons';
+import ReviewMark from '@assets/images/review.svg';
+import Logout from '@assets/images/IC_Logout_20.svg';
+import { LogoutBtn } from './Mypage.style';
 
 const MypageMain = ({ navigation: { navigate } }) => {
   const shareMedia = async () => {
@@ -17,7 +21,7 @@ const MypageMain = ({ navigation: { navigate } }) => {
   };
   return (
     <ScrollView
-      style={{ backgroundColor: '#FFFFFF', flex: 1 }}
+      style={{ backgroundColor: '#FAFAFA', flex: 1 }}
       contentContainerStyle={{
         paddingBottom: 100,
       }}
@@ -26,94 +30,128 @@ const MypageMain = ({ navigation: { navigate } }) => {
         <S.Header></S.Header>
         <S.AvatarBox>
           <S.Avatar />
-          <Tag
-            theme="angled"
-            textColor="#000000"
-            borderColor="#D9D9D9"
-            borderWidth={1}
-            bgColor="#f9f9f9"
-            textSize={12}
-          >
-            <Font size={12} weight={400}>
-              뱃지 정보
-            </Font>
-          </Tag>
         </S.AvatarBox>
         <S.UserBox>
           <S.UserNameBox>
-            <Font size={24} weight={600}>
+            <Font size={24} weight={600} lineHeight={24 * 1.5}>
               달리는 다람쥐
             </Font>
-            <Font size={20} weight={500}>
-              ak****
+            <Font size={14} weight={400} lineHeight={14 * 1.5} color="#3D3D3D">
+              runningmap@naver.com
             </Font>
           </S.UserNameBox>
-
-          <Tag
-            theme="angled"
-            textColor="#000000"
-            borderColor="#D9D9D9"
-            borderWidth={1}
-            bgColor="#f9f9f9"
-            textSize={12}
-            onPress={() => navigate('CheckPassword')}
-          >
-            <Font size={12} weight={400}>
-              회원 정보
-            </Font>
-          </Tag>
         </S.UserBox>
       </S.Profile>
       <S.Record>
-        <S.RouteRecord style={borderStyle.border}>
-          <S.RouteRecordInformation>
-            <Font size={18} weight={600}>
-              러닝 경로 기록
+        <S.RouteRecordMain>
+          <View
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: 10,
+            }}
+          >
+            <View
+              style={{
+                width: '50%',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <MapMark />
+              <Font size={18} color="#FFFFFF" weight={600} lineHeight={18 * 1.5}>
+                추천 경로 등록 내역
+              </Font>
+            </View>
+            <TouchableOpacity
+              onPress={() =>
+                navigate('Recommend', {
+                  data: 1,
+                })
+              }
+            >
+              <Entypo name="chevron-thin-right" size={16} color="white" />
+            </TouchableOpacity>
+          </View>
+          {/* N회 받아오기 */}
+          {/* 뱃지 API 요청하기 */}
+          <View style={{ paddingLeft: 27 }}>
+            <Font size={14} lineHeight={14 * 1.5} weight={400} color="#ffffff">
+              총 125회의 러닝 경로 기록으로 {'\n'}데일리 마라토너 뱃지를 얻었어요
             </Font>
-            <Font size={12} weight={400} color="#8A8A8A">
-              총 125회의 러닝 경로 기록이 있으시네요
+          </View>
+        </S.RouteRecordMain>
+        <S.RouteRecord
+          style={{
+            shadowOpacity: 0.1,
+            shadowRadius: 5,
+            shadowColor: '#000',
+            shadowOffset: { height: 0, width: 0 },
+          }}
+        >
+          <View
+            style={{
+              width: 'auto',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <MapMarkGreen style={{ marginRight: 7 }} />
+            <Font size={18} color="black" weight={400}>
+              러닝 기록 내역
             </Font>
-          </S.RouteRecordInformation>
-          <TouchableOpacity>
-            <RightChevron />
-          </TouchableOpacity>
-        </S.RouteRecord>
-        <S.RouteRecord style={borderStyle.border}>
-          <S.RouteRecordInformation>
-            <Font size={18} weight={600}>
-              러닝 기록
-            </Font>
-            <Font size={12} weight={400} color="#8A8A8A">
-              총 200회의 러닝 기록이 있으시네요
-            </Font>
-          </S.RouteRecordInformation>
-          <TouchableOpacity>
-            <RightChevron />
+          </View>
+          <TouchableOpacity
+            onPress={() =>
+              navigate('RecordHistory', {
+                data: 3,
+              })
+            }
+          >
+            <Entypo name="chevron-thin-right" size={16} color="#555555" />
           </TouchableOpacity>
         </S.RouteRecord>
         <S.RouteRecord
-          style={{ ...borderStyle.border, borderBottomColor: 'transparent', marginBottom: 35 }}
+          style={{
+            shadowOpacity: 0.1,
+            shadowRadius: 5,
+            shadowColor: '#000',
+            shadowOffset: { height: 0, width: 0 },
+            marginBottom: 20,
+          }}
         >
-          <S.RouteRecordInformation>
-            <Font size={18} weight={600}>
-              작성한 리뷰
+          <View
+            style={{
+              width: 'auto',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <ReviewMark style={{ marginRight: 7 }} />
+            <Font size={18} color="black" weight={400}>
+              나의 리뷰
             </Font>
-            <Font size={12} weight={400} color="#8A8A8A">
-              총 23개의 리뷰를 작성했어요
-            </Font>
-          </S.RouteRecordInformation>
-          <TouchableOpacity>
-            <RightChevron />
+          </View>
+          <TouchableOpacity onPress={() => navigate('Review')}>
+            <Entypo name="chevron-thin-right" size={16} color="#555555" />
           </TouchableOpacity>
         </S.RouteRecord>
-        <S.ShareLayout>
+        <LogoutBtn style={{ marginBottom: 50 }}>
+          <Logout />
+          <Font size={14} color="#A5A5A5">
+            로그아웃
+          </Font>
+        </LogoutBtn>
+        <S.ShareLayout colors={['#C9EFD2', '#FCDCBE']}>
           <S.ShareBox>
             <Font weight={400} size={14}>
               친구와 경로 공유를 해보세요
             </Font>
-            <S.ShareGraphic>
-              <Font>그래픽</Font>
-            </S.ShareGraphic>
             <TouchableOpacity onPress={shareMedia}>
               <ShareBtn />
             </TouchableOpacity>
@@ -123,11 +161,5 @@ const MypageMain = ({ navigation: { navigate } }) => {
     </ScrollView>
   );
 };
-
-const borderStyle = StyleSheet.create({
-  border: {
-    borderTopColor: 'transparent',
-  },
-});
 
 export default MypageMain;
