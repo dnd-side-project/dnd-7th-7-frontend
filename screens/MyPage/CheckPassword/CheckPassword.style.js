@@ -7,19 +7,19 @@ export const Title = styled.View`
   justify-content: space-between;
   align-items: flex-start;
   padding: 16px ${globals.layout.SCREEN_PADDING_HORIZ}px;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
+  margin-top: 25px;
 `;
 
 export const InputBox = styled.View`
-  height: 80px;
+  height: auto;
   width: 100%;
   padding: 0 ${globals.layout.SCREEN_PADDING_HORIZ}px;
-  margin-bottom: 30px;
 `;
 export const Input = styled.TextInput`
   width: 100%;
   height: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   font-size: 14px;
 `;
 export const ButtonBox = styled.View`
