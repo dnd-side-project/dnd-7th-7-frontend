@@ -7,9 +7,6 @@ import { Font } from '@components/commons';
 import Start from '@assets/images/recording/start.svg';
 import Pause from '@assets/images/recording/pause.svg';
 import Stop from '@assets/images/recording/stop.svg';
-import Start from '@assets/images/recording/start.svg';
-import Pause from '@assets/images/recording/pause.svg';
-import Stop from '@assets/images/recording/stop.svg';
 
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import RecorderBox from '@containers/Recording/RecorderBox';
