@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     paddingVertical: 10,
     paddingHorizontal: 16,
+    borderTopEndRadius: 10,
+    borderTopLeftRadius: 10,
   },
   scroller: {
     height: 311,

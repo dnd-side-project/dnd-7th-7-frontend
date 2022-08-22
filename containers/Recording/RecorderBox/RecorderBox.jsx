@@ -8,14 +8,22 @@ import Pause from '@assets/images/recording/pause.svg';
 import Start from '@assets/images/recording/start.svg';
 import Stop from '@assets/images/recording/stop.svg';
 import Counter from '@components/Counter';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import AlertModal from '@components/commons/modals/AlertModal';
 
-const RecorderBox = () => {
+// recoil 설치 후 전역 변수로 세팅
+export const tempStartTime = '12월 31일 토요일 오후 7시 30분';
+export const tempElapsedTime = '34분 21초';
+export const tempDistance = '5.8km';
+export const tempCurrentSecLoc = '성동구';
+export const tempCurrentThirdLoc = '송정동';
+
+const RecorderBox = ({ routeName }) => {
   const [paused, setPaused] = useState(false);
   const [record, setRecord] = useState({ time: 0, distance: 0 });
   const [isFinish, setIsFinish] = useState(false);
   const navigation = useNavigation();
+  const route = useRoute();
 
   // 나중에 record API로 보내기
   return (
@@ -42,9 +50,12 @@ const RecorderBox = () => {
           isVisible={isFinish}
           clickOutside={setIsFinish}
           title={'경로 기록을 종료할까요?'}
+          // 종료 이벤트에 setRecoilState
           onPressYes={() => {
             setIsFinish(false);
-            navigation.navigate('FreeRunningResult');
+            !route.params
+              ? navigation.navigate('FreeRunningResult')
+              : navigation.navigate('RouteRunningResult', { routeName: routeName });
           }}
           onPressNo={() => setIsFinish(false)}
         />

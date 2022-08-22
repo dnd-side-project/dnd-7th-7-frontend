@@ -19,23 +19,19 @@ const AlertModal = ({ isVisible, clickOutside, title, onPressYes, onPressNo }) =
       style={styles.container}
       isVisible={isVisible}
       backdropOpacity={0.5}
-      onBackdropPress={() => clickOut(false)}
+      onBackdropPress={() => clickOutside(false)}
     >
       <View style={styles.wrapper}>
         <View style={styles.title}>
           <Font>{title}</Font>
         </View>
         <View style={styles.buttons}>
-          <View style={styles.yes}>
-            <Pressable onPress={onPressYes}>
-              <Font>네</Font>
-            </Pressable>
-          </View>
-          <View style={styles.no}>
-            <Pressable onPress={onPressNo}>
-              <Font color={globals.colors.PRIMARY_DARK}>아니오</Font>
-            </Pressable>
-          </View>
+          <Pressable style={styles.yes} onPress={onPressYes}>
+            <Font>네</Font>
+          </Pressable>
+          <Pressable style={styles.no} onPress={onPressNo}>
+            <Font color={globals.colors.PRIMARY_DARK}>아니오</Font>
+          </Pressable>
         </View>
       </View>
     </Modal>

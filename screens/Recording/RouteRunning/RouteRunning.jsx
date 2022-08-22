@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 
 const RouteRunning = () => {
   return (
-    <Stack.Navigator initialRouteName={'RouteRunningRecording'}>
+    <Stack.Navigator initialRouteName="RouteRunningRecording">
       <Stack.Screen
         name="RouteRunningRecording"
         component={RouteRunningRecording}

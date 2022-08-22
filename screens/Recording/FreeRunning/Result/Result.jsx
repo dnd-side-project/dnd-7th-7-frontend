@@ -1,29 +1,55 @@
 import React from 'react';
-import { Button, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
-
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { globals } from '@styles/globals';
-import { Font } from '@components/commons';
+import { styles } from './Result.style';
+import {
+  tempStartTime,
+  tempElapsedTime,
+  tempDistance,
+  tempCurrentThirdLoc,
+  tempCurrentSecLoc,
+} from '@containers/Recording/RecorderBox/RecorderBox'; // Recording 스크린에서 params로 전달받기
+import { Font, Tag } from '@components/commons';
+import ResultSummary from '@containers/Recording/ResultSummary/ResultSummary';
 
 const Result = ({ navigation }) => {
+  const currentDate = new Date();
+  const month = currentDate.getMonth();
+  const day = currentDate.getDate();
   return (
-    <View style={style.container}>
-      <Font>free running result</Font>
-      <Button
-        title="goto free running review"
-        onPress={() => navigation.navigate('FreeRunningReview')}
+    <View scrollEnabled={false} style={styles.container}>
+      <View style={styles.map_view}>
+        <Font>MAP</Font>
+      </View>
+
+      <ResultSummary
+        routeName={`${month + 1}월 ${day}일`}
+        startTime={tempStartTime}
+        elapsedTime={tempElapsedTime}
+        distance={tempDistance}
+        thirdLoc={tempCurrentThirdLoc}
+        secondLoc={tempCurrentSecLoc}
       />
+
+      <View style={styles.tag}>
+        <Tag
+          theme={'angled'}
+          onPress={() => navigation.navigate('FreeRunningReview')}
+          style={{
+            width: '100%',
+            marginHorizontal: 16,
+            paddingVertical: 16,
+            paddingHorizontal: 42,
+          }}
+          bgColor={globals.colors.PRIMARY_DARK}
+          textColor={globals.colors.WHITE}
+          textWeight={600}
+        >
+          추천 경로로 등록
+        </Tag>
+      </View>
     </View>
   );
 };
-
-const style = StyleSheet.create({
-  container: {
-    backgroundColor: globals.colors.BACKGROUND,
-    paddingLeft: globals.layout.SCREEN_PADDING_HORIZ,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default Result;
