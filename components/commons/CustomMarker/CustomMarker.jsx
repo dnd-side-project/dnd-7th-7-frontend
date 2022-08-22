@@ -3,19 +3,19 @@ import { Bubble, BubbleArrow, BubbleBox } from './CustomMarker.style';
 import MapChecker from '@assets/images/mapCheck.svg';
 
 //
-const Marker = ({ id, km }) => {
+const Marker = ({ count, distance }) => {
   return (
     <BubbleBox>
       <Bubble>
         <MapChecker />
         <Font size={14} color="#C9EFD2">
-          {id}
+          {count}
         </Font>
         <Font size={14} color="#7ADA90">
           |
         </Font>
         <Font size={14} color="#7ADA90">
-          {km}km
+          {distance}km
         </Font>
       </Bubble>
       <BubbleArrow />
