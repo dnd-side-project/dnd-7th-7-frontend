@@ -1,7 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { globals } from '@styles/globals';
 
 export const styles = StyleSheet.create({
-  container: {},
+  container: {
+    paddingHorizontal: globals.layout.SCREEN_PADDING_HORIZ,
+  },
   title: {
     marginBottom: 10,
   },
