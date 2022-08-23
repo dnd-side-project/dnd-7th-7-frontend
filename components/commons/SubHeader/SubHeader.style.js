@@ -7,6 +7,7 @@ export const Box = styled.View`
   background-color: #ffffff;
   position: relative;
   top: 0;
+  flex-direction: row;
 `;
 
 export const AddTagBox = styled.View`
