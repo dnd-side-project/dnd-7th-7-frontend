@@ -2,6 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import Font from '../Font';
 import { globals } from '@styles/globals.js';
+import LinearGradient from 'react-native-linear-gradient';
 
 // theme: 'angled' || 'rounded' (default: 'rounded')
 // bgColor, textColor (default: globals.colors.GREY_DARKER), borderColor: string
@@ -9,12 +10,14 @@ import { globals } from '@styles/globals.js';
 // borderWidth: null || number (default: 0.5)
 // style: StyleSheet
 // opPress: () => {}
+// linearGradient: ["시작 컬러", "끝 컬러"] (default: false)
 
 const Tag = ({
   theme = 'rounded',
   textColor = globals.colors.GREY_DARKER,
   onPress,
   icon,
+  linearGradient,
   ...props
 }) => {
   const styles = StyleSheet.create({
@@ -31,7 +34,16 @@ const Tag = ({
     },
   });
 
-  return (
+  return linearGradient ? (
+    <LinearGradient style={{ ...styles.button, ...props.style }} colors={[...linearGradient]}>
+      <Pressable style={{ backgroundColor: 'transparent' }} onPress={onPress}>
+        {icon && icon}
+        <Font color={textColor} size={props.textSize} weight={props.textWeight}>
+          {props.children}
+        </Font>
+      </Pressable>
+    </LinearGradient>
+  ) : (
     <Pressable style={[styles.button, props.style]} onPress={onPress}>
       {icon && icon}
       <Font color={textColor} size={props.textSize} weight={props.textWeight}>
