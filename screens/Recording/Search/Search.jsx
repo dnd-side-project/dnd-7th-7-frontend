@@ -22,7 +22,7 @@ const Search = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar onSearch={setSearchBarInput} />
-      <SubHeader />
+      <SubHeader onPress={tagsModalOpen} />
       <View style={styles.map_view}>
         <Pressable style={styles.marker_example} onPress={tagsModalOpen}>
           <Font textColor={globals.colors.BLACK}>MARKER</Font>
