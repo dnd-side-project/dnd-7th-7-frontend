@@ -121,11 +121,11 @@ export const SECURE_TAGS_DATA = [
 ];
 
 export const RECOMMENDED_TAGS_DATA = [
-  { index: 12, title: '강을 보며 달라요' },
-  { index: 13, title: '나무가 많아요' },
-  { index: 14, title: '가파른 구간이 없어요' },
-  { index: 15, title: '보행자 전용 트랙이 있어요' },
-  { index: 16, title: '길이 깨끗해요' },
+  { index: 1, title: '강을 보며 달라요' },
+  { index: 2, title: '나무가 많아요' },
+  { index: 3, title: '가파른 구간이 없어요' },
+  { index: 4, title: '보행자 전용 트랙이 있어요' },
+  { index: 5, title: '길이 깨끗해요' },
 ];
 
 export const ROUTES_DATA = [

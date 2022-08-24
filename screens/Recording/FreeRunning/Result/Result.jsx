@@ -39,7 +39,6 @@ const Result = ({ navigation }) => {
             width: '100%',
             marginHorizontal: 16,
             paddingVertical: 16,
-            paddingHorizontal: 42,
           }}
           bgColor={globals.colors.PRIMARY_DARK}
           textColor={globals.colors.WHITE}

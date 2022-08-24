@@ -135,7 +135,6 @@ const Review = ({ navigation }) => {
         onPress={() => setModalOpen(true)}
         style={{
           width: '100%',
-
           alignSelf: 'center',
           bottom: 10,
           marginHorizontal: 16,

@@ -61,13 +61,13 @@ const Review = ({ navigation }) => {
         textColor={globals.colors.WHITE}
         textWeight={600}
       >
-        다음
+        리뷰 등록
       </Tag>
 
       <AlertModal
         isVisible={modalOpen}
         clickOutside={setModalOpen}
-        title={'리뷰를 등록하고 홈으로 이동할까요?'}
+        title={`리뷰를 등록하고${'\n'}홈으로 이동할까요?`}
         onPressYes={() => navigation.reset({ routes: [{ name: 'Home' }] })}
         onPressNo={() => setModalOpen(false)}
       />

@@ -24,7 +24,7 @@ const RecommendedRoutes = () => {
         <Font color={globals.colors.GREY_DEF_LIGHT}>내 위치를 설정해 주세요</Font>
       </View>
       <View style={styles.guide}>
-        <Font size={24} weight={700} style={{ marginBottom: 4 }}>
+        <Font size={24} weight={700} style={{ marginBottom: 7 }}>
           밤에는 밝은 경로로
         </Font>
         <Font size={24} weight={700}>
@@ -84,7 +84,7 @@ const RecommendedRoutes = () => {
                       }}
                     >
                       <Font size={14} weight={400} color="#FFFFFF" lineHeight={14 * 1.5}>
-                        {`${item.review.slice(0, 35)}...`}
+                        {`${item.review.slice(0, 32)}...`}
                       </Font>
                       <TouchableOpacity>
                         <Entypo

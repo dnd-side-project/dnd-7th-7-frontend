@@ -49,6 +49,9 @@ const TagsInModal = ({ routeId }) => {
       </View>
 
       <View style={styles.info_secure}>
+        <Font weight={600} style={{ marginTop: 10, marginBottom: 5 }}>
+          안심태그
+        </Font>
         <TagSelectSection
           tagProps={{
             textSize: 14,
@@ -61,6 +64,9 @@ const TagsInModal = ({ routeId }) => {
         />
       </View>
       <View style={styles.info_recommended}>
+        <Font weight={600} style={{ marginTop: 15, marginBottom: 5 }}>
+          일반태그
+        </Font>
         <TagSelectSection
           tagProps={{
             textSize: 14,

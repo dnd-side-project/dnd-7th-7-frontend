@@ -23,7 +23,7 @@ const AlertModal = ({ isVisible, clickOutside, title, onPressYes, onPressNo }) =
     >
       <View style={styles.wrapper}>
         <View style={styles.title}>
-          <Font>{title}</Font>
+          <Font style={{ textAlign: 'center' }}>{title}</Font>
         </View>
         <View style={styles.buttons}>
           <Pressable style={styles.yes} onPress={onPressYes}>

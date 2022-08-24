@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   tag: {
     width: '100%',
-    position: 'absolute', //Here is the trick
-    bottom: 10, //Here is the trick
+    position: 'absolute',
+    bottom: 10,
   },
 });
