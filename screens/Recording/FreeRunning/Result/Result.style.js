@@ -4,29 +4,20 @@ import { globals } from '@styles/globals';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: globals.colors.BACKGROUND,
+    paddingHorizontal: globals.layout.SCREEN_PADDING_HORIZ,
     flex: 1,
   },
   map_view: {
-    flex: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 360,
+    backgroundColor: globals.colors.GREY_LIGTH_DARK,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  guide_wrapper: {
-    position: 'absolute',
-    alignSelf: 'center',
-    width: '100%',
-    paddingHorizontal: 16,
-  },
-  guide: {
+  tag: {
     width: '100%',
     position: 'absolute',
-    top: 15,
-    alignSelf: 'center',
-    paddingVertical: 16,
-  },
-  start_btn: {
-    position: 'absolute',
-    bottom: 30,
-    alignSelf: 'center',
+    bottom: 10,
   },
 });

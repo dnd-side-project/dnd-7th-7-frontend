@@ -3,7 +3,7 @@ import { Button, Text, View, ScrollView, TouchableWithoutFeedback, StyleSheet } 
 import Modal from 'react-native-modal';
 import { styles } from './BottomModal.style';
 
-const BottomModal = ({ visible, open, close, bgOpacity, children }) => {
+const BottomModal = ({ visible, open, close, bgOpacity, children, ...props }) => {
   return (
     <Modal
       isVisible={visible}
@@ -12,6 +12,7 @@ const BottomModal = ({ visible, open, close, bgOpacity, children }) => {
       swipeDirection="down"
       onSwipeComplete={close}
       propagateSwipe={true}
+      hasBackdrop={false}
     >
       <View style={styles.wrapper}>
         <ScrollView style={styles.scroller}>

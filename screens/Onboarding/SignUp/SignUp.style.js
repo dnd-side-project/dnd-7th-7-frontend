@@ -7,12 +7,16 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: globals.colors.BACKGROUND,
   },
-  title: { marginBottom: 10 },
+  title: { marginTop: 25, marginBottom: 33 },
   inputs: {},
   input: {
     borderBottomColor: '#C8C8C8',
     borderBottomWidth: 1,
-    marginTop: 35,
+    paddingVertical: 5,
+    marginTop: 12,
+  },
+  alert_text: {
+    marginTop: 5,
   },
   selects: {
     flexDirection: 'row',

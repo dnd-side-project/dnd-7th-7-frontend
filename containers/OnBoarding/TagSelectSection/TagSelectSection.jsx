@@ -6,7 +6,6 @@ import { ToggleTag, Tag } from '@components/commons';
 
 const TagSelectSection = ({
   selectable = false,
-  category,
   data,
   tagProps,
   onPressTag,

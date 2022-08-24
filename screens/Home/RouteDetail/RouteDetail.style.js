@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'pink',
   },
   title: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-
+  info_recommended: { marginBottom: 100 },
   review_section: { marginTop: 10 },
   infos: { flexDirection: 'row', marginTop: 7 },
   review: { marginTop: 10 },

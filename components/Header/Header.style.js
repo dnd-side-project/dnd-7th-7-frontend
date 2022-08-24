@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 13,
     height: 44,
   },
-  left: { flex: 0.75, justifyContent: 'center' },
+  left: { justifyContent: 'center' },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  right: { flex: 0.75, alignItems: 'flex-end', justifyContent: 'center' },
+  right: { alignItems: 'flex-end', justifyContent: 'center' },
 });
