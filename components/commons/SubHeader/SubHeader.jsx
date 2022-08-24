@@ -5,7 +5,7 @@ import Tag from '@components/commons/Tag/Tag';
 import LinearGradient from 'react-native-linear-gradient';
 
 const SubHeader = ({ onPress }) => {
-  return false ? (
+  return true ? (
     <TouchableOpacity onPress={onPress}>
       <Box>
         <AddTagBox>

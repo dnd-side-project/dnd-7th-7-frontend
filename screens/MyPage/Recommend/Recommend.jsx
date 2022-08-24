@@ -45,7 +45,7 @@ const recommendData = [
   },
 ];
 const Recommend = ({ route: { params } }) => {
-  return params.data === 0 ? (
+  return params.data === 3 ? (
     <S.EmptyResultBox>
       <S.EmptyResult>
         <S.EmtpyResultImage />

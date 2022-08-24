@@ -69,7 +69,7 @@ const BookMarkMain = () => {
       keyExtractor={(item) => item.title}
       renderItem={({ item }) => (
         <List style={{ borderBottomColor: '#C0C0C0', borderBottomWidth: 0.5 }}>
-          <Map source={require('../../../assets/images/map.png')} />
+          <Map style={{ marginRight: 10 }} source={require('../../../assets/images/map.png')} />
           <InformationBox>
             <InformationTextBox>
               <InformationTitle>

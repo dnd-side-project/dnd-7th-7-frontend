@@ -271,7 +271,7 @@ const SearchMain = () => {
             러닝맵 멤버 보러가기
           </Font>
           <TouchableOpacity>
-            <Entypo name="chevron-thin-right" size={22} color="#21A345" />
+            <Entypo name="chevron-thin-right" size={24} color="#21A345" />
           </TouchableOpacity>
         </View>
       </SubTitle>
