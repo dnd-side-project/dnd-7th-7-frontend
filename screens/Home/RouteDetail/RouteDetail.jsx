@@ -44,10 +44,10 @@ const RouteDetail = ({ route }) => {
   ];
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <ScrollView>
         <View style={styles.map_view}>
-          <Font>나중에 Map View</Font>
+          <Font>나중에 경로 썸네일</Font>
         </View>
 
         <ThumbnailCards data={files} />
@@ -76,6 +76,9 @@ const RouteDetail = ({ route }) => {
         </View>
 
         <View style={styles.info_secure}>
+          <Font weight={600} style={{ marginTop: 10, marginBottom: 5 }}>
+            안심태그
+          </Font>
           <TagSelectSection
             tagProps={{
               textSize: 14,
@@ -88,6 +91,9 @@ const RouteDetail = ({ route }) => {
           />
         </View>
         <View style={styles.info_recommended}>
+          <Font weight={600} style={{ marginTop: 15, marginBottom: 5 }}>
+            일반태그
+          </Font>
           <TagSelectSection
             tagProps={{
               textSize: 14,
@@ -99,8 +105,7 @@ const RouteDetail = ({ route }) => {
             data={filterZeroValue(recommendedTagCountsPerRoute)}
           />
         </View>
-      </View>
-
+      </ScrollView>
       <Tag
         onPress={() =>
           navigation.navigate('Recording', {
@@ -116,7 +121,7 @@ const RouteDetail = ({ route }) => {
         style={{
           position: 'absolute',
           alignSelf: 'center',
-          bottom: 48,
+          bottom: 24,
           paddingVertical: 16,
           paddingHorizontal: 42,
         }}
@@ -127,7 +132,7 @@ const RouteDetail = ({ route }) => {
       >
         경로바로가기
       </Tag>
-    </ScrollView>
+    </View>
   );
 };
 

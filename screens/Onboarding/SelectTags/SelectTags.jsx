@@ -82,6 +82,7 @@ const SelectTags = ({ navigation }) => {
           선호하는 일반 태그를 선택해 주세요
         </Font>
         <TagSelectSection
+          selectable={true}
           onPressTag={onPressRecommendedTag}
           pressedProps={{
             textSize: 14,

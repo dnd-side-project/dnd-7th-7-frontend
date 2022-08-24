@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     height: 70,
+    // paddingHorizontal: 48,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,

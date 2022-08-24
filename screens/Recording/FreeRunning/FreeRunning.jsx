@@ -53,10 +53,10 @@ const FreeRunning = () => {
               navigation={navigation}
               route={route}
               options={options}
-              left={null}
-              center={'추천 경로 등록'}
-              right={'close'}
-              pressRight={() => navigation.navigate('Home')}
+              left={'back'}
+              center={'리뷰 등록'}
+              right={null}
+              pressLeft={() => navigation.goBack()}
             />
           ),
         }}

@@ -8,19 +8,16 @@ import { globals } from '@styles/globals';
 const Main = ({ navigation }) => {
   return (
     <View style={style.container}>
-      <ScrollView>
-        <RecommendedRoutes navigation={navigation} />
-        <TrendingTags />
-        <RecommendedRoutesNearBy />
-      </ScrollView>
+      <RecommendedRoutes navigation={navigation} />
+      <TrendingTags />
     </View>
   );
 };
 
 const style = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: globals.colors.BACKGROUND,
-    paddingLeft: globals.layout.SCREEN_PADDING_HORIZ,
   },
 });
 

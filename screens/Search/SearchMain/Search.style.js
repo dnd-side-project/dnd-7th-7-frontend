@@ -60,7 +60,7 @@ export const PhotoList = styled.FlatList`
 `;
 
 export const Photo = styled.View`
-  height: 300px;
+  height: 320px;
   width: 240px;
   margin-right: 16px;
 `;
