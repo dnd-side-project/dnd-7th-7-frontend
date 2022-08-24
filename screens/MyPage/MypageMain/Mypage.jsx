@@ -70,7 +70,7 @@ const MypageMain = ({ navigation: { navigate } }) => {
                   justifyContent: 'space-between',
                 }}
               >
-                <MapMark style={{ marginRight: 5 }} />
+                <MapMark style={{ marginRight: 6 }} />
                 <Font size={18} color="#FFFFFF" weight={600} lineHeight={18 * 1.5}>
                   추천 경로 등록 내역
                 </Font>

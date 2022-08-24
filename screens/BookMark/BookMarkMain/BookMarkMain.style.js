@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 export const List = styled.View`
@@ -18,7 +19,7 @@ export const Map = styled.Image`
 
 export const InformationBox = styled.View`
   height: 120px;
-  width: 210px;
+  width: ${Dimensions.get('window').width - 160};
   background-color: white;
 `;
 

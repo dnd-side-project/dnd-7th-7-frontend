@@ -146,13 +146,12 @@ const SearchMain = () => {
           </ThumbnailBody>
           <View
             style={{
-              width: '90%',
+              width: 'auto',
               flexDirection: 'row',
-              justifyContent: 'space-between',
             }}
           >
             {item.tags.map((text, index) => (
-              <Tag theme="angled" key={index} bgColor="#C9EFD2">
+              <Tag theme="angled" style={{ marginRight: 10 }} key={index} bgColor="#C9EFD2">
                 <Font size={14} weight={400}>
                   {text}
                 </Font>
