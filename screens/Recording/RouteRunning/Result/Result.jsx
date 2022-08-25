@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Image } from 'react-native';
 import { styles } from './Result.style';
 import useTagCount from '@hooks/useTagCount';
 import { globals } from '@styles/globals';
@@ -24,7 +24,11 @@ const Result = ({ navigation, route }) => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.map_view}>
-          <Font>MAP</Font>
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={require('../../../../assets/images/runMap1.png')}
+          />
         </View>
         <ResultSummary
           startTime={tempStartTime}

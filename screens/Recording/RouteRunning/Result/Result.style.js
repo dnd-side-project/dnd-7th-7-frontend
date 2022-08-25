@@ -9,9 +9,11 @@ export const styles = StyleSheet.create({
   },
   map_view: {
     marginTop: 10,
-    height: 260,
-    backgroundColor: globals.colors.GREY_LIGTH_DARK,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginBottom: 10,
+    height: 360,
+    overflow: 'hidden',
+  },
+  image: {
+    transform: [{ translateX: -400 }, { scale: 0.9 }],
   },
 });

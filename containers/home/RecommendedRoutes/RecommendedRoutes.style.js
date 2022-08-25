@@ -4,7 +4,6 @@ import { globals } from '@styles/globals';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-evenly',
     marginTop: 29,
     marginBottom: 43,
   },
