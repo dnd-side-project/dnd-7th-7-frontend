@@ -5,6 +5,7 @@ import { globals } from '@styles/globals';
 import { Font, BottomModal } from '@components/commons';
 import SearchBar from '@components/SearchBar/SearchBar';
 import TagsInModal from '@containers/Recording/TagsInModal';
+import SubHeader from '../../../components/commons/SubHeader';
 
 const Search = ({ navigation, route }) => {
   const [searchBarInput, setSearchBarInput] = useState('');
@@ -23,6 +24,7 @@ const Search = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar onSearch={setSearchBarInput} />
+      <SubHeader onPress={tagsModalOpen} />
       <View style={styles.map_view}>
         <Pressable style={styles.marker_example} onPress={tagsModalOpen}>
           <Font textColor={globals.colors.BLACK}>MARKER</Font>

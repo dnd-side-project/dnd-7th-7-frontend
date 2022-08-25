@@ -19,7 +19,7 @@ import { Font } from '../../../components/commons';
 const data = [
   {
     map: '../../../assets/images/map.png',
-    title: '송정뚝방길',
+    title: '송정뚝방길송정뚝방길송정뚝방길송정뚝방길',
     location: '성동구 송정동',
     distance: 8.2,
     time: 102,
@@ -69,16 +69,16 @@ const BookMarkMain = () => {
       keyExtractor={(item) => item.title}
       renderItem={({ item }) => (
         <List style={{ borderBottomColor: '#C0C0C0', borderBottomWidth: 0.5 }}>
-          <Map source={require('../../../assets/images/map.png')} />
+          <Map style={{ marginRight: 10 }} source={require('../../../assets/images/map.png')} />
           <InformationBox>
+            <TouchableOpacity style={{ zIndex: 1 }}>
+              <BookMarkIcon style={{ position: 'absolute', right: 0, top: 0 }} />
+            </TouchableOpacity>
             <InformationTextBox>
               <InformationTitle>
                 <Font size={18} weight={500}>
-                  {item.title}
+                  {item.title.length > 9 ? item.title.slice(0, 9) + '...' : item.title}
                 </Font>
-                <TouchableOpacity>
-                  <BookMarkIcon style={{ position: 'absolute', right: 0 }} />
-                </TouchableOpacity>
               </InformationTitle>
               <InformationBody>
                 <InformationLocation>
