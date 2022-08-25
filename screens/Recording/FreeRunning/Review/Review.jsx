@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { styles } from './Review.style';
 import { globals } from '@styles/globals';
 import { Font, InputBox, Tag } from '@components/commons';
@@ -32,9 +32,11 @@ const Review = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.map_view}>
-          <Font>MAP</Font>
-        </View>
+        <Image
+          style={styles.map_view}
+          resizeMode="contain"
+          source={require('../../../../assets/images/runMap1.png')}
+        />
 
         <Font weight={600}>러닝 경로 이름</Font>
         <View style={styles.input_section}>

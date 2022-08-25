@@ -11,9 +11,10 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     height: 360,
-    backgroundColor: globals.colors.GREY_LIGTH_DARK,
-    justifyContent: 'center',
-    alignItems: 'center',
+    overflow: 'hidden',
+  },
+  image: {
+    transform: [{ translateX: -400 }, { scale: 0.9 }],
   },
   tag: {
     width: '100%',

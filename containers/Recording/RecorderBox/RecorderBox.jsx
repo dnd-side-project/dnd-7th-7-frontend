@@ -20,10 +20,36 @@ export const tempCurrentThirdLoc = '송정동';
 
 const RecorderBox = ({ routeName }) => {
   const [paused, setPaused] = useState(false);
-  const [record, setRecord] = useState({ time: 0, distance: 0 });
+  const [record, setRecord] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
+  const [sec, setSec] = useState(0);
+  const [min, setMin] = useState(0);
+
   const navigation = useNavigation();
   const route = useRoute();
+
+  const formatTime = (val, ...rest) => {
+    let value = val.toString();
+    if (value.length < 2) {
+      value = '0' + value;
+    }
+    if (rest[0] === 'ms' && value.length < 3) {
+      value = '0' + value;
+    }
+    return value;
+  };
+
+  const start = () => {
+    if (record) {
+      setState({ running: true });
+      this.watch = setInterval(() => this.pace(), 10);
+    }
+  };
+
+  const stop = () => {
+    this.setState({ running: false });
+    clearInterval(this.watch);
+  };
 
   // 나중에 record API로 보내기
   return (

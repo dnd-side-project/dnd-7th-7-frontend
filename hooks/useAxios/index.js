@@ -38,22 +38,24 @@ const getRecommendedRoutes = async (latitude = 37.517235, longitude = 127.047325
 const getMainRouteById = async (id = 1) => {
   try {
     const { data } = await Axios.get(`running-route/main/${id}`);
-    console.log('data: ', data);
     return data;
   } catch (error) {
-    if (error.response) {
-      console.log('요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.');
-      console.log('error.response.data: ', error.response.data);
-      console.log('error.response.status: ', error.response.status);
-      console.log('error.response.headers: ', error.response.headers);
-    } else if (error.request) {
-      console.log('요청이 전송되었지만, 응답이 수신되지 않았습니다.');
-      console.log('error.request: ', error.request);
-    } else {
-      console.log('오류가 발생한 요청을 설정하는 동안 문제가 발생했습니다.');
-      console.log('error.message: ', error.message);
-    }
+    console.log('getMainRouteById API error', error);
   }
 };
 
-export { getRecommendedRoutes, getMainRouteById, Axios };
+/**
+경로 등록 api (추천 경로 등록 & 따라가기 등록)
+ * @param {formData} formData 
+ */
+const postRoute = async (formData) => {
+  try {
+    const { data } = await Axios.get(`running-route`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  } catch (error) {
+    console.log('postRoute API error', error);
+  }
+};
+
+export { getRecommendedRoutes, getMainRouteById };

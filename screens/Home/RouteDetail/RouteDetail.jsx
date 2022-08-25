@@ -1,6 +1,15 @@
 import React from 'react';
 import { styles } from './RouteDetail.style';
-import { Button, FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  Button,
+  FlatList,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { globals } from '@styles/globals';
 import { Font, Tag } from '@components/commons';
 import Marker from '@assets/images/mini_marker.svg';
@@ -47,7 +56,11 @@ const RouteDetail = ({ route }) => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.map_view}>
-          <Font>나중에 경로 썸네일</Font>
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={require('../../../assets/images/runMap2.png')}
+          />
         </View>
 
         <ThumbnailCards data={files} />

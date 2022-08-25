@@ -10,6 +10,8 @@ import Stop from '@assets/images/recording/stop.svg';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import RecorderBox from '@containers/Recording/RecorderBox';
 import AlertModal from '@components/commons/modals/AlertModal';
+import MapView, { Marker } from 'react-native-maps';
+import CustomMarker from '@components/commons/CustomMarker';
 
 // 맵에서 보여주는건 Recording에서 API로 데이터 받아와서 보여주고
 // 기록 관련해서는 RecorderBox에서 recoil로 저장하여 result 및 review 등록 페이지로 넘기기
@@ -34,9 +36,22 @@ const Recording = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.map_view}>
-        <Font>MAP</Font>
-      </View>
+      <MapView
+        scrollEnabled
+        zoomEnabled
+        initialRegion={{
+          latitude: 37.2784,
+          longitude: 127.145,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+        minZoomLevel={15}
+        style={styles.map_view}
+      >
+        <Marker coordinate={{ latitude: 37.2784, longitude: 127.145 }}>
+          <CustomMarker distance={1.2} count={3} />
+        </Marker>
+      </MapView>
 
       {/* 스타트버튼 눌렀을 떄 */}
       {isReady ? (

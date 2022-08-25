@@ -50,7 +50,7 @@ const RecommendedRoutes = () => {
             <ImageBackground
               style={{ flex: 1 }}
               imageStyle={{ borderRadius: 10 }}
-              source={require('../../../assets/images/mountain.png')}
+              source={item.routeImage}
             >
               <View
                 style={{
@@ -80,6 +80,7 @@ const RecommendedRoutes = () => {
                       navigation.push('RouteDetail', {
                         key: item.routeKey,
                         title: item.routeName,
+                        thumbnail: item.routeImage,
                       })
                     }
                   >
@@ -109,22 +110,34 @@ const RecommendedRoutes = () => {
                     style={{
                       width: '100%',
                       flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      overflow: 'hidden',
                     }}
                   >
-                    {item.secureTags.map((tagId, index) => (
-                      <Tag
-                        theme="angled"
-                        style={{ paddingHorizontal: 12, paddingVertical: 6 }}
-                        key={index}
-                        bgColor="#C9EFD2"
-                        textSize={14}
-                        style={{ marginRight: 5 }}
-                      >
-                        {indexToRecommendedTitle(`${tagId}`)}
-                      </Tag>
-                    ))}
+                    {item.secureTags
+                      .filter((tag, index) => index < 1)
+                      .map((tagId, index) => (
+                        <Tag
+                          theme="angled"
+                          style={{
+                            paddingHorizontal: 5,
+                            paddingVertical: 6,
+                          }}
+                          key={index}
+                          bgColor="#C9EFD2"
+                          textSize={14}
+                          style={{ marginRight: 5 }}
+                        >
+                          {indexToRecommendedTitle(`${tagId}`)}
+                        </Tag>
+                      ))}
+                    <Tag
+                      theme="angled"
+                      style={{ paddingHorizontal: 12, paddingVertical: 6 }}
+                      bgColor="#C9EFD2"
+                      textSize={14}
+                      style={{ marginRight: 5 }}
+                    >
+                      {`+ ${ROUTES_DATA.length}`}
+                    </Tag>
                   </View>
                 </View>
               </View>

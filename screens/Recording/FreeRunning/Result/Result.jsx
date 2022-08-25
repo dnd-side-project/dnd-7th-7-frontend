@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { globals } from '@styles/globals';
 import { styles } from './Result.style';
 import {
@@ -19,7 +19,11 @@ const Result = ({ navigation }) => {
   return (
     <View scrollEnabled={false} style={styles.container}>
       <View style={styles.map_view}>
-        <Font>MAP</Font>
+        <Image
+          style={styles.image}
+          resizeMode="contain"
+          source={require('../../../../assets/images/runMap3.png')}
+        />
       </View>
 
       <ResultSummary
