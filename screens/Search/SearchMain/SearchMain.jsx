@@ -146,13 +146,12 @@ const SearchMain = () => {
           </ThumbnailBody>
           <View
             style={{
-              width: '90%',
+              width: 'auto',
               flexDirection: 'row',
-              justifyContent: 'space-between',
             }}
           >
             {item.tags.map((text, index) => (
-              <Tag theme="angled" key={index} bgColor="#C9EFD2">
+              <Tag theme="angled" style={{ marginRight: 10 }} key={index} bgColor="#C9EFD2">
                 <Font size={14} weight={400}>
                   {text}
                 </Font>
@@ -271,7 +270,7 @@ const SearchMain = () => {
             러닝맵 멤버 보러가기
           </Font>
           <TouchableOpacity>
-            <Entypo name="chevron-thin-right" size={22} color="#21A345" />
+            <Entypo name="chevron-thin-right" size={24} color="#21A345" />
           </TouchableOpacity>
         </View>
       </SubTitle>

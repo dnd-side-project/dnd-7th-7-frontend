@@ -26,7 +26,7 @@ const Review = () => {
       style={{ backgroundColor: '#FFFFFF' }}
       contentContainerStyle={{ paddingVertical: 20 }}
     >
-      <ReviewBox style={{ borderBottomWidth: 5, borderBottomColor: '#F6F6F6' }}>
+      <ReviewBox style={{ borderBottomWidth: 10, borderBottomColor: '#F6F6F6' }}>
         <View style={{ height: 40, borderBottomColor: '#DFDFDF', borderBottomWidth: 1 }}>
           <Font size={18} weight={600}>
             한강 잠실 러닝길
@@ -92,7 +92,7 @@ const Review = () => {
           </Tag>
         </View>
       </ReviewBox>
-      <ReviewBox style={{ borderBottomWidth: 5, borderBottomColor: '#F6F6F6' }}>
+      <ReviewBox style={{ borderBottomWidth: 10, borderBottomColor: '#F6F6F6' }}>
         <View style={{ height: 40, borderBottomColor: '#DFDFDF', borderBottomWidth: 1 }}>
           <Font size={18} weight={600}>
             한강 잠실 러닝길
@@ -158,7 +158,7 @@ const Review = () => {
           </Tag>
         </View>
       </ReviewBox>
-      <ReviewBox style={{ borderBottomWidth: 5, borderBottomColor: '#F6F6F6' }}>
+      <ReviewBox style={{ borderBottomWidth: 10, borderBottomColor: '#F6F6F6' }}>
         <View style={{ height: 40, borderBottomColor: '#DFDFDF', borderBottomWidth: 1 }}>
           <Font size={18} weight={600}>
             한강 잠실 러닝길

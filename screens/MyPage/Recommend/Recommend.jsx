@@ -45,7 +45,7 @@ const recommendData = [
   },
 ];
 const Recommend = ({ route: { params } }) => {
-  return params.data === 0 ? (
+  return params.data === 3 ? (
     <S.EmptyResultBox>
       <S.EmptyResult>
         <S.EmtpyResultImage />
@@ -66,7 +66,7 @@ const Recommend = ({ route: { params } }) => {
       contentContainerStyle={{ paddingVertical: 30 }}
     >
       {recommendData.map((item, index) => (
-        <ThumbnailBox key={index} style={{ borderBottomColor: '#DFDFDF', borderBottomWidth: 1 }}>
+        <ThumbnailBox key={index} style={{ borderBottomWidth: 10, borderBottomColor: '#F6F6F6' }}>
           <ThumbnailHeader>
             <Font size={18} weight={600} color="#3D3D3D" lineHeight={18 * 1.5}>
               {item.title}
@@ -107,13 +107,12 @@ const Recommend = ({ route: { params } }) => {
           </ThumbnailBody>
           <View
             style={{
-              width: '90%',
+              width: 'auto',
               flexDirection: 'row',
-              justifyContent: 'space-between',
             }}
           >
             {item.tags.map((text, index) => (
-              <Tag theme="angled" key={index} bgColor="#C9EFD2">
+              <Tag theme="angled" style={{ marginRight: 10 }} key={index} bgColor="#C9EFD2">
                 <Font size={14} weight={400}>
                   {text}
                 </Font>

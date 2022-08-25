@@ -32,7 +32,7 @@ const Modify = () => {
     >
       <TitleBox>
         <Title style={{ borderBottomColor: '#000000', borderBottomWidth: 1 }}>
-          <Font size={16} lineHeight={16 * 1.5} weight={600}>
+          <Font size={18} lineHeight={18 * 1.5} weight={600}>
             필수 정보
           </Font>
         </Title>
@@ -79,7 +79,7 @@ const Modify = () => {
       </View>
       <TitleBox>
         <Title style={{ borderBottomColor: '#000000', borderBottomWidth: 1 }}>
-          <Font size={16} lineHeight={16 * 1.5} weight={600}>
+          <Font size={18} lineHeight={18 * 1.5} weight={600}>
             선택 정보
           </Font>
         </Title>

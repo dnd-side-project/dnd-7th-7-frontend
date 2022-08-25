@@ -1,13 +1,14 @@
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 export const List = styled.View`
   padding: 15px 16px;
   padding-top: 0;
   width: 100%;
+
   height: 150px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const Map = styled.Image`
@@ -18,7 +19,7 @@ export const Map = styled.Image`
 
 export const InformationBox = styled.View`
   height: 120px;
-  width: 210px;
+  width: ${Dimensions.get('window').width - 160};
   background-color: white;
 `;
 

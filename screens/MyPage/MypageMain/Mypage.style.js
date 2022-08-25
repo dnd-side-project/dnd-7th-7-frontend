@@ -92,6 +92,8 @@ export const ShareLayout = styled(LinearGradient)`
   height: 55px;
   padding: 0 ${globals.layout.SCREEN_PADDING_HORIZ}px;
   border-radius: 10px;
+  position: relative;
+  top: ${Dimensions.get('screen').height > 820 ? 70 : 0};
 `;
 
 export const ShareBox = styled.View`
