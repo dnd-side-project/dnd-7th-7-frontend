@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components';
 import { globals } from '@styles/globals';
@@ -10,12 +10,20 @@ import { ROUTES_DATA, indexToRecommendedTitle } from '@hooks/utils';
 import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
+import { getRecommendedRoutes, getMainRouteById } from '@hooks/useAxios';
 
 const RecommendedRoutes = () => {
   const navigation = useNavigation();
-  const PhotoList = styled.FlatList`
-    height: 300px;
-  `;
+  const [routes, setRoutes] = useState();
+
+  const fetchRoutes = async () => {
+    const data = await getRecommendedRoutes();
+    return data;
+  };
+
+  useEffect(() => {
+    fetchRoutes();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -31,10 +39,11 @@ const RecommendedRoutes = () => {
           달려보는건 어떨까요?
         </Font>
       </View>
-      <PhotoList
+      <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
         data={ROUTES_DATA}
+        style={{ height: 300 }}
         keyExtractor={(item, index) => index}
         renderItem={({ item }) => (
           <Photo>
