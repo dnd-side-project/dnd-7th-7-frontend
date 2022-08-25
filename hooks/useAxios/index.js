@@ -1,6 +1,16 @@
 import axios from 'axios';
 import getEnvVars from '../../environment';
-const { baseURL } = getEnvVars();
+
+const { baseUrl } = getEnvVars();
+
+const Axios = axios.create({
+  headers: {
+    Accept: 'application/json',
+    useQueryString: 'true',
+  },
+  baseURL: baseUrl,
+  timeout: 2000,
+});
 
 /**
 내 위치에 따라 근처 경로들 불러오기
@@ -9,17 +19,13 @@ const { baseURL } = getEnvVars();
  */
 const getRecommendedRoutes = async (latitude = 37.517235, longitude = 127.047325) => {
   try {
-    const { data } = await axios.get(`${baseURL}running-route/recommendedRoute`, {
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
+    const { data } = await Axios.get(`running-route/recommendedRoute`, {
       params: {
         latitude,
         longitude,
       },
     });
-    console.log(data);
+    return data;
   } catch (error) {
     console.log('getRecommendedRoutes API error', error);
   }
@@ -31,16 +37,23 @@ const getRecommendedRoutes = async (latitude = 37.517235, longitude = 127.047325
  */
 const getMainRouteById = async (id = 1) => {
   try {
-    const { data } = await axios.get(`${baseURL}running-route/main/${id}`, {
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-    console.log(data);
+    const { data } = await Axios.get(`running-route/main/${id}`);
+    console.log('data: ', data);
+    return data;
   } catch (error) {
-    console.log('getMainRouteById API error', error);
+    if (error.response) {
+      console.log('요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.');
+      console.log('error.response.data: ', error.response.data);
+      console.log('error.response.status: ', error.response.status);
+      console.log('error.response.headers: ', error.response.headers);
+    } else if (error.request) {
+      console.log('요청이 전송되었지만, 응답이 수신되지 않았습니다.');
+      console.log('error.request: ', error.request);
+    } else {
+      console.log('오류가 발생한 요청을 설정하는 동안 문제가 발생했습니다.');
+      console.log('error.message: ', error.message);
+    }
   }
 };
 
-export { getRecommendedRoutes, getMainRouteById };
+export { getRecommendedRoutes, getMainRouteById, Axios };

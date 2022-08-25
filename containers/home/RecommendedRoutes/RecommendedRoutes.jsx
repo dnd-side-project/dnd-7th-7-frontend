@@ -18,7 +18,7 @@ const RecommendedRoutes = () => {
 
   const fetchRoutes = async () => {
     const data = await getRecommendedRoutes();
-    return data;
+    setRoutes(data); // 등록된 routes 없으면 setRoutes해도 undefined
   };
 
   useEffect(() => {
