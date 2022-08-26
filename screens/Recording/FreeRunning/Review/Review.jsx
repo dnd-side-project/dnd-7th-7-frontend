@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { styles } from './Review.style';
 import { globals } from '@styles/globals';
 import { Font, InputBox, Tag } from '@components/commons';
 import EditIcon from '@assets/images/edit.svg';
 import ResultSummary from '@containers/Recording/ResultSummary/ResultSummary';
 import useTagCount from '@hooks/useTagCount';
-import { SECURE_TAGS_DATA, RECOMMENDED_TAGS_DATA } from '@hooks/utils.js';
+import {
+  SECURE_TAGS_DATA,
+  RECOMMENDED_TAGS_DATA,
+  filterRecTagsTitleToIndex,
+  filterSecureTagsTitleToIndex,
+} from '@hooks/utils.js';
 import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
 import ImageGridPicker from '@containers/Recording/ImageGridPicker';
 import AlertModal from '@components/commons/modals/AlertModal';
@@ -17,16 +22,31 @@ import {
   tempCurrentThirdLoc,
   tempCurrentSecLoc,
 } from '@containers/Recording/RecorderBox/RecorderBox';
+import useStore from '@hooks/useStore';
 
 const Review = ({ navigation }) => {
   const [selectedSecureTags, onPressSecureTag] = useTagCount();
   const [selectedRecommendedTags, onPressRecommendedTag] = useTagCount();
+  const [routeName, setRouteName] = useState('');
+
   const [review, setReview] = useState('');
   const [images, setImages] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const { setStore, submitForm } = useStore();
+  const [records, setRecords] = useState();
+
   const registImage = (image) => {
     setImages([...images, image]);
+  };
+
+  const handleSubmit = () => {
+    setStore('runningRecords', {
+      review: review,
+      secureTags: filterSecureTagsTitleToIndex(selectedSecureTags),
+      recommendedTags: filterRecTagsTitleToIndex(selectedRecommendedTags),
+      routeName: routeName,
+    });
   };
 
   return (
@@ -35,12 +55,16 @@ const Review = ({ navigation }) => {
         <Image
           style={styles.map_view}
           resizeMode="contain"
-          source={require('../../../../assets/images/runMap1.png')}
+          source={require('@assets/images/runMap1.png')}
         />
 
         <Font weight={600}>러닝 경로 이름</Font>
         <View style={styles.input_section}>
-          <TextInput style={styles.input} placeholder="경로 이름을 입력해주세요" />
+          <TextInput
+            style={styles.input}
+            onChange={setRouteName}
+            placeholder="경로 이름을 입력해주세요"
+          />
           <EditIcon />
         </View>
 
@@ -84,7 +108,7 @@ const Review = ({ navigation }) => {
             <Font style={{ marginTop: 10, marginBottom: 10 }}>일반태그</Font>
             <TagSelectSection
               selectable={true}
-              onPressTag={onPressSecureTag}
+              onPressTag={onPressRecommendedTag}
               pressedProps={{
                 textSize: 14,
                 textColor: globals.colors.BLACK,
@@ -134,7 +158,10 @@ const Review = ({ navigation }) => {
 
       <Tag
         theme={'angled'}
-        onPress={() => setModalOpen(true)}
+        onPress={() => {
+          submitForm();
+          setModalOpen(true);
+        }}
         style={{
           width: '100%',
           alignSelf: 'center',
@@ -153,7 +180,10 @@ const Review = ({ navigation }) => {
         isVisible={modalOpen}
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
-        onPressYes={() => navigation.reset({ routes: [{ name: 'Home' }] })}
+        onPressYes={() => {
+          handleSubmit();
+          navigation.reset({ routes: [{ name: 'Home' }] });
+        }}
         onPressNo={() => setModalOpen(false)}
       />
     </View>

@@ -52,6 +52,7 @@ const SignUp = ({ navigation }) => {
           placeholder="비밀번호 (영문+숫자+특수문자 10자 이상)*"
           placeholderTextColor={globals.colors.GREY_LIGTH_DARK}
           style={styles.input}
+          secureTextEntry
           value={password}
           onChangeText={setPassword}
         />

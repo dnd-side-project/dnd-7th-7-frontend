@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: globals.colors.ORANGE_LIGHT,
+    overflow: 'hidden',
   },
   thumbnails: {
     flex: 1,
