@@ -41,7 +41,7 @@ const Review = ({ navigation }) => {
 
   const handleSubmit = () => {
     setStore('review', review);
-    // setStore('routeName', routeName);
+    setStore('routeName', `${routeName}`);
     setStore('secureTags', JSON.stringify(filterSecureTagsTitleToIndex(selectedSecureTags)));
     setStore('recommendedTags', JSON.stringify(filterRecTagsTitleToIndex(selectedRecommendedTags)));
   };

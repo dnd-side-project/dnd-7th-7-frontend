@@ -85,7 +85,6 @@ const RecorderBox = ({ routeName }) => {
           isVisible={isFinish}
           clickOutside={setIsFinish}
           title={'경로 기록을 종료할까요?'}
-          // 종료 이벤트에 setRecoilState
           onPressYes={() => {
             setStore('runningTime', `${time}`);
             setIsFinish(false);
