@@ -5,13 +5,6 @@ import { globals } from '@styles/globals';
 import { Font, InputBox, Tag } from '@components/commons';
 import EditIcon from '@assets/images/edit.svg';
 import ResultSummary from '@containers/Recording/ResultSummary/ResultSummary';
-import useTagCount from '@hooks/useTagCount';
-import {
-  SECURE_TAGS_DATA,
-  RECOMMENDED_TAGS_DATA,
-  filterRecTagsTitleToIndex,
-  filterSecureTagsTitleToIndex,
-} from '@hooks/utils.js';
 import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
 import ImageGridPicker from '@containers/Recording/ImageGridPicker';
 import AlertModal from '@components/commons/modals/AlertModal';
@@ -23,6 +16,14 @@ import {
   tempCurrentSecLoc,
 } from '@containers/Recording/RecorderBox/RecorderBox';
 import useStore from '@hooks/useStore';
+import useTagCount from '@hooks/useTagCount';
+import { postMainRoute } from '@hooks/useAxios';
+import {
+  SECURE_TAGS_DATA,
+  RECOMMENDED_TAGS_DATA,
+  filterRecTagsTitleToIndex,
+  filterSecureTagsTitleToIndex,
+} from '@hooks/utils.js';
 
 const Review = ({ navigation }) => {
   const [selectedSecureTags, onPressSecureTag] = useTagCount();
@@ -33,7 +34,7 @@ const Review = ({ navigation }) => {
   const [images, setImages] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { setStore, submitForm, removeAll } = useStore();
+  const { setStore, changeToFormData, removeAll, getStoreAsFormData } = useStore();
 
   const registImage = (image) => {
     setImages([...images, image]);
@@ -41,9 +42,15 @@ const Review = ({ navigation }) => {
 
   const handleSubmit = () => {
     setStore('review', review);
-    setStore('routeName', `${routeName}`);
+    setStore('routeName', routeName);
     setStore('secureTags', JSON.stringify(filterSecureTagsTitleToIndex(selectedSecureTags)));
     setStore('recommendedTags', JSON.stringify(filterRecTagsTitleToIndex(selectedRecommendedTags)));
+  };
+
+  const handlePost = () => {
+    const fd = getStoreAsFormData();
+    postMainRoute(fd);
+    // removeAll();
   };
 
   return (
@@ -59,7 +66,8 @@ const Review = ({ navigation }) => {
         <View style={styles.input_section}>
           <TextInput
             style={styles.input}
-            onChange={setRouteName}
+            onChangeText={setRouteName}
+            value={routeName}
             placeholder="경로 이름을 입력해주세요"
           />
           <EditIcon />
@@ -135,6 +143,7 @@ const Review = ({ navigation }) => {
               '최소 30자 이상 작성해주세요. (비방, 욕설을 포함한 관련없는 내용은 통보 없이 삭제될 수 있습니다.)'
             }
             placeholderColor={globals.colors.GREY_DEF}
+            value={review}
             style={{
               height: 215,
               borderWidth: 1,
@@ -178,7 +187,7 @@ const Review = ({ navigation }) => {
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
         onPressYes={() => {
-          submitForm();
+          handlePost();
           navigation.reset({ routes: [{ name: 'Home' }] });
         }}
         onPressNo={() => setModalOpen(false)}

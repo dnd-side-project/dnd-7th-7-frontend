@@ -2,7 +2,6 @@ import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const useStore = () => {
-  const fd = new FormData();
   /**
    * AsyncStorage에 key와 value 쌍으로 저장
    * @param {string} key
@@ -28,25 +27,30 @@ const useStore = () => {
     }
   };
 
-  const submitForm = async () => {
+  const getStoreAsFormData = async () => {
+    const fd = new FormData();
     try {
       const keys = await AsyncStorage.getAllKeys();
       const result = await AsyncStorage.multiGet(keys);
-      console.log(result);
+      result.forEach((el) => {
+        console.log('value: ', typeof el[1]);
+        fd.append(el[0], el[1]);
+      });
     } catch (error) {
-      console.log('submit', error);
+      console.log('changeToFormData error', error);
     }
+    return fd;
   };
 
   const removeAll = async () => {
     try {
       const savedUser = await AsyncStorage.clear();
     } catch (error) {
-      console.log(error);
+      console.log('removeAll error', error);
     }
   };
 
-  return { setStore, getStore, submitForm, removeAll };
+  return { setStore, getStore, getStoreAsFormData, removeAll };
 };
 
 export default useStore;

@@ -48,9 +48,9 @@ const getMainRouteById = async (id = 1) => {
 경로 등록 api (추천 경로 등록 & 따라가기 등록)
  * @param {formData} formData 
  */
-const postRoute = async (formData) => {
+const postMainRoute = async (formData) => {
   try {
-    const { data } = await Axios.get(`running-route`, formData, {
+    const { data } = await Axios.post(`running-route`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   } catch (error) {
@@ -58,4 +58,4 @@ const postRoute = async (formData) => {
   }
 };
 
-export { getRecommendedRoutes, getMainRouteById };
+export { getRecommendedRoutes, getMainRouteById, postMainRoute };
