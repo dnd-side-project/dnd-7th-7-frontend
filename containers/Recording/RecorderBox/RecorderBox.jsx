@@ -87,7 +87,7 @@ const RecorderBox = ({ routeName }) => {
           title={'경로 기록을 종료할까요?'}
           // 종료 이벤트에 setRecoilState
           onPressYes={() => {
-            setStore('runningRecords', { runningTime: `${time}` });
+            setStore('runningTime', `${time}`);
             setIsFinish(false);
             !route.params
               ? navigation.navigate('FreeRunningResult')
