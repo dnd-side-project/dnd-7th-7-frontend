@@ -7,7 +7,7 @@ import CloseBtn from '@assets/images/close.svg';
 import BackBtn from '@assets/images/back.svg';
 import SearchBtn from '@assets/images/search.svg';
 import SettingBtn from '@assets/images/Settings.svg';
-
+import Logo from '@assets/images/logo.svg';
 // left: 'logo'(default) | 'back' | string | null
 // center: 'text' | null(default)
 // right: 'close'(default) | 'search' | 'setting' | null
@@ -23,7 +23,7 @@ const Header = (
       <View style={styles.header}>
         <View style={styles.left}>
           {left === 'logo' ? (
-            <Font weight={500}>Running map</Font>
+            <Logo />
           ) : left === 'back' ? (
             <Pressable onPress={pressLeft}>
               <BackBtn />

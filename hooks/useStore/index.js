@@ -10,7 +10,7 @@ const useStore = () => {
    */
   const setStore = async (key, value) => {
     try {
-      await AsyncStorage.setItem(key, JSON.stringify(value));
+      await AsyncStorage.setItem(key, value);
     } catch (e) {
       console.log('setStore error!', e);
     }
@@ -30,17 +30,23 @@ const useStore = () => {
 
   const submitForm = async () => {
     try {
-      const item = await AsyncStorage.getItem(runningRecords);
-
-      console.log(item);
-
-      // await AsyncStorage.clear();
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      console.log(result);
     } catch (error) {
       console.log('submit', error);
     }
   };
 
-  return { setStore, getStore, submitForm };
+  const removeAll = async () => {
+    try {
+      const savedUser = await AsyncStorage.clear();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { setStore, getStore, submitForm, removeAll };
 };
 
 export default useStore;

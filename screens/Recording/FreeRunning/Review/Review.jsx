@@ -33,20 +33,17 @@ const Review = ({ navigation }) => {
   const [images, setImages] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { setStore, submitForm } = useStore();
-  const [records, setRecords] = useState();
+  const { setStore, submitForm, removeAll } = useStore();
 
   const registImage = (image) => {
     setImages([...images, image]);
   };
 
   const handleSubmit = () => {
-    setStore('runningRecords', {
-      review: review,
-      secureTags: filterSecureTagsTitleToIndex(selectedSecureTags),
-      recommendedTags: filterRecTagsTitleToIndex(selectedRecommendedTags),
-      routeName: routeName,
-    });
+    setStore('review', review);
+    // setStore('routeName', routeName);
+    setStore('secureTags', JSON.stringify(filterSecureTagsTitleToIndex(selectedSecureTags)));
+    setStore('recommendedTags', JSON.stringify(filterRecTagsTitleToIndex(selectedRecommendedTags)));
   };
 
   return (
@@ -159,7 +156,7 @@ const Review = ({ navigation }) => {
       <Tag
         theme={'angled'}
         onPress={() => {
-          submitForm();
+          handleSubmit();
           setModalOpen(true);
         }}
         style={{
@@ -181,7 +178,7 @@ const Review = ({ navigation }) => {
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
         onPressYes={() => {
-          handleSubmit();
+          submitForm();
           navigation.reset({ routes: [{ name: 'Home' }] });
         }}
         onPressNo={() => setModalOpen(false)}
