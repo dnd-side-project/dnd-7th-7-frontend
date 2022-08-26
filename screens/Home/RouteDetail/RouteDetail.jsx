@@ -46,10 +46,10 @@ const RouteDetail = ({ route }) => {
     5: 3,
   };
   const files = [
-    'https://running-map.s3.ap-northeast-2.amazonaws.com/1660743080736dd.png',
-    'https://running-map.s3.ap-northeast-2.amazonaws.com/1660743080747dd.png',
-    'https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png',
-    'https://running-map.s3.ap-northeast-2.amazonaws.com/1660743080747dd.png',
+    'https://t1.daumcdn.net/cfile/tistory/9950BD365E6E47321F',
+    'https://t1.daumcdn.net/cfile/blog/2342C84657ED330608',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUf6NWUCpDjy-_zDFEON6g3zikUvU5gwFgQ&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKy3A6HZJCpk23M9GU7yOUt1WOFuJSa-T6w&usqp=CAU',
   ];
 
   return (

@@ -20,16 +20,16 @@ const Recording = ({ navigation }) => {
     navigation.navigate('Home');
   };
 
-  // 로그인 확인 처리
-  useEffect(() => {
-    const confirmLogin = navigation.addListener('focus', () => {
-      if (!isLogin) {
-        setIsLogin(true);
-      }
-    });
+  // // 로그인 확인 처리
+  // useEffect(() => {
+  //   const confirmLogin = navigation.addListener('focus', () => {
+  //     if (!isLogin) {
+  //       setIsLogin(true);
+  //     }
+  //   });
 
-    return confirmLogin;
-  }, [navigation]);
+  //   return confirmLogin;
+  // }, [navigation]);
 
   return (
     <View style={styles.container}>

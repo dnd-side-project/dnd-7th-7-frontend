@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from './RecorderBox.style';
 import { Pressable, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
@@ -7,7 +7,6 @@ import { Font } from '@components/commons';
 import Pause from '@assets/images/recording/pause.svg';
 import Start from '@assets/images/recording/start.svg';
 import Stop from '@assets/images/recording/stop.svg';
-import Counter from '@components/Counter';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AlertModal from '@components/commons/modals/AlertModal';
 
@@ -19,51 +18,58 @@ export const tempCurrentSecLoc = '성동구';
 export const tempCurrentThirdLoc = '송정동';
 
 const RecorderBox = ({ routeName }) => {
-  const [paused, setPaused] = useState(false);
-  const [record, setRecord] = useState(false);
-  const [isFinish, setIsFinish] = useState(false);
-  const [sec, setSec] = useState(0);
-  const [min, setMin] = useState(0);
-
   const navigation = useNavigation();
   const route = useRoute();
 
-  const formatTime = (val, ...rest) => {
-    let value = val.toString();
-    if (value.length < 2) {
-      value = '0' + value;
-    }
-    if (rest[0] === 'ms' && value.length < 3) {
-      value = '0' + value;
-    }
-    return value;
-  };
+  const [paused, setPaused] = useState(false);
+  const [time, setTime] = useState(0);
+  const [isRecording, setIsRecording] = useState(true);
+  const [isFinish, setIsFinish] = useState(false);
 
-  const start = () => {
-    if (record) {
-      setState({ running: true });
-      this.watch = setInterval(() => this.pace(), 10);
+  useEffect(() => {
+    let interval;
+    if (isRecording) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    } else if (!isRecording) {
+      clearInterval(interval);
     }
-  };
-
-  const stop = () => {
-    this.setState({ running: false });
-    clearInterval(this.watch);
-  };
+    return () => clearInterval(interval);
+  }, [isRecording]);
 
   // 나중에 record API로 보내기
   return (
     <Modal style={styles.container} isVisible={true} backdropOpacity={0} coverScreen={false}>
       <View style={styles.wrapper}>
-        <Counter isPaused={paused} onFinish={setRecord} />
+        <View style={styles.counter_wrapper}>
+          <View style={styles.time_count}>
+            <Font size={34} weight={600}>
+              {('0' + Math.floor((time / 60000) % 60)).slice(-2)}:
+              {('0' + Math.floor((time / 1000) % 60)).slice(-2)}
+            </Font>
+            <Font weight={400} color={globals.colors.GREY_LIGTH_DARK}>
+              시간
+            </Font>
+          </View>
+          <View style={styles.distance_count}>
+            <Font size={34} weight={600}>
+              0.00km
+            </Font>
+            <Font weight={400} color={globals.colors.GREY_LIGTH_DARK}>
+              거리
+            </Font>
+          </View>
+        </View>
+
         <View style={styles.btn_group}>
-          {!paused ? (
-            <Pressable onPress={() => setPaused(!paused)}>
+          {isRecording ? (
+            <Pressable onPress={() => setIsRecording(false)}>
               <Pause />
             </Pressable>
           ) : (
             <View style={styles.paused}>
-              <Pressable onPress={() => setPaused(!paused)}>
+              <Pressable onPress={() => setIsRecording(true)}>
                 <Start />
               </Pressable>
               <Pressable onPress={() => setIsFinish(true)}>

@@ -23,6 +23,7 @@ const CheckPassword = ({ navigation: { navigate } }) => {
         />
         <Input
           placeholder="비밀번호"
+          secureTextEntry
           placeholderTextColor="#C8C8C8"
           style={{ borderBottomColor: '#C8C8C8', borderBottomWidth: 1 }}
         />

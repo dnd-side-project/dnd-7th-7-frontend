@@ -109,7 +109,7 @@ const SelectTags = ({ navigation }) => {
           textColor={globals.colors.GREY_DEF_DARKER}
           textWeight={400}
           style={{ paddingVertical: 16 }}
-          onPress={() => navigation.navigate('afterOnboarding')}
+          onPress={() => navigation.reset({ routes: [{ name: 'afterOnboarding' }] })}
         >
           완료
         </Tag>
