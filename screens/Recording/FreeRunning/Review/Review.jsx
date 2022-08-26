@@ -1,10 +1,29 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Button,
+  TouchableOpacity,
+  Pressable,
+  Dimensions,
+} from 'react-native';
 import { styles } from './Review.style';
 import { globals } from '@styles/globals';
 import { Font, InputBox, Tag } from '@components/commons';
 import EditIcon from '@assets/images/edit.svg';
 import ResultSummary from '@containers/Recording/ResultSummary/ResultSummary';
+import useTagCount from '@hooks/useTagCount';
+import Plus from '@assets/images/plus.svg';
+import {
+  SECURE_TAGS_DATA,
+  RECOMMENDED_TAGS_DATA,
+  filterRecTagsTitleToIndex,
+  filterSecureTagsTitleToIndex,
+} from '@hooks/utils.js';
 import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
 import ImageGridPicker from '@containers/Recording/ImageGridPicker';
 import AlertModal from '@components/commons/modals/AlertModal';
@@ -16,14 +35,8 @@ import {
   tempCurrentSecLoc,
 } from '@containers/Recording/RecorderBox/RecorderBox';
 import useStore from '@hooks/useStore';
-import useTagCount from '@hooks/useTagCount';
+import * as ImagePicker from 'expo-image-picker';
 import { postMainRoute } from '@hooks/useAxios';
-import {
-  SECURE_TAGS_DATA,
-  RECOMMENDED_TAGS_DATA,
-  filterRecTagsTitleToIndex,
-  filterSecureTagsTitleToIndex,
-} from '@hooks/utils.js';
 
 const Review = ({ navigation }) => {
   const [selectedSecureTags, onPressSecureTag] = useTagCount();
@@ -45,6 +58,24 @@ const Review = ({ navigation }) => {
     setStore('routeName', routeName);
     setStore('secureTags', JSON.stringify(filterSecureTagsTitleToIndex(selectedSecureTags)));
     setStore('recommendedTags', JSON.stringify(filterRecTagsTitleToIndex(selectedRecommendedTags)));
+    setStore('files', JSON.stringify(images));
+  };
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    // setImages((prev) => [...prev, result]);
+    setImages((prev) => [...prev, result.uri]);
+
+    // if (!result.cancelled) {
+    //   setImages(result.uri);
+    // }
   };
 
   const handlePost = () => {
@@ -158,7 +189,21 @@ const Review = ({ navigation }) => {
           <Font style={{ marginBottom: 10 }} size={16} weight={600}>
             경험했던 경로의 사진을 등록해주세요
           </Font>
-          <ImageGridPicker registImage={registImage} data={images} />
+
+          <View style={style.container}>
+            <View style={style.flatList}>
+              <Pressable style={style.add_btn} onPress={pickImage}>
+                <Plus />
+              </Pressable>
+              {images.map((image, index) => (
+                <View style={style.img_wrap} key={index}>
+                  <Image style={style.img} resizeMode="cover" source={{ uri: image }} />
+                </View>
+              ))}
+            </View>
+          </View>
+
+          {/* <ImageGridPicker registImage={registImage} data={images} /> */}
         </View>
       </ScrollView>
 
@@ -196,4 +241,37 @@ const Review = ({ navigation }) => {
   );
 };
 
+const gridWidth = (Dimensions.get('screen').width - globals.layout.SCREEN_PADDING_HORIZ * 2) / 4;
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  add_btn: {
+    backgroundColor: globals.colors.PRIMARY_LIGHT,
+    width: gridWidth,
+    height: gridWidth,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flatList: {
+    width: gridWidth * 4,
+    flexDirection: 'row',
+    marginHorizontal: 'auto',
+    flexWrap: 'wrap',
+  },
+  img_wrap: {
+    minWidth: gridWidth,
+    maxWidth: gridWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  img: {
+    width: gridWidth,
+    height: gridWidth,
+    borderWidth: 5,
+    borderColor: globals.colors.BACKGROUND,
+    borderRadius: 10,
+  },
+});
 export default Review;
