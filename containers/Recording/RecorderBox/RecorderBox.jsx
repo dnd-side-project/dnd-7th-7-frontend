@@ -9,6 +9,7 @@ import Start from '@assets/images/recording/start.svg';
 import Stop from '@assets/images/recording/stop.svg';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AlertModal from '@components/commons/modals/AlertModal';
+import useStore from '@hooks/useStore';
 
 // recoil 설치 후 전역 변수로 세팅
 export const tempStartTime = '12월 31일 토요일 오후 7시 30분';
@@ -26,6 +27,8 @@ const RecorderBox = ({ routeName }) => {
   const [isRecording, setIsRecording] = useState(true);
   const [isFinish, setIsFinish] = useState(false);
 
+  const { setStore } = useStore();
+
   useEffect(() => {
     let interval;
     if (isRecording) {
@@ -40,7 +43,7 @@ const RecorderBox = ({ routeName }) => {
 
   // 나중에 record API로 보내기
   return (
-    <Modal style={styles.container} isVisible={true} backdropOpacity={0} coverScreen={false}>
+    <View style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.counter_wrapper}>
           <View style={styles.time_count}>
@@ -84,6 +87,7 @@ const RecorderBox = ({ routeName }) => {
           title={'경로 기록을 종료할까요?'}
           // 종료 이벤트에 setRecoilState
           onPressYes={() => {
+            setStore('runningRecords', { runningTime: `${time}` });
             setIsFinish(false);
             !route.params
               ? navigation.navigate('FreeRunningResult')
@@ -92,7 +96,7 @@ const RecorderBox = ({ routeName }) => {
           onPressNo={() => setIsFinish(false)}
         />
       </View>
-    </Modal>
+    </View>
   );
 };
 

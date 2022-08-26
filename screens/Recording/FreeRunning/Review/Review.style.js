@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     backgroundColor: globals.colors.GREY_LIGTH_DARK,
     justifyContent: 'center',
     alignItems: 'center',
+    transform: [{ translateX: -500 }],
   },
   input_section: {
     paddingHorizontal: 15,
@@ -44,5 +45,5 @@ export const styles = StyleSheet.create({
     bottom: 10,
     right: 15,
   },
-  regist_image: { flex: 1 },
+  regist_image: { flex: 1, marginBottom: 30 },
 });
