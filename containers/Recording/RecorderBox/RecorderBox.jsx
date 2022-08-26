@@ -18,7 +18,12 @@ export const tempDistance = '5.8km';
 export const tempCurrentSecLoc = '성동구';
 export const tempCurrentThirdLoc = '송정동';
 
-const RecorderBox = ({ routeName }) => {
+const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
+  const [record, setRecord] = useState(false);
+
+  const [sec, setSec] = useState(0);
+  const [min, setMin] = useState(0);
+
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -67,15 +72,29 @@ const RecorderBox = ({ routeName }) => {
 
         <View style={styles.btn_group}>
           {isRecording ? (
-            <Pressable onPress={() => setIsRecording(false)}>
+            <Pressable
+              onPress={() => {
+                setIsRecording(false);
+                stopFunction();
+              }}
+            >
               <Pause />
             </Pressable>
           ) : (
             <View style={styles.paused}>
-              <Pressable onPress={() => setIsRecording(true)}>
+              <Pressable
+                onPress={() => {
+                  setIsRecording(true);
+                  startFunction();
+                }}
+              >
                 <Start />
               </Pressable>
-              <Pressable onPress={() => setIsFinish(true)}>
+              <Pressable
+                onPress={() => {
+                  setIsFinish(true);
+                }}
+              >
                 <Stop />
               </Pressable>
             </View>
@@ -88,6 +107,7 @@ const RecorderBox = ({ routeName }) => {
           // 종료 이벤트에 setRecoilState
           onPressYes={() => {
             setStore('runningTime', `${time}`);
+            setStore('arrayOfPos', JSON.stringify([...poly]));
             setIsFinish(false);
             !route.params
               ? navigation.navigate('FreeRunningResult')
