@@ -1,3 +1,3 @@
-import OnBoarding from './OnBoarding';
+import Onboarding from './Onboarding';
 
-export default OnBoarding;
+export default Onboarding;

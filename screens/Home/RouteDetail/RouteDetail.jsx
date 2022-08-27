@@ -25,7 +25,7 @@ import { useNavigation } from '@react-navigation/native';
 const RouteDetail = ({ route }) => {
   const navigation = useNavigation();
   // GET http://${baseurl}/running-route/main/${id}
-  const routeName = '백엔드 루트 이름';
+  const routeName = '한강 가로등이 지켜주는 길';
   const secondLocation = '성동구';
   const thirdLocation = '송정동';
   const distance = 5.8;
@@ -143,7 +143,7 @@ const RouteDetail = ({ route }) => {
         textWeight={600}
         icon={<SearchIcon style={{ marginRight: 10 }} stroke={globals.colors.WHITE} />}
       >
-        경로바로가기
+        경로따라가기
       </Tag>
     </View>
   );
