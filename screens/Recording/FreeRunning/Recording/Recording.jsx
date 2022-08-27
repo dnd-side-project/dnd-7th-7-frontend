@@ -41,7 +41,7 @@ const Recording = ({ navigation }) => {
     update();
   }, [isReady]);
 
-  // // 로그인 확인 처리
+  // 로그인 확인 처리
   // useEffect(() => {
   //   const confirmLogin = navigation.addListener('focus', () => {
   //     if (!isLogin) {
