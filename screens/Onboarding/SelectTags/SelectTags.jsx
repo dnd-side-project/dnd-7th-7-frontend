@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { styles } from './SelectTags.style';
@@ -15,6 +15,15 @@ const SelectTags = ({ navigation }) => {
   const [district, setDistrict] = useState('');
   const [selectedSecureTags, onPressSecureTag] = useTagCount();
   const [selectedRecommendedTags, onPressRecommendedTag] = useTagCount();
+  const [activate, setActivate] = useState(false);
+
+  useEffect(() => {
+    if (!selectedRecommendedTags[0] && !selectedSecureTags[0]) {
+      setActivate(false);
+    } else {
+      setActivate(true);
+    }
+  }, [selectedSecureTags, selectedRecommendedTags]);
 
   return (
     <View style={styles.container}>
@@ -105,8 +114,8 @@ const SelectTags = ({ navigation }) => {
       <View style={styles.button}>
         <Tag
           theme={'angled'}
-          bgColor={globals.colors.GREY_LIGHT_DEF}
-          textColor={globals.colors.GREY_DEF_DARKER}
+          bgColor={activate ? '#21A345' : globals.colors.GREY_LIGHT_DEF}
+          textColor={activate ? '#FFFFFF' : globals.colors.GREY_DEF_DARKER}
           textWeight={400}
           style={{ paddingVertical: 16 }}
           onPress={() => navigation.reset({ routes: [{ name: 'afterOnboarding' }] })}

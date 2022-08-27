@@ -100,7 +100,7 @@ const SearchMain = () => {
       </QuestionBox>
       <SubTitle>
         <Font size={24} weight={600} lineHeight={24 * 1.5}>
-          러닝맵이 엄선한{'\n'}추천 경로예요{' '}
+          러너피아가 엄선한{'\n'}추천 경로예요{' '}
         </Font>
         <SubTitleImage source={require('../../../assets/images/Vector113.png')} />
       </SubTitle>

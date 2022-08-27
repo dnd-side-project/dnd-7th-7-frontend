@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, SafeAreaView, View } from 'react-native';
+import { Image, Pressable, SafeAreaView, View } from 'react-native';
 import { styles } from './Main.style';
 import { Input } from '@screens/MyPage/CheckPassword/CheckPassword.style';
 import { Font, Tag } from '@components/commons';
@@ -55,15 +55,19 @@ const Main = ({ navigation }) => {
       <View style={styles.signUpBtns}>
         <Pressable onPress={handleSignUp}>
           <View style={[styles.circle, { backgroundColor: 'yellow', marginRight: 18 }]}>
-            <Font weight={400}>카카오</Font>
+            <Image
+              style={{ width: 48, height: 48, borderRadius: 12 }}
+              source={require('@assets/images/kakao.png')}
+            />
           </View>
         </Pressable>
 
         <View style={[styles.circle, { backgroundColor: 'black' }]}>
           <Pressable onPress={handleSignUp}>
-            <Font weight={400} color={'white'}>
-              애플
-            </Font>
+            <Image
+              style={{ width: 48, height: 48, borderRadius: 12 }}
+              source={require('@assets/images/apple.png')}
+            />
           </Pressable>
         </View>
       </View>

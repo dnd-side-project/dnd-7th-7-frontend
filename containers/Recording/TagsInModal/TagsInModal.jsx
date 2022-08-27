@@ -11,7 +11,7 @@ import Dot from '@assets/images/dot.svg';
 
 const TagsInModal = ({ routeId }) => {
   // 나중에 routeId로 API 태그 정보 불러오기
-  const routeName = '백엔드 루트 이름';
+  const routeName = '한강 가로등이 지켜주는 길';
   const secondLocation = '성동구';
   const thirdLocation = '송정동';
   const distance = 5.8;
