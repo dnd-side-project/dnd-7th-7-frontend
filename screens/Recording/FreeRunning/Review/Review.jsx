@@ -47,7 +47,7 @@ const Review = ({ navigation }) => {
   const [images, setImages] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { setStore, changeToFormData, removeAll, getStoreAsFormData } = useStore();
+  const { setStore, removeAll, getStoreAsFormData, submitExampleForm } = useStore();
 
   const registImage = (image) => {
     setImages([...images, image]);
@@ -58,7 +58,7 @@ const Review = ({ navigation }) => {
     setStore('routeName', routeName);
     setStore('secureTags', JSON.stringify(filterSecureTagsTitleToIndex(selectedSecureTags)));
     setStore('recommendedTags', JSON.stringify(filterRecTagsTitleToIndex(selectedRecommendedTags)));
-    setStore('files', JSON.stringify(images));
+    setStore('files', images);
   };
 
   const pickImage = async () => {
@@ -70,8 +70,10 @@ const Review = ({ navigation }) => {
       quality: 1,
     });
 
-    // setImages((prev) => [...prev, result]);
-    setImages((prev) => [...prev, result.uri]);
+    setImages((prev) => [
+      ...prev,
+      { uri: result.uri, name: `${Math.floor(Math.random() * 100000)}` },
+    ]);
 
     // if (!result.cancelled) {
     //   setImages(result.uri);
@@ -79,9 +81,9 @@ const Review = ({ navigation }) => {
   };
 
   const handlePost = () => {
-    const fd = getStoreAsFormData();
+    // const fd = getStoreAsFormData();
+    const fd = submitExampleForm();
     postMainRoute(fd);
-    // removeAll();
   };
 
   return (
@@ -197,13 +199,11 @@ const Review = ({ navigation }) => {
               </Pressable>
               {images.map((image, index) => (
                 <View style={style.img_wrap} key={index}>
-                  <Image style={style.img} resizeMode="cover" source={{ uri: image }} />
+                  <Image style={style.img} resizeMode="cover" source={{ uri: image.uri }} />
                 </View>
               ))}
             </View>
           </View>
-
-          {/* <ImageGridPicker registImage={registImage} data={images} /> */}
         </View>
       </ScrollView>
 

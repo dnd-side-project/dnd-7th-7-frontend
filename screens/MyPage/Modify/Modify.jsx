@@ -60,7 +60,6 @@ const Modify = () => {
         <View style={{ ...styles.select, marginRight: 25 }}>
           <RNPickerSelect
             placeholder={{ label: '출생년도' }}
-            onValueChange={(value) => console.log(value)}
             items={yearList}
             Icon={() => <DropdownBtn />}
           />
@@ -68,7 +67,6 @@ const Modify = () => {
         <View style={styles.select}>
           <RNPickerSelect
             placeholder={{ label: '성별' }}
-            onValueChange={(value) => console.log(value)}
             items={[
               { label: '남자', value: 'man' },
               { label: '여자', value: 'woman' },
@@ -92,7 +90,6 @@ const Modify = () => {
           <View style={{ ...styles.select, marginRight: 25 }}>
             <RNPickerSelect
               placeholder={{ label: '출생년도' }}
-              onValueChange={(value) => console.log(value)}
               items={yearList}
               Icon={() => <DropdownBtn />}
             />
@@ -100,7 +97,6 @@ const Modify = () => {
           <View style={styles.select}>
             <RNPickerSelect
               placeholder={{ label: '성별' }}
-              onValueChange={(value) => console.log(value)}
               items={[
                 { label: '남자', value: 'man' },
                 { label: '여자', value: 'woman' },
