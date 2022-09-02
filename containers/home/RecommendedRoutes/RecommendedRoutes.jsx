@@ -11,8 +11,11 @@ import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
 import { getRecommendedRoutes, getMainRouteById } from '@hooks/useAxios';
+import { useRecoilValue } from 'recoil';
+import routeAtom from '@recoil/route';
 
 const RecommendedRoutes = () => {
+  const routeData = useRecoilValue(routeAtom);
   const navigation = useNavigation();
   const [routes, setRoutes] = useState();
 
@@ -23,6 +26,7 @@ const RecommendedRoutes = () => {
 
   useEffect(() => {
     fetchRoutes();
+    console.log('RouteData: ', routeData);
   }, []);
 
   return (

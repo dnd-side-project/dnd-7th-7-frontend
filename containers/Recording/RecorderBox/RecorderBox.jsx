@@ -9,7 +9,8 @@ import Start from '@assets/images/recording/start.svg';
 import Stop from '@assets/images/recording/stop.svg';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AlertModal from '@components/commons/modals/AlertModal';
-import useStore from '@hooks/useStore';
+import { useRecoilState } from 'recoil';
+import { addRecord } from '../../../recoil/route';
 
 // recoil 설치 후 전역 변수로 세팅
 export const tempStartTime = '12월 31일 토요일 오후 7시 30분';
@@ -19,20 +20,15 @@ export const tempCurrentSecLoc = '성동구';
 export const tempCurrentThirdLoc = '송정동';
 
 const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
-  const [record, setRecord] = useState(false);
-
-  const [sec, setSec] = useState(0);
-  const [min, setMin] = useState(0);
-
   const navigation = useNavigation();
   const route = useRoute();
 
-  const [paused, setPaused] = useState(false);
   const [time, setTime] = useState(0);
   const [isRecording, setIsRecording] = useState(true);
   const [isFinish, setIsFinish] = useState(false);
 
-  const { setStore } = useStore();
+  const [runningTime, setRunningTime] = useRecoilState(addRecord('runningTime'));
+  const [arrayOfPos, setArrayOfPos] = useRecoilState(addRecord('arrayOfPos'));
 
   useEffect(() => {
     let interval;
@@ -105,8 +101,8 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
           clickOutside={setIsFinish}
           title={'경로 기록을 종료할까요?'}
           onPressYes={() => {
-            setStore('runningTime', `${time}`);
-            setStore('arrayOfPos', JSON.stringify([...poly]));
+            setRunningTime(`${time}`);
+            setArrayOfPos([...poly]);
             setIsFinish(false);
             !route.params
               ? navigation.navigate('FreeRunningResult')

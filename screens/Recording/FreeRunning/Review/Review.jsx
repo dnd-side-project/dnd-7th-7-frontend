@@ -6,8 +6,6 @@ import {
   Text,
   TextInput,
   View,
-  Button,
-  TouchableOpacity,
   Pressable,
   Dimensions,
 } from 'react-native';
@@ -18,12 +16,7 @@ import EditIcon from '@assets/images/edit.svg';
 import ResultSummary from '@containers/Recording/ResultSummary/ResultSummary';
 import useTagCount from '@hooks/useTagCount';
 import Plus from '@assets/images/plus.svg';
-import {
-  SECURE_TAGS_DATA,
-  RECOMMENDED_TAGS_DATA,
-  filterRecTagsTitleToIndex,
-  filterSecureTagsTitleToIndex,
-} from '@hooks/utils.js';
+import { SECURE_TAGS_DATA, RECOMMENDED_TAGS_DATA } from '@hooks/utils.js';
 import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
 import ImageGridPicker from '@containers/Recording/ImageGridPicker';
 import AlertModal from '@components/commons/modals/AlertModal';
@@ -34,31 +27,29 @@ import {
   tempCurrentThirdLoc,
   tempCurrentSecLoc,
 } from '@containers/Recording/RecorderBox/RecorderBox';
-import useStore from '@hooks/useStore';
 import * as ImagePicker from 'expo-image-picker';
-import { postMainRoute } from '@hooks/useAxios';
+import { addRecord } from '@recoil/route';
+import { useRecoilState } from 'recoil';
 
 const Review = ({ navigation }) => {
-  const [selectedSecureTags, onPressSecureTag] = useTagCount();
-  const [selectedRecommendedTags, onPressRecommendedTag] = useTagCount();
-  const [routeName, setRouteName] = useState('');
-
-  const [review, setReview] = useState('');
   const [images, setImages] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { setStore, removeAll, getStoreAsFormData, submitExampleForm } = useStore();
+  const [selectedSecureTags, onPressSecureTag] = useTagCount();
+  const [selectedRecommendedTags, onPressRecommendedTag] = useTagCount();
 
-  const registImage = (image) => {
-    setImages([...images, image]);
-  };
+  const [review, setReview] = useRecoilState(addRecord('review'));
+  const [routeName, setRouteName] = useRecoilState(addRecord('routeName'));
+  const [files, setFiles] = useRecoilState(addRecord('files'));
+  const [routeImage, setRouteImage] = useRecoilState(addRecord('routeImage'));
+  const [recommendedTags, setRecommendedTags] = useRecoilState(addRecord('recommendedTags'));
+  const [secureTags, setSecureTags] = useRecoilState(addRecord('secureTags'));
 
   const handleSubmit = () => {
-    setStore('review', review);
-    setStore('routeName', routeName);
-    setStore('secureTags', JSON.stringify(filterSecureTagsTitleToIndex(selectedSecureTags)));
-    setStore('recommendedTags', JSON.stringify(filterRecTagsTitleToIndex(selectedRecommendedTags)));
-    setStore('files', images);
+    setSecureTags(selectedSecureTags);
+    setRecommendedTags(selectedRecommendedTags);
+    setFiles(images);
+    setRouteImage(images[0]);
   };
 
   const pickImage = async () => {
@@ -70,20 +61,12 @@ const Review = ({ navigation }) => {
       quality: 1,
     });
 
-    setImages((prev) => [
-      ...prev,
-      { uri: result.uri, name: `${Math.floor(Math.random() * 100000)}` },
-    ]);
-
-    // if (!result.cancelled) {
-    //   setImages(result.uri);
-    // }
-  };
-
-  const handlePost = () => {
-    // const fd = getStoreAsFormData();
-    const fd = submitExampleForm();
-    postMainRoute(fd);
+    if (!result.cancelled) {
+      setImages((prev) => [
+        ...prev,
+        { uri: result.uri, type: 'image/jpeg', name: `route-image-${Date.now()}.jpg` },
+      ]);
+    }
   };
 
   return (
@@ -232,7 +215,6 @@ const Review = ({ navigation }) => {
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
         onPressYes={() => {
-          handlePost();
           navigation.reset({ routes: [{ name: 'Home' }] });
         }}
         onPressNo={() => setModalOpen(false)}

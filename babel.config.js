@@ -27,6 +27,7 @@ module.exports = function (api) {
             '@hooks': './hooks',
             '@styles': './styles',
             '@assets': './assets',
+            '@recoil': './recoil',
           },
         },
       ],
