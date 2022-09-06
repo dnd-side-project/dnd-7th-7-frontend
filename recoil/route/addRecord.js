@@ -13,28 +13,37 @@ const routeAddRecord = selectorFamily({
     ({ set }, newValue) => {
       console.log('field: ', field);
       switch (field) {
-        case 'arrayOfPos':
-          set(routeAtom, (prevState) => ({ ...prevState, [field]: JSON.stringify(newValue) }));
+        // case 'arrayOfPos':
+        //   set(routeAtom, (prevState) => ({ ...prevState, [field]: JSON.stringify(newValue) }));
+        //   break;
         case 'runningTime':
           typeof newValue === 'string' &&
             set(routeAtom, (prevState) => ({
               ...prevState,
-              [field]: `${newValue.substr(0, 2)}:${newValue.substr(3, 4)}`,
+              [field]: `${
+                newValue.substr(0, 1).length < 2
+                  ? '0' + newValue.substr(0, 1)
+                  : newValue.substr(0, 1)
+              }:${newValue.substr(2, 3)}`,
             }));
+          break;
         case 'recommendedTags':
           Array.isArray(newValue) &&
             set(routeAtom, (prevState) => ({
               ...prevState,
               [field]: filterRecTagsTitleToIndex(newValue),
             }));
+          break;
         case 'secureTags':
           Array.isArray(newValue) &&
             set(routeAtom, (prevState) => ({
               ...prevState,
               [field]: filterSecureTagsTitleToIndex(newValue),
             }));
+          break;
         default:
           set(routeAtom, (prevState) => ({ ...prevState, [field]: newValue }));
+          break;
       }
     },
 });

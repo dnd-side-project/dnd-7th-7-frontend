@@ -9,7 +9,6 @@ const Axios = axios.create({
     useQueryString: 'true',
   },
   baseURL: baseUrl,
-  timeout: 2000,
 });
 
 /**

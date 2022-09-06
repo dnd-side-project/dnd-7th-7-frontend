@@ -52,15 +52,15 @@ export const indexToSecureTitle = (index) => {
 export const secureTitleToIndex = (title) => {
   switch (title) {
     case '근처에 어린이 보호구역이 있어요':
-      return 1;
+      return '1';
     case '안심등이 있어요':
-      return 2;
+      return '2';
     case '가로등이 많아요':
-      return 3;
+      return '3';
     case '밤에 사람이 많아요':
-      return 4;
+      return '4';
     case '낮에 사람이 많아요':
-      return 5;
+      return '5';
     default:
       break;
   }
@@ -86,15 +86,15 @@ export const indexToRecommendedTitle = (index) => {
 export const recommendedTitleToIndex = (title) => {
   switch (title) {
     case '강을 보며 달려요':
-      return 1;
+      return '1';
     case '나무가 많아요':
-      return 2;
+      return '2';
     case '가파른 구간이 없어요':
-      return 3;
+      return '3';
     case '보행자 전용 트랙이 있어요':
-      return 4;
+      return '4';
     case '길이 깨끗해요':
-      return 5;
+      return '5';
     default:
       break;
   }

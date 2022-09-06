@@ -19,14 +19,14 @@ const RecommendedRoutes = () => {
   const navigation = useNavigation();
   const [routes, setRoutes] = useState();
 
-  const fetchRoutes = async () => {
-    const data = await getRecommendedRoutes();
-    setRoutes(data); // 등록된 routes 없으면 setRoutes해도 undefined
-  };
+  // const fetchRoutes = async () => {
+  //   const data = await getRecommendedRoutes();
+  //   setRoutes(data); // 등록된 routes 없으면 setRoutes해도 undefined
+  // };
 
   useEffect(() => {
-    fetchRoutes();
-    console.log('RouteData: ', routeData);
+    // fetchRoutes();
+    console.log(routeData);
   }, []);
 
   return (

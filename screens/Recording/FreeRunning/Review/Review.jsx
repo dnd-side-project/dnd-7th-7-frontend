@@ -28,8 +28,9 @@ import {
   tempCurrentSecLoc,
 } from '@containers/Recording/RecorderBox/RecorderBox';
 import * as ImagePicker from 'expo-image-picker';
-import { addRecord } from '@recoil/route';
-import { useRecoilState } from 'recoil';
+import routeAtom, { addRecord } from '@recoil/route';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { postReview } from '../../../../apis';
 
 const Review = ({ navigation }) => {
   const [images, setImages] = useState([]);
@@ -40,10 +41,10 @@ const Review = ({ navigation }) => {
 
   const [review, setReview] = useRecoilState(addRecord('review'));
   const [routeName, setRouteName] = useRecoilState(addRecord('routeName'));
-  const [files, setFiles] = useRecoilState(addRecord('files'));
-  const [routeImage, setRouteImage] = useRecoilState(addRecord('routeImage'));
-  const [recommendedTags, setRecommendedTags] = useRecoilState(addRecord('recommendedTags'));
-  const [secureTags, setSecureTags] = useRecoilState(addRecord('secureTags'));
+  const setFiles = useSetRecoilState(addRecord('files'));
+  const setRouteImage = useSetRecoilState(addRecord('routeImage'));
+  const setRecommendedTags = useSetRecoilState(addRecord('recommendedTags'));
+  const setSecureTags = useSetRecoilState(addRecord('secureTags'));
 
   const handleSubmit = () => {
     setSecureTags(selectedSecureTags);
@@ -215,6 +216,7 @@ const Review = ({ navigation }) => {
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
         onPressYes={() => {
+          postReview(useRecoilValue(routeAtom));
           navigation.reset({ routes: [{ name: 'Home' }] });
         }}
         onPressNo={() => setModalOpen(false)}

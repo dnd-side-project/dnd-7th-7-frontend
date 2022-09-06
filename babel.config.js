@@ -28,6 +28,7 @@ module.exports = function (api) {
             '@styles': './styles',
             '@assets': './assets',
             '@recoil': './recoil',
+            '@apis': './apis',
           },
         },
       ],
