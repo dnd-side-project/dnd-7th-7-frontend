@@ -1,19 +1,24 @@
 import axios from 'axios';
 import getEnvVars from '@/environment';
+import { useRecoilValue } from 'recoil';
+import routeAtom from '@recoil/route';
 
 const { baseUrl } = getEnvVars();
 
-/**
- * 러닝 리뷰 등록 API
- * @param {formData} formData
- */
-const postReview = async (formData) => {
+const postReview = async (records) => {
   try {
-    const result = await axios.post('running-route', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+    const formData = new FormData();
+    console.log(records.arrayOfPos);
+    formData.append('routeName', records.routeName);
+    // formData.append('routeName', records.arrayOfPos);
+    const result = await axios.post(`${baseUrl}/running-route`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     });
+    console.log('post review response: ', result);
   } catch (error) {
-    return Promise.reject(error);
+    console.log(error.response);
   }
 };
 

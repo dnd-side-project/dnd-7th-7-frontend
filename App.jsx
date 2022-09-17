@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OnBoarding from '@screens/OnBoarding';
 import BottomTabs from '@screens/BottomTabs';
 import Header from '@components/Header';
-import { useFonts } from 'expo-font';
 import { getFonts } from './hooks/utils';
 import MypageMain from './screens/MyPage/MypageMain';
 import { RecoilRoot } from 'recoil';

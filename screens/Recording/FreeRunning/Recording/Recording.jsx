@@ -96,7 +96,6 @@ const Recording = ({ navigation }) => {
   };
 
   const stopForegroundUpdate = () => {
-    console.log(location);
     foregroundSubscription?.remove();
   };
 

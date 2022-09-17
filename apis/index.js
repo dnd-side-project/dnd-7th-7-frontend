@@ -1,3 +1,4 @@
 import postReview from './postReview';
+import getRoute from './getRoute';
 
-export { postReview };
+export { postReview, getRoute };

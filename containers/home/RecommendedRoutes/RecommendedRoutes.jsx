@@ -11,23 +11,21 @@ import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
 import { getRecommendedRoutes, getMainRouteById } from '@hooks/useAxios';
-import { useRecoilValue } from 'recoil';
-import routeAtom from '@recoil/route';
+import { getRoute } from '@apis';
 
 const RecommendedRoutes = () => {
-  const routeData = useRecoilValue(routeAtom);
   const navigation = useNavigation();
   const [routes, setRoutes] = useState();
 
   // const fetchRoutes = async () => {
-  //   const data = await getRecommendedRoutes();
-  //   setRoutes(data); // 등록된 routes 없으면 setRoutes해도 undefined
+  //   const data = await getRoute(1, false);
+  //   setRoutes(data);
   // };
 
-  useEffect(() => {
-    // fetchRoutes();
-    console.log(routeData);
-  }, []);
+  // useEffect(() => {
+  //   fetchRoutes();
+  //   console.log(routes);
+  // }, []);
 
   return (
     <View style={styles.container}>

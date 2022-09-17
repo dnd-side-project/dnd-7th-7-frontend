@@ -11,11 +11,17 @@ const routeAddRecord = selectorFamily({
   set:
     (field) =>
     ({ set }, newValue) => {
-      console.log('field: ', field);
       switch (field) {
-        // case 'arrayOfPos':
-        //   set(routeAtom, (prevState) => ({ ...prevState, [field]: JSON.stringify(newValue) }));
-        //   break;
+        case 'arrayOfPos':
+          const temp = [];
+          Object.entries(newValue).forEach(([key, value]) =>
+            temp.push({
+              latitude: value.latitude.toString(),
+              longitude: value.longitude.toString(),
+            }),
+          );
+          set(routeAtom, (prevState) => ({ ...prevState, [field]: temp }));
+          break;
         case 'runningTime':
           typeof newValue === 'string' &&
             set(routeAtom, (prevState) => ({

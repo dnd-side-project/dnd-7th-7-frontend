@@ -30,7 +30,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import routeAtom, { addRecord } from '@recoil/route';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { postReview } from '../../../../apis';
+import { postReview } from '@apis';
 
 const Review = ({ navigation }) => {
   const [images, setImages] = useState([]);
@@ -45,6 +45,7 @@ const Review = ({ navigation }) => {
   const setRouteImage = useSetRecoilState(addRecord('routeImage'));
   const setRecommendedTags = useSetRecoilState(addRecord('recommendedTags'));
   const setSecureTags = useSetRecoilState(addRecord('secureTags'));
+  const record = useRecoilValue(routeAtom);
 
   const handleSubmit = () => {
     setSecureTags(selectedSecureTags);
@@ -216,7 +217,7 @@ const Review = ({ navigation }) => {
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
         onPressYes={() => {
-          postReview(useRecoilValue(routeAtom));
+          postReview(record);
           navigation.reset({ routes: [{ name: 'Home' }] });
         }}
         onPressNo={() => setModalOpen(false)}

@@ -9,8 +9,8 @@ import Start from '@assets/images/recording/start.svg';
 import Stop from '@assets/images/recording/stop.svg';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AlertModal from '@components/commons/modals/AlertModal';
-import { useRecoilState } from 'recoil';
-import { addRecord } from '../../../recoil/route';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { addRecord } from '@recoil/route';
 
 // recoil 설치 후 전역 변수로 세팅
 export const tempStartTime = '12월 31일 토요일 오후 7시 30분';
@@ -28,7 +28,7 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
   const [isFinish, setIsFinish] = useState(false);
 
   const [runningTime, setRunningTime] = useRecoilState(addRecord('runningTime'));
-  const [arrayOfPos, setArrayOfPos] = useRecoilState(addRecord('arrayOfPos'));
+  const setArrayOfPos = useSetRecoilState(addRecord('arrayOfPos'));
 
   useEffect(() => {
     let interval;

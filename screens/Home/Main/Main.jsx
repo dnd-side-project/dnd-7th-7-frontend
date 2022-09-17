@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import TrendingTags from '@containers/home/TrendingTags';
 import RecommendedRoutes from '@containers/home/RecommendedRoutes';
 import RecommendedRoutesNearBy from '@containers/home/RecommendedRoutesNearBy';
