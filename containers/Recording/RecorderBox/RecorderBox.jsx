@@ -9,7 +9,9 @@ import Start from '@assets/images/recording/start.svg';
 import Stop from '@assets/images/recording/stop.svg';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import AlertModal from '@components/commons/modals/AlertModal';
-import useStore from '@hooks/useStore';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { addRecord } from '@recoil/route';
+import useCount from '@hooks/useCount';
 
 // recoil 설치 후 전역 변수로 세팅
 export const tempStartTime = '12월 31일 토요일 오후 7시 30분';
@@ -19,32 +21,15 @@ export const tempCurrentSecLoc = '성동구';
 export const tempCurrentThirdLoc = '송정동';
 
 const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
-  const [record, setRecord] = useState(false);
-
-  const [sec, setSec] = useState(0);
-  const [min, setMin] = useState(0);
-
   const navigation = useNavigation();
   const route = useRoute();
 
-  const [paused, setPaused] = useState(false);
-  const [time, setTime] = useState(0);
   const [isRecording, setIsRecording] = useState(true);
   const [isFinish, setIsFinish] = useState(false);
+  const { sec, min, hour } = useCount(isRecording);
 
-  const { setStore } = useStore();
-
-  useEffect(() => {
-    let interval;
-    if (isRecording) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10);
-      }, 10);
-    } else if (!isRecording) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isRecording]);
+  const setRunningTime = useSetRecoilState(addRecord('runningTime'));
+  const setArrayOfPos = useSetRecoilState(addRecord('arrayOfPos'));
 
   // 나중에 record API로 보내기
   return (
@@ -53,8 +38,7 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
         <View style={styles.counter_wrapper}>
           <View style={styles.time_count}>
             <Font size={34} weight={600}>
-              {('0' + Math.floor((time / 60000) % 60)).slice(-2)}:
-              {('0' + Math.floor((time / 1000) % 60)).slice(-2)}
+              {hour + ':' + min + ':' + sec}
             </Font>
             <Font weight={400} color={globals.colors.GREY_LIGTH_DARK}>
               시간
@@ -104,10 +88,9 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
           isVisible={isFinish}
           clickOutside={setIsFinish}
           title={'경로 기록을 종료할까요?'}
-          // 종료 이벤트에 setRecoilState
           onPressYes={() => {
-            setStore('runningTime', `${time}`);
-            setStore('arrayOfPos', JSON.stringify([...poly]));
+            setRunningTime(`${hour}:${min}:${sec}`);
+            setArrayOfPos([...poly]);
             setIsFinish(false);
             !route.params
               ? navigation.navigate('FreeRunningResult')

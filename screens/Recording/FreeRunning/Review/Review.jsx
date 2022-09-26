@@ -6,8 +6,6 @@ import {
   Text,
   TextInput,
   View,
-  Button,
-  TouchableOpacity,
   Pressable,
   Dimensions,
 } from 'react-native';
@@ -18,12 +16,7 @@ import EditIcon from '@assets/images/edit.svg';
 import ResultSummary from '@containers/Recording/ResultSummary/ResultSummary';
 import useTagCount from '@hooks/useTagCount';
 import Plus from '@assets/images/plus.svg';
-import {
-  SECURE_TAGS_DATA,
-  RECOMMENDED_TAGS_DATA,
-  filterRecTagsTitleToIndex,
-  filterSecureTagsTitleToIndex,
-} from '@hooks/utils.js';
+import { SECURE_TAGS_DATA, RECOMMENDED_TAGS_DATA } from '@hooks/utils.js';
 import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
 import ImageGridPicker from '@containers/Recording/ImageGridPicker';
 import AlertModal from '@components/commons/modals/AlertModal';
@@ -34,30 +27,33 @@ import {
   tempCurrentThirdLoc,
   tempCurrentSecLoc,
 } from '@containers/Recording/RecorderBox/RecorderBox';
-import useStore from '@hooks/useStore';
 import * as ImagePicker from 'expo-image-picker';
+import routeAtom, { addRecord } from '@recoil/route';
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { postReview } from '@apis';
 
 const Review = ({ navigation }) => {
-  const [selectedSecureTags, onPressSecureTag] = useTagCount();
-  const [selectedRecommendedTags, onPressRecommendedTag] = useTagCount();
-  const [routeName, setRouteName] = useState('');
-
-  const [review, setReview] = useState('');
   const [images, setImages] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { setStore, submitForm, removeAll } = useStore();
+  const [selectedSecureTags, onPressSecureTag] = useTagCount();
+  const [selectedRecommendedTags, onPressRecommendedTag] = useTagCount();
 
-  const registImage = (image) => {
-    setImages([...images, image]);
-  };
+  const [review, setReview] = useRecoilState(addRecord('review'));
+  const [routeName, setRouteName] = useRecoilState(addRecord('routeName'));
+  const setFiles = useSetRecoilState(addRecord('files'));
+  const setRouteImage = useSetRecoilState(addRecord('routeImage'));
+  const setRecommendedTags = useSetRecoilState(addRecord('recommendedTags'));
+  const setSecureTags = useSetRecoilState(addRecord('secureTags'));
+  const setDistance = useSetRecoilState(addRecord('distance'));
+  const reset = useResetRecoilState(routeAtom);
+  const records = useRecoilValue(routeAtom);
 
   const handleSubmit = () => {
-    setStore('review', review);
-    // setStore('routeName', routeName);
-    setStore('secureTags', JSON.stringify(filterSecureTagsTitleToIndex(selectedSecureTags)));
-    setStore('recommendedTags', JSON.stringify(filterRecTagsTitleToIndex(selectedRecommendedTags)));
-    setStore('files', JSON.stringify(images));
+    setSecureTags(selectedSecureTags);
+    setRecommendedTags(selectedRecommendedTags);
+    setFiles(images);
+    setRouteImage(images[0]);
   };
 
   const pickImage = async () => {
@@ -66,15 +62,14 @@ const Review = ({ navigation }) => {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.1,
+      allowsMultipleSelection: true,
+      base64: true,
     });
 
-    // setImages((prev) => [...prev, result]);
-    setImages((prev) => [...prev, result.uri]);
-
-    // if (!result.cancelled) {
-    //   setImages(result.uri);
-    // }
+    if (!result.cancelled) {
+      setImages((prev) => [...prev, `data:image/jpeg;base64,${result.base64}`]);
+    }
   };
 
   return (
@@ -90,7 +85,8 @@ const Review = ({ navigation }) => {
         <View style={styles.input_section}>
           <TextInput
             style={styles.input}
-            onChange={setRouteName}
+            onChangeText={setRouteName}
+            value={routeName}
             placeholder="경로 이름을 입력해주세요"
           />
           <EditIcon />
@@ -166,6 +162,7 @@ const Review = ({ navigation }) => {
               '최소 30자 이상 작성해주세요. (비방, 욕설을 포함한 관련없는 내용은 통보 없이 삭제될 수 있습니다.)'
             }
             placeholderColor={globals.colors.GREY_DEF}
+            value={review}
             style={{
               height: 215,
               borderWidth: 1,
@@ -193,8 +190,6 @@ const Review = ({ navigation }) => {
               ))}
             </View>
           </View>
-
-          {/* <ImageGridPicker registImage={registImage} data={images} /> */}
         </View>
       </ScrollView>
 
@@ -223,7 +218,8 @@ const Review = ({ navigation }) => {
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
         onPressYes={() => {
-          submitForm();
+          postReview(records);
+          reset();
           navigation.reset({ routes: [{ name: 'Home' }] });
         }}
         onPressNo={() => setModalOpen(false)}

@@ -41,7 +41,7 @@ const Recording = ({ navigation }) => {
     update();
   }, [isReady]);
 
-  // 로그인 확인 처리
+  // // 로그인 확인 처리
   // useEffect(() => {
   //   const confirmLogin = navigation.addListener('focus', () => {
   //     if (!isLogin) {
@@ -81,7 +81,6 @@ const Recording = ({ navigation }) => {
       },
       (location) => {
         setLocation(location);
-
         if (!isReady) {
           setPoly((prev) => [
             ...prev,
@@ -96,7 +95,6 @@ const Recording = ({ navigation }) => {
   };
 
   const stopForegroundUpdate = () => {
-    console.log(location);
     foregroundSubscription?.remove();
   };
 

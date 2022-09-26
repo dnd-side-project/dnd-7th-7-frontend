@@ -10,20 +10,21 @@ import { ROUTES_DATA, indexToRecommendedTitle } from '@hooks/utils';
 import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
-import { getRecommendedRoutes, getMainRouteById } from '@hooks/useAxios';
+import { getRoute } from '@apis';
 
 const RecommendedRoutes = () => {
   const navigation = useNavigation();
   const [routes, setRoutes] = useState();
 
-  const fetchRoutes = async () => {
-    const data = await getRecommendedRoutes();
-    setRoutes(data); // 등록된 routes 없으면 setRoutes해도 undefined
-  };
+  // const fetchRoutes = async () => {
+  //   const data = await getRoute(1, false);
+  //   setRoutes(data);
+  // };
 
-  useEffect(() => {
-    fetchRoutes();
-  }, []);
+  // useEffect(() => {
+  //   fetchRoutes();
+  //   console.log(routes);
+  // }, []);
 
   return (
     <View style={styles.container}>

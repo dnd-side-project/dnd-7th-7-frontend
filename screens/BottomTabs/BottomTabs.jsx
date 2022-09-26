@@ -64,7 +64,6 @@ const BottomTabs = () => {
               // search box input submit 시 실행되는 함수
               left={'back'}
               right={'close'} // left, center, right props Header.jsx 파일에 정리해놨습니다.
-              pressLeft={() => console.log('press left')}
               pressRight={() => navigation.navigate('afterOnboarding')}
             />
           ),

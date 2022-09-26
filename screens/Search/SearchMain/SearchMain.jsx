@@ -267,7 +267,7 @@ const SearchMain = () => {
           }}
         >
           <Font size={24} weight={600} color="#21A345" lineHeight={24 * 1.5}>
-            러닝맵 멤버 보러가기
+            러너피아 멤버 보러가기
           </Font>
           <TouchableOpacity>
             <Entypo name="chevron-thin-right" size={24} color="#21A345" />
