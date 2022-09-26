@@ -22,17 +22,6 @@ const routeAddRecord = selectorFamily({
           );
           set(routeAtom, (prevState) => ({ ...prevState, [field]: temp }));
           break;
-        case 'runningTime':
-          typeof newValue === 'string' &&
-            set(routeAtom, (prevState) => ({
-              ...prevState,
-              [field]: `${
-                newValue.substr(0, 1).length < 2
-                  ? '0' + newValue.substr(0, 1)
-                  : newValue.substr(0, 1)
-              }:${newValue.substr(2, 3)}`,
-            }));
-          break;
         case 'recommendedTags':
           Array.isArray(newValue) &&
             set(routeAtom, (prevState) => ({

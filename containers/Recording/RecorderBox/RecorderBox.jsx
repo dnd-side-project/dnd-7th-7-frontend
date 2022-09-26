@@ -11,6 +11,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import AlertModal from '@components/commons/modals/AlertModal';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { addRecord } from '@recoil/route';
+import useCount from '@hooks/useCount';
 
 // recoil 설치 후 전역 변수로 세팅
 export const tempStartTime = '12월 31일 토요일 오후 7시 30분';
@@ -23,24 +24,12 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const [time, setTime] = useState(0);
   const [isRecording, setIsRecording] = useState(true);
   const [isFinish, setIsFinish] = useState(false);
+  const { sec, min, hour } = useCount(isRecording);
 
-  const [runningTime, setRunningTime] = useRecoilState(addRecord('runningTime'));
+  const setRunningTime = useSetRecoilState(addRecord('runningTime'));
   const setArrayOfPos = useSetRecoilState(addRecord('arrayOfPos'));
-
-  useEffect(() => {
-    let interval;
-    if (isRecording) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10);
-      }, 10);
-    } else if (!isRecording) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isRecording]);
 
   // 나중에 record API로 보내기
   return (
@@ -49,8 +38,7 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
         <View style={styles.counter_wrapper}>
           <View style={styles.time_count}>
             <Font size={34} weight={600}>
-              {('0' + Math.floor((time / 60000) % 60)).slice(-2)}:
-              {('0' + Math.floor((time / 1000) % 60)).slice(-2)}
+              {hour + ':' + min + ':' + sec}
             </Font>
             <Font weight={400} color={globals.colors.GREY_LIGTH_DARK}>
               시간
@@ -101,7 +89,7 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
           clickOutside={setIsFinish}
           title={'경로 기록을 종료할까요?'}
           onPressYes={() => {
-            setRunningTime(`${time}`);
+            setRunningTime(`${hour}:${min}:${sec}`);
             setArrayOfPos([...poly]);
             setIsFinish(false);
             !route.params

@@ -29,7 +29,7 @@ import {
 } from '@containers/Recording/RecorderBox/RecorderBox';
 import * as ImagePicker from 'expo-image-picker';
 import routeAtom, { addRecord } from '@recoil/route';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { postReview } from '@apis';
 
 const Review = ({ navigation }) => {
@@ -45,7 +45,9 @@ const Review = ({ navigation }) => {
   const setRouteImage = useSetRecoilState(addRecord('routeImage'));
   const setRecommendedTags = useSetRecoilState(addRecord('recommendedTags'));
   const setSecureTags = useSetRecoilState(addRecord('secureTags'));
-  const record = useRecoilValue(routeAtom);
+  const setDistance = useSetRecoilState(addRecord('distance'));
+  const reset = useResetRecoilState(routeAtom);
+  const records = useRecoilValue(routeAtom);
 
   const handleSubmit = () => {
     setSecureTags(selectedSecureTags);
@@ -60,14 +62,13 @@ const Review = ({ navigation }) => {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.1,
+      allowsMultipleSelection: true,
+      base64: true,
     });
 
     if (!result.cancelled) {
-      setImages((prev) => [
-        ...prev,
-        { uri: result.uri, type: 'image/jpeg', name: `route-image-${Date.now()}.jpg` },
-      ]);
+      setImages((prev) => [...prev, `data:image/jpeg;base64,${result.base64}`]);
     }
   };
 
@@ -184,7 +185,7 @@ const Review = ({ navigation }) => {
               </Pressable>
               {images.map((image, index) => (
                 <View style={style.img_wrap} key={index}>
-                  <Image style={style.img} resizeMode="cover" source={{ uri: image.uri }} />
+                  <Image style={style.img} resizeMode="cover" source={{ uri: image }} />
                 </View>
               ))}
             </View>
@@ -217,7 +218,8 @@ const Review = ({ navigation }) => {
         clickOutside={setModalOpen}
         title={'리뷰를 등록하고 홈으로 이동할까요?'}
         onPressYes={() => {
-          postReview(record);
+          postReview(records);
+          reset();
           navigation.reset({ routes: [{ name: 'Home' }] });
         }}
         onPressNo={() => setModalOpen(false)}

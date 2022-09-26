@@ -81,7 +81,6 @@ const Recording = ({ navigation }) => {
       },
       (location) => {
         setLocation(location);
-
         if (!isReady) {
           setPoly((prev) => [
             ...prev,

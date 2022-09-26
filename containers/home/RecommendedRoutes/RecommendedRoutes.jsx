@@ -10,7 +10,6 @@ import { ROUTES_DATA, indexToRecommendedTitle } from '@hooks/utils';
 import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
-import { getRecommendedRoutes, getMainRouteById } from '@hooks/useAxios';
 import { getRoute } from '@apis';
 
 const RecommendedRoutes = () => {
