@@ -30,6 +30,43 @@ export const getYearList = (reverse = false) => {
   return list;
 };
 
+export const getDistance = (poly) => {
+  let distance = 0;
+  let prevCoord = {};
+
+  if (poly.length < 2) return 0;
+  else {
+    poly.forEach((coord, index) => {
+      if (index === 0) {
+        prevCoord = coord;
+      } else {
+        const radLat1 = (Math.PI * prevCoord.latitude) / 180;
+        const radLat2 = (Math.PI * prevCoord.latitude) / 180;
+        const theta = prevCoord.longitude - coord.longitude;
+        const radTheta = (Math.PI * theta) / 180;
+
+        let dist =
+          Math.sin(radLat1) * Math.sin(radLat2) +
+          Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radTheta);
+
+        if (dist > 1) dist = 1;
+
+        dist = Math.acos(dist);
+        dist = (dist * 180) / Math.PI;
+        dist = dist * 60 * 1.1515 * 1.609344 * 1000;
+
+        if (dist < 100) dist = Math.round(dist / 10) * 10;
+        else dist = Math.round(dist / 100) * 100;
+
+        distance += dist;
+        prevCoord = coord;
+      }
+    });
+
+    return distance / 1000;
+  }
+};
+
 // 태그 데이터들이 string 배열이 아니라 number 배열로 되어있는데
 // 그 number 번호에 따라 맞는 태그 타이틀로 바꿔주는 함수입니다.
 export const indexToSecureTitle = (index) => {
@@ -152,7 +189,6 @@ export const districtList = [
   { label: '용산구', value: '용산구' },
 ];
 
-// 나중에 index => tag title 바꾸는 로직 추가
 export const SECURE_TAGS_DATA = [
   { index: 1, title: '근처에 어린이 보호구역이 있어요' },
   { index: 2, title: '안심등이 있어요' },

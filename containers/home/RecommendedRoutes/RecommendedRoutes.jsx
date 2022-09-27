@@ -16,15 +16,14 @@ const RecommendedRoutes = () => {
   const navigation = useNavigation();
   const [routes, setRoutes] = useState();
 
-  // const fetchRoutes = async () => {
-  //   const data = await getRoute(1, false);
-  //   setRoutes(data);
-  // };
+  const fetchRoutes = async () => {
+    const response = await getRoute(12, true);
+    setRoutes('route: ', response);
+  };
 
-  // useEffect(() => {
-  //   fetchRoutes();
-  //   console.log(routes);
-  // }, []);
+  useEffect(() => {
+    fetchRoutes();
+  }, []);
 
   return (
     <View style={styles.container}>

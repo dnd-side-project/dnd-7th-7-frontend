@@ -12,7 +12,7 @@ const routeAtom = atom({
     runningTime: '',
     review: '',
     runningDate: year + '-' + month + '-' + day,
-    distance: '5.5', // km 단위
+    distance: '0', // km 단위
     routeImage: {}, // image file 1개
     files: [{}], // 사용자가 첨부한 파일
     firstLocation: '행복시',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import TrendingTags from '@containers/home/TrendingTags';
 import RecommendedRoutes from '@containers/home/RecommendedRoutes';
 import RecommendedRoutesNearBy from '@containers/home/RecommendedRoutesNearBy';
@@ -7,10 +7,10 @@ import { globals } from '@styles/globals';
 
 const Main = ({ navigation }) => {
   return (
-    <View style={style.container}>
+    <ScrollView style={style.container}>
       <RecommendedRoutes navigation={navigation} />
       <TrendingTags />
-    </View>
+    </ScrollView>
   );
 };
 

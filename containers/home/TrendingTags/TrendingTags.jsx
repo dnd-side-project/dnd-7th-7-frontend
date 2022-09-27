@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Font, Tag } from '@components/commons';
 import { globals } from '@styles/globals.js';
 import { styles } from './TrendingTags.style';
 import { SECURE_TAGS_DATA } from '@hooks/utils';
+import { getPopularTags } from '@apis';
 
 const TrendingTags = () => {
+  const [popularTags, setPopularTags] = useState([]);
+
+  // const fetchRoutes = async () => {
+  //   const response = await getPopularTags();
+  //   setPopularTags(response);
+  // };
+
+  // useEffect(() => {
+  //   fetchRoutes();
+  //   console.log('Popular: ', popularTags);
+  // }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.title}>
         <Font size={20} weight={600}>
           실시간 인기 있는 태그에요
+        </Font>
+        <Font size={20} weight={600}>
+          {popularTags[0]}
         </Font>
       </View>
       <ScrollView horizontal={true} style={styles.tag_ranking}>

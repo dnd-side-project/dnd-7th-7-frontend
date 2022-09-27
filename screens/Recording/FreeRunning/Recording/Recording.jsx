@@ -14,6 +14,7 @@ import * as Location from 'expo-location';
 import AlertModal from '@components/commons/modals/AlertModal';
 
 const latitudeDelta = 0.01;
+let foregroundSubscription = null;
 
 const Recording = ({ navigation }) => {
   const { height, width } = Dimensions.get('window');
@@ -21,7 +22,7 @@ const Recording = ({ navigation }) => {
 
   const [isReady, setIsReady] = useState(true);
   const [poly, setPoly] = useState([]);
-  const [location, setLocation] = useState(null);
+  const [loc, setLoc] = useState(null);
 
   const goToHome = () => {
     navigation.navigate('Home');
@@ -35,7 +36,7 @@ const Recording = ({ navigation }) => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      setLoc(location);
     })();
 
     update();
@@ -80,15 +81,21 @@ const Recording = ({ navigation }) => {
         timeInterval: 1000,
       },
       (location) => {
-        setLocation(location);
+        setLoc(location);
         if (!isReady) {
-          setPoly((prev) => [
-            ...prev,
-            {
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-            },
-          ]);
+          setPoly(
+            (prev) =>
+              !(
+                prev.latitude === location.coords.latitude &&
+                prev.longitude === location.coords.longitude
+              ) && [
+                ...prev,
+                {
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                },
+              ],
+          );
         }
       },
     );
@@ -100,19 +107,19 @@ const Recording = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {location ? (
+      {loc ? (
         <MapView
           scrollEnabled
           zoomEnabled
           initialRegion={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            latitude: loc.coords.latitude,
+            longitude: loc.coords.longitude,
             latitudeDelta: latitudeDelta,
             longitudeDelta: latitudeDelta * (width / height),
           }}
           region={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            latitude: loc.coords.latitude,
+            longitude: loc.coords.longitude,
             latitudeDelta: latitudeDelta,
             longitudeDelta: latitudeDelta * (width / height),
           }}
@@ -126,8 +133,8 @@ const Recording = ({ navigation }) => {
           />
           <Marker
             coordinate={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
+              latitude: loc.coords.latitude,
+              longitude: loc.coords.longitude,
             }}
           />
 
