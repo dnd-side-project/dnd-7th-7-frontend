@@ -25,9 +25,6 @@ const TrendingTags = () => {
         <Font size={20} weight={600}>
           실시간 인기 있는 태그에요
         </Font>
-        <Font size={20} weight={600}>
-          {popularTags[0]}
-        </Font>
       </View>
       <ScrollView horizontal={true} style={styles.tag_ranking}>
         <View style={{ marginBottom: 35, marginRight: 15 }}>
