@@ -32,39 +32,36 @@ export const getYearList = (reverse = false) => {
 
 export const getDistance = (poly) => {
   let distance = 0;
-  let prevCoord = {};
-
-  if (poly.length < 2) return 0;
+  if (poly.length < 2) return;
   else {
-    poly.forEach((coord, index) => {
-      if (index === 0) {
-        prevCoord = coord;
-      } else {
-        const radLat1 = (Math.PI * prevCoord.latitude) / 180;
-        const radLat2 = (Math.PI * prevCoord.latitude) / 180;
-        const theta = prevCoord.longitude - coord.longitude;
-        const radTheta = (Math.PI * theta) / 180;
+    let prev;
+    poly.forEach((el, index) => {
+      if (index === 0) prev = el;
+      else {
+        const lat1 = prev.latitude;
+        const lon1 = prev.longitude;
 
-        let dist =
-          Math.sin(radLat1) * Math.sin(radLat2) +
-          Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radTheta);
+        const lat2 = el.latitude;
+        const lon2 = el.longitude;
 
-        if (dist > 1) dist = 1;
+        const R = 6371e3; // earth radius in meters
+        const φ1 = lat1 * (Math.PI / 180);
+        const φ2 = lat2 * (Math.PI / 180);
+        const Δφ = (lat2 - lat1) * (Math.PI / 180);
+        const Δλ = (lon2 - lon1) * (Math.PI / 180);
 
-        dist = Math.acos(dist);
-        dist = (dist * 180) / Math.PI;
-        dist = dist * 60 * 1.1515 * 1.609344 * 1000;
+        const a =
+          Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+          Math.cos(φ1) * Math.cos(φ2) * (Math.sin(Δλ / 2) * Math.sin(Δλ / 2));
 
-        if (dist < 100) dist = Math.round(dist / 10) * 10;
-        else dist = Math.round(dist / 100) * 100;
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        distance += dist;
-        prevCoord = coord;
+        distance += R * c;
+        prev = el;
       }
     });
-
-    return distance / 1000;
   }
+  return (distance / 1000).toFixed(2); // in kilometer
 };
 
 // 태그 데이터들이 string 배열이 아니라 number 배열로 되어있는데

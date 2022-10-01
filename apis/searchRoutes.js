@@ -12,7 +12,7 @@ const searchRoutes = async (lat, lon) => {
       },
     });
     console.log(`searchRoutes API ${response.status}, ${response.data}`);
-    return response.data;
+    return response;
   } catch (error) {
     console.log('searchRoutes API error: ', error.response.data);
   }

@@ -18,11 +18,12 @@ import locationAtom from '@recoil/location';
 const RecommendedRoutes = () => {
   const navigation = useNavigation();
   const [currentLoc, setCurrentLoc] = useRecoilState(locationAtom);
-  const [routes, setRoutes] = useState();
+  const [routes, setRoutes] = useState([]);
 
   const fetchRoutes = async () => {
-    const response = await searchRoutes(currentLoc.latitude, currentLoc.longitude);
-    response.forEach(async (el, index) => {
+    let response = await searchRoutes(currentLoc.latitude, currentLoc.longitude);
+    let data = response.data;
+    data.forEach(async (el, index) => {
       const route = await getRoute(el.id, false);
       setRoutes((prev) => (index === 0 ? [route] : [...prev, route]));
     });

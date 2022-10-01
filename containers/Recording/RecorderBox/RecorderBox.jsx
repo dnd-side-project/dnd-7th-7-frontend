@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { styles } from './RecorderBox.style';
 import { Pressable, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
@@ -34,6 +34,10 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
   const setDistance = useSetRecoilState(addRecord('distance'));
 
   const distance = useMemo(() => getDistance(poly), [poly]);
+
+  useEffect(() => {
+    console.log('poly: ', poly);
+  }, [poly]);
 
   // 나중에 record API로 보내기
   return (

@@ -31,6 +31,7 @@
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
     "react-native-dropdown-picker": "^5.4.2",
+    "react-native-google-places-autocomplete": "^2.4.1",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-maps": "0.30.2",
     "react-native-modal": "^13.0.1",
