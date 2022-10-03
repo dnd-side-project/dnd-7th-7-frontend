@@ -6,26 +6,46 @@ import { Entypo } from '@expo/vector-icons';
 import { styles } from './RecommendedRoutes.style';
 import RouteBox from '@components/RouteBox/RouteBox';
 import { Font, Tag } from '@components/commons';
-import { ROUTES_DATA, indexToRecommendedTitle } from '@hooks/utils';
+import { indexToRecommendedTitle } from '@hooks/utils';
 import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
-import { getRoute } from '@apis';
+import { searchRoutes, getRoute } from '@apis';
+import * as Location from 'expo-location';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import locationAtom, { toAdress } from '@recoil/location';
 
 const RecommendedRoutes = () => {
   const navigation = useNavigation();
-  const [routes, setRoutes] = useState();
+  const [routes, setRoutes] = useState([]);
+  const [currentLoc, setCurrentLoc] = useRecoilState(locationAtom);
+  const address = useRecoilValue(toAdress);
 
-  // const fetchRoutes = async () => {
-  //   const data = await getRoute(1, false);
-  //   setRoutes(data);
-  // };
+  const fetchRoutes = async () => {
+    let response = await searchRoutes(currentLoc.latitude, currentLoc.longitude);
+    let data = response.data;
+    data.forEach(async (el, index) => {
+      const route = await getRoute(el.id, false);
+      setRoutes((prev) => (index === 0 ? [route] : [...prev, route]));
+    });
+  };
 
-  // useEffect(() => {
-  //   fetchRoutes();
-  //   console.log(routes);
-  // }, []);
+  useEffect(() => {
+    /* 현재 위치 받아오기 */
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setCurrentLoc(null);
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      setCurrentLoc({ latitude: location.coords.latitude, longitude: location.coords.longitude });
+    })();
+    console.log('current Location: ', currentLoc);
+    fetchRoutes();
+  }, []);
 
+  console.log(address);
   return (
     <View style={styles.container}>
       <View style={styles.current_loc}>
@@ -43,15 +63,15 @@ const RecommendedRoutes = () => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={ROUTES_DATA}
-        style={{ height: 300 }}
+        data={routes}
+        style={{ height: 320 }}
         keyExtractor={(item, index) => index}
         renderItem={({ item }) => (
           <Photo>
             <ImageBackground
               style={{ flex: 1 }}
               imageStyle={{ borderRadius: 10 }}
-              source={item.routeImage}
+              source={{ uri: item.routeImage }}
             >
               <View
                 style={{
@@ -137,7 +157,7 @@ const RecommendedRoutes = () => {
                       textSize={14}
                       style={{ marginRight: 5 }}
                     >
-                      {`+ ${ROUTES_DATA.length}`}
+                      {`+ ${item.recommendedTags.length + item.secureTags.length}`}
                     </Tag>
                   </View>
                 </View>

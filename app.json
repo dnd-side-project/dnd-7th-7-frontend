@@ -3,28 +3,20 @@
     "name": "dnd-project-running-map",
     "slug": "dnd-project-running-map",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "infoPlist": {
-        "UIBackgroundModes": [
-          "location",
-          "fetch"
-        ]
+        "UIBackgroundModes": ["location", "fetch"]
       },
       "config": {
         "googleMapsApiKey": "AIzaSyD958IgSFaPAPVN4JNcZ_2HH2DMxGHXJ3M"
       }
     },
     "android": {
-      "permissions": [
-        "ACCESS_BACKGROUND_LOCATION",
-        "android.permission.RECORD_AUDIO"
-      ],
+      "permissions": ["ACCESS_BACKGROUND_LOCATION", "android.permission.RECORD_AUDIO"],
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyD958IgSFaPAPVN4JNcZ_2HH2DMxGHXJ3M"
+          "apiKey": "AIzaSyApafELbSVL7i7T-OOcconjg4xNMn4Cnaw"
         }
       },
       "package": "com.kmjnnhyk.dndprojectrunningmap"

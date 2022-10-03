@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { styles } from './RecorderBox.style';
 import { Pressable, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
@@ -12,6 +12,7 @@ import AlertModal from '@components/commons/modals/AlertModal';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { addRecord } from '@recoil/route';
 import useCount from '@hooks/useCount';
+import { getDistance } from '@hooks/utils';
 
 // recoil 설치 후 전역 변수로 세팅
 export const tempStartTime = '12월 31일 토요일 오후 7시 30분';
@@ -30,6 +31,13 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
 
   const setRunningTime = useSetRecoilState(addRecord('runningTime'));
   const setArrayOfPos = useSetRecoilState(addRecord('arrayOfPos'));
+  const setDistance = useSetRecoilState(addRecord('distance'));
+
+  const distance = useMemo(() => getDistance(poly), [poly]);
+
+  useEffect(() => {
+    console.log('poly: ', poly);
+  }, [poly]);
 
   // 나중에 record API로 보내기
   return (
@@ -46,7 +54,7 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
           </View>
           <View style={styles.distance_count}>
             <Font size={34} weight={600}>
-              0.00km
+              {distance}km
             </Font>
             <Font weight={400} color={globals.colors.GREY_LIGTH_DARK}>
               거리
@@ -91,6 +99,7 @@ const RecorderBox = ({ routeName, stopFunction, startFunction, poly }) => {
           onPressYes={() => {
             setRunningTime(`${hour}:${min}:${sec}`);
             setArrayOfPos([...poly]);
+            setDistance(`${distance}`);
             setIsFinish(false);
             !route.params
               ? navigation.navigate('FreeRunningResult')

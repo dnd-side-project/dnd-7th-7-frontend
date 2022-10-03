@@ -30,6 +30,40 @@ export const getYearList = (reverse = false) => {
   return list;
 };
 
+export const getDistance = (poly) => {
+  let distance = 0;
+  if (poly.length < 2) return;
+  else {
+    let prev;
+    poly.forEach((el, index) => {
+      if (index === 0) prev = el;
+      else {
+        const lat1 = prev.latitude;
+        const lon1 = prev.longitude;
+
+        const lat2 = el.latitude;
+        const lon2 = el.longitude;
+
+        const R = 6371e3; // earth radius in meters
+        const φ1 = lat1 * (Math.PI / 180);
+        const φ2 = lat2 * (Math.PI / 180);
+        const Δφ = (lat2 - lat1) * (Math.PI / 180);
+        const Δλ = (lon2 - lon1) * (Math.PI / 180);
+
+        const a =
+          Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+          Math.cos(φ1) * Math.cos(φ2) * (Math.sin(Δλ / 2) * Math.sin(Δλ / 2));
+
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        distance += R * c;
+        prev = el;
+      }
+    });
+  }
+  return (distance / 1000).toFixed(2); // in kilometer
+};
+
 // 태그 데이터들이 string 배열이 아니라 number 배열로 되어있는데
 // 그 number 번호에 따라 맞는 태그 타이틀로 바꿔주는 함수입니다.
 export const indexToSecureTitle = (index) => {
@@ -152,7 +186,6 @@ export const districtList = [
   { label: '용산구', value: '용산구' },
 ];
 
-// 나중에 index => tag title 바꾸는 로직 추가
 export const SECURE_TAGS_DATA = [
   { index: 1, title: '근처에 어린이 보호구역이 있어요' },
   { index: 2, title: '안심등이 있어요' },
@@ -167,44 +200,4 @@ export const RECOMMENDED_TAGS_DATA = [
   { index: 3, title: '가파른 구간이 없어요' },
   { index: 4, title: '보행자 전용 트랙이 있어요' },
   { index: 5, title: '길이 깨끗해요' },
-];
-
-export const ROUTES_DATA = [
-  // recommendedTags => 추후 recommendedTags.length로 변경
-  {
-    routeKey: 1,
-    routeName: '한강 가로등이 지켜주는 길',
-    distance: 1.5,
-    secondLocation: '성동구',
-    thirdLocation: '송정동',
-    routeImage: require('../assets/images/runMap1.png'),
-    recommendedTags: [1, 5],
-    secureTags: [3, 4],
-    review:
-      '300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 ',
-  },
-  {
-    routeKey: 2,
-    routeName: '저녁에도 사람들이 많은 길',
-    distance: 2.5,
-    secondLocation: '사랑구',
-    thirdLocation: '행복동',
-    routeImage: require('../assets/images/runMap2.png'),
-    recommendedTags: [1, 2],
-    secureTags: [2, 4],
-    review:
-      '300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 ',
-  },
-  {
-    routeKey: 3,
-    routeName: '가파른 구간이 없는 길',
-    distance: 3.5,
-    secondLocation: '안심구',
-    thirdLocation: '안정동',
-    routeImage: require('../assets/images/runMap3.png'),
-    recommendedTags: [5, 3],
-    secureTags: [5, 3],
-    review:
-      '300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 300자가 얼마나 되는지 확인하려고 쓰는 글 300자가 얼마나 ',
-  },
 ];

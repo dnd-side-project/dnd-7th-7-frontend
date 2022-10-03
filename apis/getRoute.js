@@ -5,10 +5,11 @@ const { baseUrl } = getEnvVars();
 
 const getRoute = async (id, isMain) => {
   try {
-    const result = await axios.get(`${baseUrl}/running-route/${isMain ? 'main' : 'sub'}/${id}`);
-    console.log(result);
+    const response = await axios.get(`${baseUrl}/running-route/${isMain ? 'main' : 'sub'}/${id}`);
+    console.log(`getRoute API ${response.status}, ${response.data}`);
+    return response.data;
   } catch (error) {
-    console.log(error.response);
+    console.log('getRoute API error: ', error.response.data);
   }
 };
 
