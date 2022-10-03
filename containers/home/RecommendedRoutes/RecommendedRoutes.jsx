@@ -12,13 +12,14 @@ import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
 import { searchRoutes, getRoute } from '@apis';
 import * as Location from 'expo-location';
-import { useRecoilState } from 'recoil';
-import locationAtom from '@recoil/location';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import locationAtom, { toAdress } from '@recoil/location';
 
 const RecommendedRoutes = () => {
   const navigation = useNavigation();
-  const [currentLoc, setCurrentLoc] = useRecoilState(locationAtom);
   const [routes, setRoutes] = useState([]);
+  const [currentLoc, setCurrentLoc] = useRecoilState(locationAtom);
+  const address = useRecoilValue(toAdress);
 
   const fetchRoutes = async () => {
     let response = await searchRoutes(currentLoc.latitude, currentLoc.longitude);
@@ -44,6 +45,7 @@ const RecommendedRoutes = () => {
     fetchRoutes();
   }, []);
 
+  console.log(address);
   return (
     <View style={styles.container}>
       <View style={styles.current_loc}>
