@@ -12,9 +12,16 @@ const locationToAdress = selector({
     const response = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&language=ko&key=${GOOGLE_MAP_API_KEY}`,
     );
+    const data = response.data.results[0].formatted_address;
+    const split = data.split(' ');
 
-    if (response.results) return response;
-    else return null;
+    // for (const i in split) {
+    //   console.log('split', split[i]);
+    //   if (i === 1) console.log(split[i]);
+    //   else if (i === 2) console.log(split[i]);
+    //   else if (i === 3) console.log(split[i]);
+    // }
+    return data;
   },
 });
 

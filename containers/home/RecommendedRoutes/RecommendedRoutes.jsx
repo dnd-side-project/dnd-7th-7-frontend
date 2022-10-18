@@ -14,12 +14,13 @@ import { searchRoutes, getRoute } from '@apis';
 import * as Location from 'expo-location';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import locationAtom, { toAdress } from '@recoil/location';
+import useGetAddress from '../../../querys/useGetAddress';
 
 const RecommendedRoutes = () => {
   const navigation = useNavigation();
   const [routes, setRoutes] = useState([]);
   const [currentLoc, setCurrentLoc] = useRecoilState(locationAtom);
-  const address = useRecoilValue(toAdress);
+  const { data: address, isLoading } = useGetAddress(currentLoc);
 
   const fetchRoutes = async () => {
     let response = await searchRoutes(currentLoc.latitude, currentLoc.longitude);
@@ -39,18 +40,20 @@ const RecommendedRoutes = () => {
         return;
       }
       let location = await Location.getCurrentPositionAsync({});
+      console.log('current Location: ', currentLoc);
+
       setCurrentLoc({ latitude: location.coords.latitude, longitude: location.coords.longitude });
     })();
-    console.log('current Location: ', currentLoc);
     fetchRoutes();
   }, []);
 
-  console.log(address);
   return (
     <View style={styles.container}>
       <View style={styles.current_loc}>
         <MarkerIcon />
-        <Font color={globals.colors.GREY_DEF_LIGHT}>내 위치를 설정해 주세요</Font>
+        <Font color={globals.colors.GREY_DEF_LIGHT}>
+          {isLoading ? 'loading...' : address.results[0].formatted_address}
+        </Font>
       </View>
       <View style={styles.guide}>
         <Font size={24} weight={700} style={{ marginBottom: 7 }}>
