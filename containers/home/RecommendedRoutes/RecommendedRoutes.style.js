@@ -16,4 +16,7 @@ export const styles = StyleSheet.create({
     paddingLeft: globals.layout.SCREEN_PADDING_HORIZ,
     marginBottom: 18,
   },
+  card: {
+    marginHorizontal: globals.layout.SCREEN_PADDING_HORIZ,
+  },
 });

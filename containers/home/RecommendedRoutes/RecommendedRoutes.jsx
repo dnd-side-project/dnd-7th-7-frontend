@@ -6,6 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 import { styles } from './RecommendedRoutes.style';
 import RouteBox from '@components/RouteBox/RouteBox';
 import { Font, Tag } from '@components/commons';
+import HomeMainRoute from '@components/HomeMainRoute';
 import { indexToRecommendedTitle } from '@hooks/utils';
 import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
@@ -52,7 +53,7 @@ const RecommendedRoutes = () => {
       <View style={styles.current_loc}>
         <MarkerIcon />
         <Font color={globals.colors.GREY_DEF_LIGHT}>
-          {isLoading ? 'loading...' : address.results[0].formatted_address}
+          {isLoading || !address ? '위치를 찾는 중입니다' : address?.results[0].formatted_address}
         </Font>
       </View>
       <View style={styles.guide}>
@@ -63,118 +64,9 @@ const RecommendedRoutes = () => {
           달려보는건 어떨까요?
         </Font>
       </View>
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={routes}
-        style={{ height: 320 }}
-        keyExtractor={(item, index) => index}
-        renderItem={({ item }) => (
-          <Photo>
-            <ImageBackground
-              style={{ flex: 1 }}
-              imageStyle={{ borderRadius: 10 }}
-              source={{ uri: item.routeImage }}
-            >
-              <View
-                style={{
-                  paddingVertical: 20,
-                  paddingHorizontal: 15,
-                  height: '100%',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Font size={18} weight={600}>
-                  {item.routeName}
-                </Font>
-                <View
-                  style={{
-                    height: 120,
-                    backgroundColor: 'rgba(0,0,0,0.6)',
-                    borderBottomLeftRadius: 10,
-                    borderBottomRightRadius: 10,
-                    marginHorizontal: -15,
-                    marginVertical: -20,
-                    paddingVertical: 20,
-                    paddingHorizontal: 15,
-                  }}
-                >
-                  <Pressable
-                    onPress={() =>
-                      navigation.push('RouteDetail', {
-                        key: item.routeKey,
-                        title: item.routeName,
-                        thumbnail: item.routeImage,
-                      })
-                    }
-                  >
-                    <View
-                      style={{
-                        width: 172,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'flex-start',
-                        marginBottom: 10,
-                      }}
-                    >
-                      <Font size={14} weight={400} color="#FFFFFF" lineHeight={14 * 1.5}>
-                        {`${item.review.slice(0, 32)}...`}
-                      </Font>
-                      <TouchableOpacity>
-                        <Entypo
-                          name="chevron-thin-right"
-                          size={15}
-                          color="white"
-                          style={{ position: 'relative', top: 3, right: -20 }}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  </Pressable>
-                  <View
-                    style={{
-                      width: '100%',
-                      flexDirection: 'row',
-                    }}
-                  >
-                    {item.secureTags
-                      .filter((tag, index) => index < 1)
-                      .map((tagId, index) => (
-                        <Tag
-                          theme="angled"
-                          style={{
-                            paddingHorizontal: 5,
-                            paddingVertical: 6,
-                          }}
-                          key={index}
-                          bgColor="#C9EFD2"
-                          textSize={14}
-                          style={{ marginRight: 5 }}
-                        >
-                          {indexToRecommendedTitle(`${tagId}`)}
-                        </Tag>
-                      ))}
-                    <Tag
-                      theme="angled"
-                      style={{ paddingHorizontal: 12, paddingVertical: 6 }}
-                      bgColor="#C9EFD2"
-                      textSize={14}
-                      style={{ marginRight: 5 }}
-                    >
-                      {`+ ${item.recommendedTags.length + item.secureTags.length}`}
-                    </Tag>
-                  </View>
-                </View>
-              </View>
-            </ImageBackground>
-          </Photo>
-        )}
-        contentContainerStyle={{
-          paddingLeft: 16,
-          paddingBottom: 25,
-          borderBottomColor: globals.colors.BACKGROUND,
-          borderBottomWidth: 10,
-        }}
-      />
+      <View style={styles.card}>
+        <HomeMainRoute />
+      </View>
     </View>
   );
 };
