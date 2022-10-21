@@ -5,7 +5,7 @@ export const Container = styled.View`
   width: 100%;
   height: 280px;
   border-radius: 20px;
-  background-color: #e9ffe5;
+  background-color: grey;
 `;
 
 export const Background = styled.ImageBackground`
@@ -54,7 +54,6 @@ export const Location = styled.View`
 
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   align-items: center;
 
   border-radius: 10px;
