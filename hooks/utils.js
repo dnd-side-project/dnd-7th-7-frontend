@@ -68,15 +68,15 @@ export const getDistance = (poly) => {
 // 그 number 번호에 따라 맞는 태그 타이틀로 바꿔주는 함수입니다.
 export const indexToSecureTitle = (index) => {
   switch (index) {
-    case '1':
+    case 1:
       return '근처에 어린이 보호구역이 있어요';
-    case '2':
+    case 2:
       return '안심등이 있어요';
-    case '3':
+    case 3:
       return '가로등이 많아요';
-    case '4':
+    case 4:
       return '밤에 사람이 많아요';
-    case '5':
+    case 5:
       return '낮에 사람이 많아요';
     default:
       break;
@@ -86,15 +86,15 @@ export const indexToSecureTitle = (index) => {
 export const secureTitleToIndex = (title) => {
   switch (title) {
     case '근처에 어린이 보호구역이 있어요':
-      return '1';
+      return 1;
     case '안심등이 있어요':
-      return '2';
+      return 2;
     case '가로등이 많아요':
-      return '3';
+      return 3;
     case '밤에 사람이 많아요':
-      return '4';
+      return 4;
     case '낮에 사람이 많아요':
-      return '5';
+      return 5;
     default:
       break;
   }
@@ -102,15 +102,15 @@ export const secureTitleToIndex = (title) => {
 
 export const indexToRecommendedTitle = (index) => {
   switch (index) {
-    case '1':
+    case 1:
       return '강을 보며 달려요';
-    case '2':
+    case 2:
       return '나무가 많아요';
-    case '3':
+    case 3:
       return '가파른 구간이 없어요';
-    case '4':
+    case 4:
       return '보행자 전용 트랙이 있어요';
-    case '5':
+    case 5:
       return '길이 깨끗해요';
     default:
       break;
@@ -120,15 +120,15 @@ export const indexToRecommendedTitle = (index) => {
 export const recommendedTitleToIndex = (title) => {
   switch (title) {
     case '강을 보며 달려요':
-      return '1';
+      return 1;
     case '나무가 많아요':
-      return '2';
+      return 2;
     case '가파른 구간이 없어요':
-      return '3';
+      return 3;
     case '보행자 전용 트랙이 있어요':
-      return '4';
+      return 4;
     case '길이 깨끗해요':
-      return '5';
+      return 5;
     default:
       break;
   }
@@ -141,6 +141,19 @@ export const filterRecTagsTitleToIndex = (array) => {
 export const filterSecureTagsTitleToIndex = (array) => {
   return array.map((item) => secureTitleToIndex(item));
 };
+
+/**
+ * 태그 array(ex.[1, 2, 4])를 받아서 text로 변환해주는 함수.
+ * @param {number[]} array
+ * @param {boolean} isSecure
+ * @returns
+ */
+export function convertTagsToText(array, isSecure) {
+  return isSecure
+    ? array.map((item) => ({ title: indexToSecureTitle(item) }))
+    : array.map((item) => ({ title: indexToRecommendedTitle(item) }));
+}
+
 // const exampleTagCountData = {
 //   1: 12,
 //   2: 0,

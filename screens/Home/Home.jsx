@@ -39,7 +39,7 @@ const Home = () => {
               route={route}
               options={options}
               left={'back'}
-              center={route.params.title}
+              center={route.params.data.routeName}
               right={'null'}
               pressLeft={() => navigation.goBack()}
             />

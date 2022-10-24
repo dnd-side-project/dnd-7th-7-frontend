@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { globals } from '@styles/globals';
 
-export const Container = styled.View`
+export const Container = styled.Pressable`
   width: 100%;
   height: 280px;
   border-radius: 20px;
@@ -10,7 +10,6 @@ export const Container = styled.View`
 
 export const Background = styled.ImageBackground`
   flex: 1;
-  border-radius: 20;
 `;
 
 export const Header = styled.View`

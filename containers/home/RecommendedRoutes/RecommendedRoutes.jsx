@@ -15,7 +15,6 @@ import { styles } from './RecommendedRoutes.style';
 import RouteBox from '@components/RouteBox/RouteBox';
 import { Font, Tag } from '@components/commons';
 import HomeMainRoute from '@components/HomeMainRoute';
-import { indexToRecommendedTitle } from '@hooks/utils';
 import { Photo } from '@screens/Search/SearchMain/Search.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';

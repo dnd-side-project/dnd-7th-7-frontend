@@ -19,18 +19,13 @@ import BookMark from '@assets/images/bookmark.svg';
 import SearchIcon from '@assets/images/navigator/SearchIcon.svg';
 import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
 import ThumbnailCards from '@containers/home/ThumbnailCards';
-import { indexToSecureTitle, filterZeroValue } from '@hooks/utils';
+import { indexToSecureTitle, filterZeroValue, convertTagsToText } from '@hooks/utils';
 import { useNavigation } from '@react-navigation/native';
 
 const RouteDetail = ({ route }) => {
   const navigation = useNavigation();
-  // GET http://${baseurl}/running-route/main/${id}
-  const routeName = '한강 가로등이 지켜주는 길';
-  const secondLocation = '성동구';
-  const thirdLocation = '송정동';
-  const distance = 5.8;
-  const review =
-    '성동구에서 가장 안전한 러닝 루트를 소개합니다! 나무가 많아 그늘 아래에서 달릴 수 있고, 관리도 참 잘 되어서 쾌적해요. 무엇보다도 해질 때쯤 강 너머로 보이는 석양을 보면서 달리면 가슴이 벅차오릅니다... 오후 10시 이후로는 한산한 편이지만 가로등이 다 켜져있어서 안전해요~!';
+  const { data } = route.params;
+
   const recommendedTagCountsPerRoute = {
     1: 2,
     2: 4,
@@ -45,12 +40,6 @@ const RouteDetail = ({ route }) => {
     4: 0,
     5: 3,
   };
-  const files = [
-    'https://t1.daumcdn.net/cfile/tistory/9950BD365E6E47321F',
-    'https://t1.daumcdn.net/cfile/blog/2342C84657ED330608',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgUf6NWUCpDjy-_zDFEON6g3zikUvU5gwFgQ&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKy3A6HZJCpk23M9GU7yOUt1WOFuJSa-T6w&usqp=CAU',
-  ];
 
   return (
     <View style={styles.container}>
@@ -63,27 +52,25 @@ const RouteDetail = ({ route }) => {
           />
         </View>
 
-        <ThumbnailCards data={files} />
+        <ThumbnailCards data={data.files} />
 
         <View style={styles.review_section}>
           <View style={styles.title}>
             <Font size={24} weight={600}>
-              {routeName}
+              {data.routeName}
             </Font>
             <BookMark />
           </View>
           <View style={styles.infos}>
             <Marker />
-            <Font style={{ marginLeft: 5 }}>
-              {secondLocation} {thirdLocation}
-            </Font>
+            <Font style={{ marginLeft: 5 }}>{data.firstLocation}</Font>
             <Dot />
             <Distance />
-            <Font style={{ marginLeft: 5 }}>{distance}km</Font>
+            <Font style={{ marginLeft: 5 }}>{data.distance}km</Font>
           </View>
           <View style={styles.review}>
             <Font lineHeight={21} size={14} weight={400}>
-              {review}
+              {data.review}
             </Font>
           </View>
         </View>
@@ -100,7 +87,7 @@ const RouteDetail = ({ route }) => {
               theme: 'angled',
               style: { marginRight: 10, marginTop: 10 },
             }}
-            data={filterZeroValue(secureTagCountsPerRoute)}
+            data={convertTagsToText(data.secureTags, true)}
           />
         </View>
         <View style={styles.info_recommended}>
@@ -115,7 +102,7 @@ const RouteDetail = ({ route }) => {
               theme: 'angled',
               style: { marginRight: 10, marginTop: 10 },
             }}
-            data={filterZeroValue(recommendedTagCountsPerRoute)}
+            data={convertTagsToText(data.recommendedTags, false)}
           />
         </View>
       </ScrollView>
