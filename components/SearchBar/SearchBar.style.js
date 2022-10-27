@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginHorizontal: 16,
+    backgroundColor: '#ffffff',
   },
   searchBox: {
     flexDirection: 'row',

@@ -21,7 +21,7 @@ import MarkerIcon from '@assets/images/mini_marker_grey.svg';
 import { searchRoutes, getRoute } from '@apis';
 import * as Location from 'expo-location';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import locationAtom, { toAdress } from '@recoil/location';
+import locationAtom from '@recoil/location';
 import useGetAddress from '../../../querys/useGetAddress';
 import useGetRoute from '../../../querys/useGetRoute';
 
@@ -29,7 +29,7 @@ const RecommendedRoutes = () => {
   const navigation = useNavigation();
   const [routes, setRoutes] = useState([]);
   const [currentLoc, setCurrentLoc] = useRecoilState(locationAtom);
-  const { data: address, addressIsLoading } = useGetAddress(currentLoc);
+  const { data: address, isLoading: addressIsLoading } = useGetAddress(currentLoc);
   const { data: route, isLoading: routeIsLoading } = useGetRoute(15, false);
 
   useEffect(() => {

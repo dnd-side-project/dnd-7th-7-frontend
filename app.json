@@ -8,9 +8,7 @@
       "infoPlist": {
         "UIBackgroundModes": ["location", "fetch"]
       },
-      "config": {
-        "googleMapsApiKey": "AIzaSyD958IgSFaPAPVN4JNcZ_2HH2DMxGHXJ3M"
-      }
+      "config": {}
     },
     "android": {
       "permissions": ["ACCESS_BACKGROUND_LOCATION", "android.permission.RECORD_AUDIO"],

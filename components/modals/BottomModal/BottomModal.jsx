@@ -15,11 +15,9 @@ const BottomModal = ({ visible, open, close, bgOpacity, children, ...props }) =>
       hasBackdrop={false}
     >
       <View style={styles.wrapper}>
-        <ScrollView style={styles.scroller}>
-          <TouchableWithoutFeedback>
-            <View style={styles.handle} />
-            {children}
-          </TouchableWithoutFeedback>
+        <ScrollView style={styles.scroller} stickyHeaderIndices={[0]}>
+          <View style={styles.handle}></View>
+          <TouchableWithoutFeedback>{children}</TouchableWithoutFeedback>
         </ScrollView>
       </View>
     </Modal>
