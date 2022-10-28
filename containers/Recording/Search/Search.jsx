@@ -7,7 +7,6 @@ import { globals } from '@styles/globals';
 import TagsInModal from '@containers/Recording/TagsInModal';
 import { Font, BottomModal } from '@components/commons';
 import GoogleSearchBar from '@components/GoogleSearchBar';
-import SearchBar from '@components/SearchBar/SearchBar';
 import SubHeader from '@components/commons/SubHeader';
 import MapForSearch from '@components/MapForSearch';
 
@@ -32,7 +31,6 @@ const Search = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <GoogleSearchBar />
-      {/* <SearchBar onSearch={setSearchBarInput} /> */}
       <SubHeader onPress={tagsModalOpen} />
       <MapForSearch currentLocation={currentLoc} />
 
