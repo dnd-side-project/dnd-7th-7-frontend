@@ -108,6 +108,7 @@ const Recording = ({ navigation }) => {
           scrollEnabled={false}
           zoomEnabled={false}
           camera={cameraConfig}
+          provider={MapView.PROVIDER_GOOGLE}
           style={{ ...styles.map_view }}
         >
           <Polyline

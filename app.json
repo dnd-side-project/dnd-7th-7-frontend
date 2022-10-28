@@ -8,17 +8,11 @@
       "infoPlist": {
         "UIBackgroundModes": ["location", "fetch"]
       },
-      "config": {
-        "googleMapsApiKey": "AIzaSyD958IgSFaPAPVN4JNcZ_2HH2DMxGHXJ3M"
-      }
+      "config": {}
     },
     "android": {
       "permissions": ["ACCESS_BACKGROUND_LOCATION", "android.permission.RECORD_AUDIO"],
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyApafELbSVL7i7T-OOcconjg4xNMn4Cnaw"
-        }
-      },
+      "config": {},
       "package": "com.kmjnnhyk.dndprojectrunningmap"
     },
     "splash": {

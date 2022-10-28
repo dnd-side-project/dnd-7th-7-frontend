@@ -5,8 +5,6 @@ export const Box = styled.View`
   height: 54px;
   padding: 12px 16px;
   background-color: #ffffff;
-  position: relative;
-  top: 0;
   flex-direction: row;
 `;
 

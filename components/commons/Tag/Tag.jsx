@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import Font from '../Font';
 import { globals } from '@styles/globals.js';
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 // theme: 'angled' || 'rounded' (default: 'rounded')
 // bgColor, textColor (default: globals.colors.GREY_DARKER), borderColor: string

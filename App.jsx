@@ -8,6 +8,7 @@ import Header from '@components/Header';
 import { getFonts } from './hooks/utils';
 import MypageMain from './screens/MyPage/MypageMain';
 import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,25 +17,27 @@ const App = () => {
   if (!fontsLoaded) return null;
 
   return (
-    <RecoilRoot>
-      <React.Suspense
-        fallback={
-          <View>
-            <Text>LOADING...</Text>
-          </View>
-        }
-      >
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{ headerShown: false }}
-            initialRouteName={'afterOnboarding'}
-          >
-            <Stack.Screen name="onboarding" component={OnBoarding} />
-            <Stack.Screen name="afterOnboarding" component={BottomTabs} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </React.Suspense>
-    </RecoilRoot>
+    <QueryClientProvider client={new QueryClient()}>
+      <RecoilRoot>
+        <React.Suspense
+          fallback={
+            <View>
+              <Text>LOADING...</Text>
+            </View>
+          }
+        >
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{ headerShown: false }}
+              initialRouteName={'afterOnboarding'}
+            >
+              <Stack.Screen name="onboarding" component={OnBoarding} />
+              <Stack.Screen name="afterOnboarding" component={BottomTabs} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </React.Suspense>
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 };
 

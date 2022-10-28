@@ -2,11 +2,10 @@ import { Text, TouchableOpacity } from 'react-native';
 import Font from '../Font';
 import { AddTagBox, Box } from './SubHeader.style';
 import Tag from '@components/commons/Tag/Tag';
-import LinearGradient from 'react-native-linear-gradient';
 
 const SubHeader = ({ onPress }) => {
   return false ? (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPresse}>
       <Box>
         <AddTagBox>
           <Font size={14} weight={400}>

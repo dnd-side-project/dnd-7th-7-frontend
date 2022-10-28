@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
 import { globals } from '@styles/globals';
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const Wrapper = styled.View``;
 
