@@ -1,8 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from '@components/Header';
-import Main from './Main';
-import RouteDetail from './RouteDetail';
+import Search from '@containers/home/Search/Search';
+import Main from '@containers/home/Main';
+import RouteDetail from '@containers/home/RouteDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,11 +21,7 @@ const Home = () => {
               options={options}
               left={'logo'}
               right={'search'}
-              pressRight={() =>
-                navigation.navigate('Recording', {
-                  screen: 'Search',
-                })
-              }
+              pressRight={() => navigation.navigate('Search')}
             />
           ),
         }}
@@ -46,6 +43,7 @@ const Home = () => {
           ),
         }}
       />
+      <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

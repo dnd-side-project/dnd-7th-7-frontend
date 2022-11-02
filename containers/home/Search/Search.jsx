@@ -13,6 +13,8 @@ import MapForSearch from '@components/MapForSearch';
 import locationAtom from '@recoil/location';
 import { useRecoilValue } from 'recoil';
 
+import { CommonActions } from '@react-navigation/native';
+
 const Search = ({ navigation, route }) => {
   const [searchBarInput, setSearchBarInput] = useState('');
   const [tagsModalVisible, setTagsModalVisible] = useState(false);
@@ -28,9 +30,17 @@ const Search = ({ navigation, route }) => {
     setTagsModalVisible(true);
   };
 
+  const goBack = () => {
+    const resetAction = CommonActions.reset({
+      index: 0,
+      routes: [{ name: 'Main' }],
+    });
+    navigation.dispatch(resetAction);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <GoogleSearchBar />
+      <GoogleSearchBar goBack={goBack} />
       <SubHeader onPress={tagsModalOpen} />
       <MapForSearch currentLocation={currentLoc} />
 
