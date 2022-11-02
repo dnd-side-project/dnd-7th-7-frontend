@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import getEnvVars from '@/environment';
 import { GooglePlacesAutocompleteStyles, IconWrapper, Wrapper } from './GoogleSearchBar.style';
@@ -8,25 +8,33 @@ import { globals } from '@styles/globals';
 import BackBtn from '@assets/images/back.svg';
 import CloseBtn from '@assets/images/close.svg';
 import SearchBtn from '@assets/images/search.svg';
+import useSearchRoutes from '../../querys/useSearchRoutes';
+
+import { useSetRecoilState } from 'recoil';
+import searchAddressLocationAtom from '@recoil/searchAddressLocation/atom';
 
 const { GOOGLE_MAP_API_KEY } = getEnvVars();
 
-const GoogleSearchBar = () => {
+const GoogleSearchBar = ({ goBack }) => {
+  const setSearchedLocation = useSetRecoilState(searchAddressLocationAtom);
   const navigation = useNavigation();
+  const ref = useRef();
 
   return (
     <Wrapper>
       <GooglePlacesAutocomplete
+        ref={ref}
         placeholder="시/구까지 입력해 주세요"
         disableScroll={true}
         fetchDetails={true}
         isRowScrollable={false}
+        filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']}
         query={{
           key: GOOGLE_MAP_API_KEY,
           language: 'ko',
           components: 'country:kor',
         }}
-        onPress={(data, details) => console.log(details.geometry?.location)}
+        onPress={(data, details) => setSearchedLocation(details.geometry?.location)}
         renderLeftButton={() => (
           <IconWrapper>
             <SearchBtn
@@ -39,7 +47,7 @@ const GoogleSearchBar = () => {
         )}
         renderRightButton={() => (
           <IconWrapper>
-            <Pressable onPress={() => this.textInput.clear()}>
+            <Pressable>
               <CloseBtn
                 width={15}
                 height={15}
@@ -52,7 +60,7 @@ const GoogleSearchBar = () => {
         textInputProps={{ placeholderTextColor: '#A5A5A5' }}
         styles={GooglePlacesAutocompleteStyles}
       />
-      <Pressable onPress={() => navigation.navigate('Home')}>
+      <Pressable onPress={() => goBack()}>
         <BackBtn style={{ marginLeft: 10 }} />
       </Pressable>
     </Wrapper>

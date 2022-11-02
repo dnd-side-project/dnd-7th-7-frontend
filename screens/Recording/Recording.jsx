@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import Search from '@containers/Recording/Search';
 import Header from '@components/Header';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RouteRunning from './RouteRunning';
@@ -18,7 +17,6 @@ const Recording = () => {
         })}
       />
       <Stack.Screen name="RouteRunning" component={RouteRunning} />
-      <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

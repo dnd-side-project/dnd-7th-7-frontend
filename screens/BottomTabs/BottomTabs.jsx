@@ -76,6 +76,12 @@ const BottomTabs = () => {
           tabBarIcon: ({ focused }) =>
             focused ? <RecordingIconActive name="Recording" /> : <RecordingIcon name="Recording" />,
         }}
+        screenListeners={{
+          state: (e) => {
+            // Do something with the state
+            console.log('state changed: ', e);
+          },
+        }}
       />
       <Tab.Screen
         name="BookMark"
