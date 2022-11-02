@@ -173,6 +173,11 @@ export const filterZeroValue = (tagCountData) => {
   return temp;
 };
 
+export const countServerTagsData = (tags) => {
+  const values = Object.values(tags);
+  return values.reduce((acc, curr) => acc + curr);
+};
+
 export const cityList = [
   { label: '서울특별시', value: '서울특별시' },
   { label: '부산광역시', value: '부산광역시' },

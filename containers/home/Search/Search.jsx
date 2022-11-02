@@ -10,17 +10,20 @@ import GoogleSearchBar from '@components/GoogleSearchBar';
 import SubHeader from '@components/commons/SubHeader';
 import MapForSearch from '@components/MapForSearch';
 
+import { useRecoilState, useRecoilValue } from 'recoil';
 import locationAtom from '@recoil/location';
-import { useRecoilValue } from 'recoil';
+import searchAddressLocationAtom from '@recoil/searchAddressLocation/atom';
 
 import { CommonActions } from '@react-navigation/native';
 
+import useSearchRoutes from '@querys/useSearchRoutes';
+
 const Search = ({ navigation, route }) => {
-  const [searchBarInput, setSearchBarInput] = useState('');
   const [tagsModalVisible, setTagsModalVisible] = useState(false);
-  // 나중에 MapView에서 마커 클릭 이벤트에 setClickedMark 삽입
   const [clickedMark, setClickedMark] = useState(1);
   const currentLoc = useRecoilValue(locationAtom);
+  const [searchedLocation, setSearchedLocation] = useRecoilState(searchAddressLocationAtom);
+  const { data, isLoading, isError } = useSearchRoutes(searchedLocation);
 
   const tagsModalClose = () => {
     setTagsModalVisible(false);
@@ -38,11 +41,18 @@ const Search = ({ navigation, route }) => {
     navigation.dispatch(resetAction);
   };
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', () => {
+      setSearchedLocation(null);
+    });
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <SafeAreaView style={styles.container}>
       <GoogleSearchBar goBack={goBack} />
       <SubHeader onPress={tagsModalOpen} />
-      <MapForSearch currentLocation={currentLoc} />
+      <MapForSearch currentLocation={currentLoc} searchedRouteList={data} />
 
       <BottomModal visible={tagsModalVisible} close={tagsModalClose} bgOpacity={0.2}>
         <TagsInModal routeId={clickedMark} />

@@ -29,6 +29,7 @@ module.exports = function (api) {
             '@assets': './assets',
             '@recoil': './recoil',
             '@apis': './apis',
+            '@querys': './querys',
           },
         },
       ],

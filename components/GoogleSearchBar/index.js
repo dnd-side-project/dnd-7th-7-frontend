@@ -10,18 +10,16 @@ import CloseBtn from '@assets/images/close.svg';
 import SearchBtn from '@assets/images/search.svg';
 import useSearchRoutes from '../../querys/useSearchRoutes';
 
+import { useSetRecoilState } from 'recoil';
+import searchAddressLocationAtom from '@recoil/searchAddressLocation/atom';
+
 const { GOOGLE_MAP_API_KEY } = getEnvVars();
 
 const GoogleSearchBar = ({ goBack }) => {
-  const [location, setLocation] = useState();
+  const setSearchedLocation = useSetRecoilState(searchAddressLocationAtom);
   const navigation = useNavigation();
   const ref = useRef();
-  const { data, isLoading, isError } = useSearchRoutes(location);
 
-  const onPress = (location) => {
-    setLocation(location);
-    console.log(`lat: ${location.lat}, lng: ${location.lng}`);
-  };
   return (
     <Wrapper>
       <GooglePlacesAutocomplete
@@ -36,7 +34,7 @@ const GoogleSearchBar = ({ goBack }) => {
           language: 'ko',
           components: 'country:kor',
         }}
-        onPress={(data, details) => onPress(details.geometry?.location)}
+        onPress={(data, details) => setSearchedLocation(details.geometry?.location)}
         renderLeftButton={() => (
           <IconWrapper>
             <SearchBtn
