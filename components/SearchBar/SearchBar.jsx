@@ -35,7 +35,7 @@ const SearchBar = (
           onChangeText={setInput}
         />
       </View>
-      <Pressable onPress={() => navigation.navigate('Home')}>
+      <Pressable onPress={() => navigation.navigate('BottomTabs')}>
         <CloseBtn style={{ marginLeft: 10 }} />
       </Pressable>
     </View>

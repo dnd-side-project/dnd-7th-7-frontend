@@ -4,7 +4,7 @@ import { Button, SafeAreaView, StyleSheet, Text, View, Pressable } from 'react-n
 import { styles } from './Search.style';
 import { globals } from '@styles/globals';
 
-import TagsInModal from '@containers/Recording/TagsInModal';
+import TagsInModal from '@components/TagsInModal';
 import { Font, BottomModal } from '@components/commons';
 import GoogleSearchBar from '@components/GoogleSearchBar';
 import SubHeader from '@components/commons/SubHeader';
@@ -36,7 +36,7 @@ const Search = ({ navigation, route }) => {
   const goBack = () => {
     const resetAction = CommonActions.reset({
       index: 0,
-      routes: [{ name: 'Main' }],
+      routes: [{ name: 'HomeMain' }],
     });
     navigation.dispatch(resetAction);
   };

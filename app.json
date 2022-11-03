@@ -16,8 +16,7 @@
       "package": "com.kmjnnhyk.dndprojectrunningmap"
     },
     "splash": {
-      "backgroundColor": "#ffffff",
-      "image": "./assets/images/loading.png"
+      "backgroundColor": "#21A345"
     },
     "plugins": [
       [

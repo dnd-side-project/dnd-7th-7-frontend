@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Header from '@components/Header';
 import Home from '@screens/Home';
-import Search from '@screens/Search';
+import Recommend from '@screens/Recommend';
 import Recording from '@screens/Recording';
 import BookMark from '@screens/BookMark';
 import MyPage from '@screens/MyPage';
@@ -35,6 +35,7 @@ const BottomTabs = () => {
         headerShown: false,
       }}
       sceneContainerStyle={screenCommonStyle}
+      initialRouteName={'Home'}
     >
       <Tab.Screen
         name="Home"
@@ -47,7 +48,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name="Recommend"
-        component={Search}
+        component={Recommend}
         options={{
           tabBarIcon: ({ focused }) =>
             focused ? (
@@ -64,7 +65,7 @@ const BottomTabs = () => {
               // search box input submit 시 실행되는 함수
               left={'back'}
               right={'close'} // left, center, right props Header.jsx 파일에 정리해놨습니다.
-              pressRight={() => navigation.navigate('afterOnboarding')}
+              pressRight={() => navigation.navigate('BottomTabs')}
             />
           ),
         }}

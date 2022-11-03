@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import OnBoarding from '@screens/OnBoarding';
+import Regist from '@screens/Regist';
 import BottomTabs from '@screens/BottomTabs';
 import Header from '@components/Header';
 import { getFonts } from './hooks/utils';
-import MypageMain from './screens/MyPage/MypageMain';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -27,12 +26,9 @@ const App = () => {
           }
         >
           <NavigationContainer>
-            <Stack.Navigator
-              screenOptions={{ headerShown: false }}
-              initialRouteName={'afterOnboarding'}
-            >
-              <Stack.Screen name="onboarding" component={OnBoarding} />
-              <Stack.Screen name="afterOnboarding" component={BottomTabs} />
+            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'Regist'}>
+              <Stack.Screen name="Regist" component={Regist} />
+              <Stack.Screen name="BottomTabs" component={BottomTabs} />
             </Stack.Navigator>
           </NavigationContainer>
         </React.Suspense>
