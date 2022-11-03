@@ -12,18 +12,17 @@ import styled from 'styled-components';
 import { globals } from '@styles/globals';
 import { Entypo } from '@expo/vector-icons';
 import { styles } from './RecommendedRoutes.style';
-import RouteBox from '@components/RouteBox/RouteBox';
 import { Font, Tag } from '@components/commons';
 import HomeMainRoute from '@components/HomeMainRoute';
-import { Photo } from '@screens/Search/SearchMain/Search.style';
+import { Photo } from '@containers/Recommend/Main/Main.style';
 import { useNavigation } from '@react-navigation/native';
 import MarkerIcon from '@assets/images/mini_marker_grey.svg';
 import { searchRoutes, getRoute } from '@apis';
 import * as Location from 'expo-location';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import locationAtom from '@recoil/location';
-import useGetAddress from '../../../querys/useGetAddress';
-import useGetRoute from '../../../querys/useGetRoute';
+import useGetAddress from '@querys/useGetAddress';
+import useGetRoute from '@querys/useGetRoute';
 
 const RecommendedRoutes = () => {
   const navigation = useNavigation();

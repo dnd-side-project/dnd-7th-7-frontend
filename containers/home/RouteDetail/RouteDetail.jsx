@@ -17,7 +17,7 @@ import Dot from '@assets/images/dot.svg';
 import Distance from '@assets/images/distance_icon.svg';
 import BookMark from '@assets/images/bookmark.svg';
 import SearchIcon from '@assets/images/navigator/SearchIcon.svg';
-import TagSelectSection from '@containers/OnBoarding/TagSelectSection';
+import TagSelectSection from '@components/TagSelectSection';
 import ThumbnailCards from '@containers/home/ThumbnailCards';
 import { indexToSecureTitle, filterZeroValue, convertTagsToText } from '@hooks/utils';
 import { useNavigation } from '@react-navigation/native';

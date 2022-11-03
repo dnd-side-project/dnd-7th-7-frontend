@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from '@components/Header';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import RouteRunningResult from './Result';
-import RouteRunningReview from './Review';
-import RouteRunningRecording from './Recording';
+import Result from '@containers/Recording/RouteRunning/Result';
+import Review from '@containers/Recording/RouteRunning/Review';
+import Recording from '@containers/Recording/RouteRunning/Recording';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +12,7 @@ const RouteRunning = () => {
     <Stack.Navigator initialRouteName="RouteRunningRecording">
       <Stack.Screen
         name="RouteRunningRecording"
-        component={RouteRunningRecording}
+        component={Recording}
         options={{
           header: ({ navigation, route, options }) => (
             <Header
@@ -29,7 +29,7 @@ const RouteRunning = () => {
       />
       <Stack.Screen
         name="RouteRunningResult"
-        component={RouteRunningResult}
+        component={Result}
         options={{
           header: ({ navigation, route, options }) => (
             <Header
@@ -39,14 +39,14 @@ const RouteRunning = () => {
               left={null}
               center={'러닝 내역'}
               right={'close'}
-              pressRight={() => navigation.navigate('Home')}
+              pressRight={() => navigation.navigate('BottomTabs')}
             />
           ),
         }}
       />
       <Stack.Screen
         name="RouteRunningReview"
-        component={RouteRunningReview}
+        component={Review}
         options={{
           header: ({ navigation, route, options }) => (
             <Header
@@ -56,7 +56,7 @@ const RouteRunning = () => {
               left={null}
               center={'리뷰 등록'}
               right={'close'}
-              pressRight={() => navigation.navigate('Home')}
+              pressRight={() => navigation.navigate('BottomTabs')}
             />
           ),
         }}

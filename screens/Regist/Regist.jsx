@@ -1,18 +1,33 @@
 import React from 'react';
-import Header from '@components/Header';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Result from '@containers/Recording/FreeRunning/Result';
-import Review from '@containers/Recording/FreeRunning/Review';
-import Recording from '@containers/Recording/FreeRunning/Recording';
+import Header from '@components/Header';
+import SelectTags from '@containers/Regist/SelectTags';
+import SignUp from '@containers/Regist/SignUp';
+import Main from '@containers/Regist/Main';
 
 const Stack = createNativeStackNavigator();
 
-const FreeRunning = () => {
+const Regist = () => {
   return (
-    <Stack.Navigator initialRouteName={'FreeRunningRecording'}>
+    <Stack.Navigator initialRouteName={'RegistMain'}>
       <Stack.Screen
-        name="FreeRunningRecording"
-        component={Recording}
+        name="RegistMain"
+        component={Main}
+        options={{
+          header: ({ navigation, route, options }) => (
+            <Header
+              navigation={navigation}
+              route={route}
+              options={options}
+              left={'logo'}
+              pressRight={() => navigation.navigate('BottomTabs')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="RegistSignUp"
+        component={SignUp}
         options={{
           header: ({ navigation, route, options }) => (
             <Header
@@ -20,7 +35,7 @@ const FreeRunning = () => {
               route={route}
               options={options}
               left={'back'}
-              center={'자유 러닝'}
+              center={'회원가입'}
               right={null}
               pressLeft={() => navigation.goBack()}
             />
@@ -28,25 +43,8 @@ const FreeRunning = () => {
         }}
       />
       <Stack.Screen
-        name="FreeRunningResult"
-        component={Result}
-        options={{
-          header: ({ navigation, route, options }) => (
-            <Header
-              navigation={navigation}
-              route={route}
-              options={options}
-              left={null}
-              center={'러닝 내역'}
-              right={'close'}
-              pressRight={() => navigation.navigate('BottomTabs')}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="FreeRunningReview"
-        component={Review}
+        name="RegistSelectTags"
+        component={SelectTags}
         options={{
           header: ({ navigation, route, options }) => (
             <Header
@@ -54,7 +52,7 @@ const FreeRunning = () => {
               route={route}
               options={options}
               left={'back'}
-              center={'리뷰 등록'}
+              center={'회원가입'}
               right={null}
               pressLeft={() => navigation.goBack()}
             />
@@ -65,4 +63,4 @@ const FreeRunning = () => {
   );
 };
 
-export default FreeRunning;
+export default Regist;

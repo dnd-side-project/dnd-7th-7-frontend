@@ -13,7 +13,7 @@ const HomeMainRoute = (data) => {
   return (
     <Container
       onPress={() =>
-        navigation.push('RouteDetail', {
+        navigation.push('HomeRouteDetail', {
           data: route,
         })
       }

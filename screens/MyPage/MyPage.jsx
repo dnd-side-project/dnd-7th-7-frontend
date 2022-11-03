@@ -1,12 +1,12 @@
 import React from 'react';
-import MypageMain from './MypageMain';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CheckPassword from './CheckPassword';
-import Header from '../../components/Header';
-import Modify from './Modify';
-import Recommend from './Recommend';
-import RecordHistory from './RecordHistory';
-import Review from './Review';
+import Header from '@components/Header';
+import MyPageMain from '@containers/MyPage/MyPageMain';
+import CheckPassword from '@containers/MyPage/CheckPassword';
+import Modify from '@containers/MyPage/Modify';
+import MyPageRecommend from '@containers/MyPage/MyPageRecommend';
+import RecordHistory from '@containers/MyPage/RecordHistory';
+import MyPageReview from '@containers/MyPage/MyPageReview';
 
 const MypageStack = createNativeStackNavigator();
 
@@ -25,8 +25,8 @@ const MyPage = () => {
             />
           ),
         }}
-        component={MypageMain}
-        name="MypageMain"
+        component={MyPageMain}
+        name="MyPageMain"
       />
       <MypageStack.Screen
         options={{
@@ -53,7 +53,7 @@ const MyPage = () => {
               left={null}
               right="close" // left, center, right props Header.jsx 파일에 정리해놨습니다.
               center="회원정보 수정"
-              pressRight={() => navigation.navigate('MypageMain')}
+              pressRight={() => navigation.navigate('MyPageMain')}
             />
           ),
         }}
@@ -69,11 +69,12 @@ const MyPage = () => {
               left={'back'}
               center="추천 경로 등록 내역 3"
               right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              pressLeft={() => navigation.goBack()}
             />
           ),
         }}
-        component={Recommend}
-        name="Recommend"
+        component={MyPageRecommend}
+        name="MyPageRecommend"
       />
       <MypageStack.Screen
         options={{
@@ -84,6 +85,7 @@ const MyPage = () => {
               left={'back'}
               center="러닝 기록 내역 3"
               right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              pressLeft={() => navigation.goBack()}
             />
           ),
         }}
@@ -99,11 +101,12 @@ const MyPage = () => {
               left={'back'}
               center="나의 리뷰"
               right={null} // left, center, right props Header.jsx 파일에 정리해놨습니다.
+              pressLeft={() => navigation.goBack()}
             />
           ),
         }}
-        component={Review}
-        name="Review"
+        component={MyPageReview}
+        name="MyPageReview"
       />
     </MypageStack.Navigator>
   );
